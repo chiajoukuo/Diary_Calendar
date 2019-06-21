@@ -54,11 +54,6 @@ class Slot extends React.Component {
     return(
       <div className='timeslot'>
         <div id='inside' className='slot_inside' onClick={(e)=>this.clicked(e)}>
-          {
-            this.state.map((item) => (
-              <SampleComponent key={item.id} name={item.name}/>
-            ))
-          }
           <div id='cover' onMouseUp={this.onMouseUp} className="slot_cover" style={{display:display ,height:cover_height,marginTop:y_top }}>
             <span>{stime} - {etime}</span>
             <button onClick={this.unselect}>x</button>
