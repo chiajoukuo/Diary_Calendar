@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles.css'
+import Cover from './Cover.js'
 
 let y
 
@@ -8,8 +9,7 @@ class Slot extends React.Component {
     super(props);
     this.state = {
       display:'',
-      checked:false,
-      event:'',
+      event:[],
       stime:8,
       etime:9,
       y_top:0,
@@ -17,19 +17,27 @@ class Slot extends React.Component {
     };
   }
 
+  isclicked = (y) =>{
+    const temp = this.state.event
+    for (var i = 0; i < temp.length ; i++) {
+      if(temp[i].y_bot+280 > y && temp[i].y_top+220 < y)
+          return true
+    }
+    return false
+  }
+
   clicked = (e) =>{
     y = e.screenY;
-    console.log(y)
-    this.setState(this.state.concat([
-      {id:2,name:"Another Name"}
-    ]))
-
-    if (this.state.checked===false)
-    this.setState({
-      checked:true,
-      display:'block',
-      y_top:y-250
-    })
+    console.log(this.state.event)
+    if(this.isclicked(y) === false){
+      let arr = this.state.event
+      arr.push({id:1,y_top:y-250,y_bot:y-170})
+      this.setState({
+        display:'block',
+        y_top:y-250,
+        event:arr
+      })
+    }
   }
 
   unselect = () =>{
@@ -51,14 +59,16 @@ class Slot extends React.Component {
      const {
       y_top,checked,display,etime,stime,cover_height
     } = this.state
+    let covers =  this.state.event.map((item,index) => {
+      return (
+          <Cover y_top={item.y_top} key={index} />
+      );
+    })
+
     return(
       <div className='timeslot'>
         <div id='inside' className='slot_inside' onClick={(e)=>this.clicked(e)}>
-          <div id='cover' onMouseUp={this.onMouseUp} className="slot_cover" style={{display:display ,height:cover_height,marginTop:y_top }}>
-            <span>{stime} - {etime}</span>
-            <button onClick={this.unselect}>x</button>
-            <input type='text' placeholder='enter event' onChange={e=>{this.setState({event:e.target.value})}}/>
-          </div>
+          { covers }
         </div>
       </div>
     )

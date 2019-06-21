@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles.css'
 import Slat from '../component/Slat.js'
 import Slot from '../component/Slot.js'
+import Cover from '../component/Cover.js'
+
 
 let mousedown = false
 const white = '#f5f5f5'
@@ -11,7 +13,6 @@ function Event(id,color,event){
   this.color = color;
   this.event = event;
 }
-
 
 
 class Main extends React.Component {
