@@ -10,7 +10,7 @@ import {
     Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addImage } from '../actions/diaryActions';
+import { getDiarys, addImage } from '../actions/diaryActions';
 import PropTypes from 'prop-types';
 
 class ImageModal extends Component {
@@ -23,6 +23,10 @@ class ImageModal extends Component {
     static propTypes = {
         addImage: PropTypes.func.isRequired,
         diary: PropTypes.object.isRequired
+    }
+
+    componentDidMount() {
+        this.props.getDiarys();
     }
 
     toggle = () => {
@@ -112,4 +116,4 @@ const mapStateToProps = (state) => ({
     diary: state.diary
 })
 
-export default connect(mapStateToProps, { addImage })(ImageModal);
+export default connect(mapStateToProps, { getDiarys, addImage })(ImageModal);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+    Container,
     Button,
     Form,
     FormGroup,
@@ -22,7 +23,7 @@ class CustomModal extends Component {
         actionType: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     }
 
-    static defaultProps= {
+    static defaultProps = {
         value: '',
     }
 
@@ -59,7 +60,7 @@ class CustomModal extends Component {
         } = this.props;
 
         return (
-            <div className="customModal" style={{ padding: '20px' }}>
+            <Container className="customModal" style={{ padding: '20px' }}>
                 <Form>
                     <FormGroup>
                         <Label for="value">Event</Label>
@@ -72,11 +73,14 @@ class CustomModal extends Component {
                             defaultValue={value}
                             onChange={this.onChange}
                         />
-                        <Button color="info" style={{ marginTop: '1rem', float: 'right' }} onClick={this.handleSave}>Save</Button>
                         <Button color="danger" style={{ marginTop: '1rem' }} onClick={this.handleRemove}>Delete</Button>
+                        <Button color="info" style={{ marginTop: '1rem', float: 'right' }} onClick={this.handleSave}>Save</Button>
                     </FormGroup>
                 </Form>
-            </div>
+
+
+
+            </Container>
 
         );
     }

@@ -10,7 +10,7 @@ import {
     Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addComment } from '../actions/diaryActions';
+import { getDiarys, addComment } from '../actions/diaryActions';
 import PropTypes from 'prop-types';
 
 class CommentModal extends Component {
@@ -18,6 +18,10 @@ class CommentModal extends Component {
         modal: false,
         id: '',
         body: ''
+    }
+
+    componentDidMount() {
+        this.props.getDiarys();
     }
 
     static propTypes = {
@@ -56,7 +60,7 @@ class CommentModal extends Component {
 
     render() {
         const { diarys } = this.props.diary;
-        
+        console.log("CommentModal: ", diarys)
         return (
             <div>
                 <Button
@@ -112,4 +116,4 @@ const mapStateToProps = (state) => ({
     diary: state.diary
 })
 
-export default connect(mapStateToProps, { addComment })(CommentModal);
+export default connect(mapStateToProps, { getDiarys, addComment })(CommentModal);

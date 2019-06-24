@@ -41,7 +41,7 @@ class EventModal extends Component {
             endTime: this.state.endTime
         }
         
-        // Add list via addList action
+        // Add event via addEvent action
         this.props.addEvent(newEvent);
 
         // Close modal
