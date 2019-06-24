@@ -9,7 +9,7 @@ const Event = require('../../models/Event');
 // @access  Public
 router.get('/', (req, res) => {
     Event.find()
-        .sort({ startTime: 1 })
+        .sort({ start: 1 })
         .then(events => res.json(events))
 });
 
@@ -18,9 +18,10 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
     const newEvent = new Event({
-        title: req.body.title,
-        startTime: req.body.startTime,
-        endTime: req.body.endTime
+        start: req.body.start,
+        end: req.body.end,
+        day: req.body.day,
+        value: req.body.value
     });
 
     newEvent.save().then(event => res.json(event));

@@ -1,20 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const moment = require('moment');
 
 // Create Schema
 const EventSchema = new Schema({
-    title: {
-        type: String,
-        required: true
+    start: {
+        h: Number,
+        m: Number
     },
-    startTime: {
-        type: String,
-        required: true
+    end: {
+        h: Number,
+        m: Number
     },
-    endTime: {
-        type: String,
-        required: true
-    }
+    day: {
+        type: Number,
+        default: 0
+    },
+    value: String,
 });
 
 module.exports = Event = mongoose.model('event', EventSchema);
