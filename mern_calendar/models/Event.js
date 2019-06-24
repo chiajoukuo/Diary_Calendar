@@ -5,16 +5,12 @@ const moment = require('moment');
 // Create Schema
 const EventSchema = new Schema({
     start: {
-        h: Number,
-        m: Number
+        type: Number,
+        required: true
     },
     end: {
-        h: Number,
-        m: Number
-    },
-    day: {
         type: Number,
-        default: 0
+        required: true
     },
     value: String,
 });

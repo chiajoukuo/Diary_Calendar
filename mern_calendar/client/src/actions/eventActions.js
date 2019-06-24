@@ -2,6 +2,7 @@ import axios from 'axios';
 import { 
     GET_EVENTS, 
     ADD_EVENT, 
+    UPDATE_EVENT,
     DELETE_EVENT, 
     EVENTS_LOADING } from './types';
 
@@ -25,6 +26,16 @@ export const addEvent = event => dispatch => {
                 payload: res.data
             }));
 };
+
+export const updateEvent = event => dispatch => {
+    axios
+        .post(`/api/events/${event._id}`, event)
+        .then(res => 
+            dispatch({
+                type: UPDATE_EVENT,
+                payload: res.data
+            }));
+}
 
 export const deleteEvent = id => dispatch => {
     axios.delete(`/api/events/${id}`)
