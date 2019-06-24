@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {CirclePicker} from 'react-color';
 import PropTypes from 'prop-types';
 import {
-    Container,
     Button,
     Form,
     FormGroup,
@@ -13,7 +12,7 @@ import {
 class CustomModal extends Component {
     state = {
         value: '',
-        color : "#BBAAFF",
+        color: '#BBAAFF',
     }
 
     static propTypes = {
@@ -25,9 +24,9 @@ class CustomModal extends Component {
         actionType: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     }
 
-    static defaultProps = {
+    static defaultProps= {
         value: '',
-        color:'#BBAAFF',
+        color:'#BBAAFF'
     }
 
     onChange = (e) => {
@@ -39,7 +38,7 @@ class CustomModal extends Component {
     }
 
     handleSave = () => {
-        const { value,color } = this.state;
+        const { color,value } = this.state;
         this.props.onSave({
             value,
             color
@@ -49,6 +48,8 @@ class CustomModal extends Component {
     handleChangeComplete = (color) => {
         this.setState({ color: color.hex });
     };
+
+    
 
     renderText() {
         const {
@@ -65,10 +66,11 @@ class CustomModal extends Component {
     render() {
         const {
             value,
+            color,
         } = this.props;
 
         return (
-            <Container className="customModal" style={{ padding: '20px' }}>
+            <div className="customModal" style={{ padding: '20px' }}>
                 <Form>
                     <FormGroup>
                         <Label for="value">Event</Label>
@@ -81,15 +83,13 @@ class CustomModal extends Component {
                             defaultValue={value}
                             onChange={this.onChange}
                         />
-                        <Button color="danger" style={{ marginTop: '1rem' }} onClick={this.handleRemove}>Delete</Button>
                         <Button color="info" style={{ marginTop: '1rem', float: 'right' }} onClick={this.handleSave}>Save</Button>
-                        <div style={{marginTop:'10px'}}>
-                            <p style={{marginBottom:'10px'}}> choose color of the event </p>
-                            <CirclePicker color={this.state.color} onChangeComplete={ this.handleChangeComplete } />
-                        </div>
-                    </FormGroup>
+                        <Button color="danger" style={{ marginTop: '1rem' }} onClick={this.handleRemove}>Delete</Button>
+                        <CirclePicker color={this.state.color} onChangeComplete={ this.handleChangeComplete } />
+                        <div style={{backgroundColor:this.state.color}}> test</div>
+                   </FormGroup>
                 </Form>
-            </Container>
+            </div>
 
         );
     }

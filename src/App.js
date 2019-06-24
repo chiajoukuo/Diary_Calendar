@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import WeekCalendar from 'react-week-calendar';
+import CustomModal from './CustomModal'
 import 'react-week-calendar/dist/style.css';
 
 class App extends React.Component{
@@ -8,24 +9,28 @@ class App extends React.Component{
     super(props);
     this.state = {
       lastUid: 4,
+      color:'#ffbbaabb',
       selectedIntervals: [
         {
           uid: 1,
           start: moment({h: 10, m: 5}),
           end: moment({h: 12, m: 5}),
-          value: "Booked by Smith"
+          value: "Booked by Smith",
+          color:'#ffaa44bb'
         },
         {
           uid: 2,
           start: moment({h: 13, m: 0}).add(2,'d'),
           end: moment({h: 13, m: 45}).add(2,'d'),
-          value: "Closed"
+          value: "Closed",
+          color:'#f1231abb'
         },
         {
           uid: 3,
           start: moment({h: 11, m: 0}),
           end: moment({h: 14, m: 0}),
-          value: "Reserved by White"
+          value: "Reserved by White",
+          color:'#fad212bb'
         },
       ]
     }
@@ -51,12 +56,14 @@ class App extends React.Component{
   }
 
   handleSelect = (newIntervals) => {
+  	console.log(newIntervals)
     const {lastUid, selectedIntervals} = this.state;
     const intervals = newIntervals.map( (interval, index) => {
 
       return {
         ...interval,
-        uid: lastUid + index
+        uid: lastUid + index,
+        color:interval.color
       }
     });
 
@@ -65,6 +72,19 @@ class App extends React.Component{
       lastUid: lastUid + newIntervals.length
     })
   }
+
+
+  componentDidUpdate(prevProps) {
+  	const { selectedIntervals} = this.state;
+ 		let arr = document.getElementsByClassName('event');
+    for (var j = selectedIntervals.length - 1; j >= 0; j--) {
+    	for (var i = arr.length - 1; i >= 0; i--) {
+	    	if(arr[i].textContent.substring(13) === selectedIntervals[j].value){
+	    		arr[i].style['backgroundColor'] = selectedIntervals[j].color
+	    	}
+	    }
+    }
+	}
 
   render() {
     return <WeekCalendar
@@ -75,6 +95,7 @@ class App extends React.Component{
       onIntervalSelect = {this.handleSelect}
       onIntervalUpdate = {this.handleEventUpdate}
       onIntervalRemove = {this.handleEventRemove}
+      modalComponent={CustomModal}
     />
   }
 }

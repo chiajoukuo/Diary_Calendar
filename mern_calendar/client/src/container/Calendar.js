@@ -25,7 +25,9 @@ class Calendar extends Component {
             const newEvent = {
                 start: interval.start.valueOf(),
                 end: interval.end.valueOf(),
-                value: interval.value
+                value: interval.value,
+                color: interval.color
+
             }
             this.props.addEvent(newEvent);
             return newEvent;
@@ -68,7 +70,8 @@ class Calendar extends Component {
                 _id: event._id,
                 value: event.value,
                 start: start,
-                end: end
+                end: end,
+                color: event.color
             };
             return newInterval;
         })
