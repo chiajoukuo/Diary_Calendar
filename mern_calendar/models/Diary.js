@@ -6,7 +6,8 @@ mongoose.set('useFindAndModify', false);
 const DiarySchema = new Schema({
     date: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     comments: [{ body: String }],
     images: [{ url: String }]
