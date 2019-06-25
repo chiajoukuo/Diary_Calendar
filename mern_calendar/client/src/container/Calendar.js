@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import WeekCalendar from 'react-week-calendar';
 import 'react-week-calendar/dist/style.css';
+import '../styles.css'
 import { Button } from 'reactstrap';
 import CustomModal from '../component/Calendar/CustomModal';
 import CustomEvent from '../component/Calendar/CustomEvent';
@@ -26,7 +27,7 @@ class Calendar extends Component {
                 start: interval.start.valueOf(),
                 end: interval.end.valueOf(),
                 value: interval.value,
-                color: interval.color
+                color: interval.color+'bb'
 
             }
             this.props.addEvent(newEvent);
@@ -35,17 +36,25 @@ class Calendar extends Component {
     }
 
     handleEventUpdate = (event) => {
-        console.log(event)
+        const value = event._id
+        console.log(value)
         const update = {
             ...event,
             start: event.start.valueOf(),
-            end: event.end.valueOf()
+            end: event.end.valueOf(),
+            color: event.color+'bb'
         }
         this.props.updateEvent(update);
     }
 
     handleEventRemove = (event) => {
-        this.props.deleteEvent(event._id);
+        const { events } = this.props.event;
+        for (var i = events.length - 1; i >= 0; i--) {
+            if(events[i].value === event.value){
+                this.props.deleteEvent(events[i]._id)
+            }
+        }
+        //this.props.deleteEvent(event._id);
     }
 
     nextWeek = () => {
@@ -59,6 +68,18 @@ class Calendar extends Component {
         this.setState({
             firstDay: modified.add(-7, "d")
         })
+    }
+
+    componentDidUpdate(prevProps) {
+    const { events } = this.props.event;
+    let arr = document.getElementsByClassName('event');
+    for (var j = events.length - 1; j >= 0; j--) {
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if(arr[i].textContent.substring(13) === events[j].value){
+                arr[i].style['backgroundColor'] = events[j].color
+            }
+        }
+    }
     }
 
     render() {
