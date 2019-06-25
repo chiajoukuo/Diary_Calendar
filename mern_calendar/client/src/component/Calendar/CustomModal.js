@@ -57,9 +57,9 @@ class CustomModal extends Component {
         } = this.props;
 
         if (start.isSame(end, 'day')) {
-            return (<span>{`${start.format('Do MMM., HH:mm')} - ${end.format('HH:mm')}`}</span>);
+            return (<span>{`${start.format('MM/DD ddd. | HH:mm')} - ${end.format('HH:mm')}`}</span>);
         }
-        return (<span>{`${start.format('Do MMM.')} - ${end.format('Do MMM.')}, ${start.format('HH:mm')} - ${end.format('HH:mm')}`}</span>);
+        return (<span>{`${start.format('MM/DD ddd.')}~ ${end.format('MM/DD ddd.')} | ${start.format('HH:mm')} - ${end.format('HH:mm')}`}</span>);
     }
 
     render() {
@@ -69,6 +69,7 @@ class CustomModal extends Component {
 
         return (
             <Container className="customModal" style={{ padding: '20px' }}>
+                <h3 style={{textAlign: 'center'}}>{this.renderText()}</h3>
                 <Form>
                     <FormGroup>
                         <Label for="value">Event</Label>
