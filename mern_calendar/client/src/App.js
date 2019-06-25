@@ -6,6 +6,7 @@ import { Container, Row, Nav } from 'reactstrap';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import AppNavbar from './component/AppNavbar';
 import Calendar from './container/Calendar';
 import DiaryRender from './component/Diary/DiaryRender';
 import CommentModal from './component/CommentModal';
@@ -56,6 +57,7 @@ class App extends Component {
       <BrowserRouter>
         <Provider store={store}>
           <div className="App">
+            <AppNavbar />
             <Switch>
               <Route exact path="/app" component={this.app} />
               <Redirect from="/diary/home" to="/diary" />
