@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
     const newEvent = new Event({
         start: req.body.start,
         end: req.body.end,
-        value: req.body.value
+        value: req.body.value,
+        color: req.body.color
     });
 
     newEvent.save().then(event => res.json(event));

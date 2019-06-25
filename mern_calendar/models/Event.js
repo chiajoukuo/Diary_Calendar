@@ -13,6 +13,7 @@ const EventSchema = new Schema({
         required: true
     },
     value: String,
+    color: String
 });
 
 module.exports = Event = mongoose.model('event', EventSchema);
