@@ -12,8 +12,8 @@ import {
 
 class CustomModal extends Component {
     state = {
-        value: '',
-        color : "#BBAAFF",
+        value: this.props.value,
+        color : this.props.color,
     }
 
     static propTypes = {
