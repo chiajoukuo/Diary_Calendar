@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from "react-router-dom";
+import '../../styles.css'
 
 class CustomHeaderCell extends React.PureComponent {
     static propTypes = {
@@ -15,8 +16,9 @@ class CustomHeaderCell extends React.PureComponent {
         } = this.props;
         return (
             <NavLink
+                className='headercell'
                 to={"/diary/" + date.format("YYYY-MM-DD")}
-                style={{ color: "Navy", fontSize: "1.2rem" }}
+                
             >{date.format(dayFormat)}</NavLink>
         );
     }

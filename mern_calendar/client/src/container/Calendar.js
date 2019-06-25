@@ -12,14 +12,16 @@ import CustomDayCell from '../component/Calendar/CustomDayCell';
 import { connect } from 'react-redux';
 import { getEvents, addEvent, updateEvent, deleteEvent } from '../actions/eventActions';
 
+var day = moment().day()
 class Calendar extends Component {
     componentDidMount() {
         this.props.getEvents();
     }
 
     state = {
-        firstDay: moment()
+        firstDay: moment().add(-day,'d')
     }
+
 
     handleSelect = (newIntervals) => {
         newIntervals.map(interval => {
@@ -46,7 +48,6 @@ class Calendar extends Component {
                 text_from_id = events[i].value
             }
         }
-        console.log(colorr_from_id,text_from_id)
         for (var i = events.length - 1; i >= 0; i--) {
             if(events[i].value === text_from_id && events[i].color === colorr_from_id){
                 const update = {
@@ -91,7 +92,7 @@ class Calendar extends Component {
         for (var j = events.length - 1; j >= 0; j--) {
             for (var i = arr.length - 1; i >= 0; i--) {
                 if(arr[i].textContent.substring(13) === events[j].value){
-                    arr[i].style['backgroundColor'] = (events[j].color+"bb")
+                    arr[i].style['backgroundColor'] = (events[j].color+"cb")
                 }
             }
         }
@@ -124,6 +125,7 @@ class Calendar extends Component {
                 <Button
                     color="info"
                     size="sm"
+                    style={{float:'right'}}
                     className="mb-2"
                     onClick={this.nextWeek}
                 >Next week</Button>
@@ -131,6 +133,7 @@ class Calendar extends Component {
                 <WeekCalendar
                     firstDay={this.state.firstDay}
                     numberOfDays={7}
+                    scaleHeaderTitle={"click date ->"}
                     dayFormat={"MM/DD ddd."}
                     startTime={moment({ h: 8, m: 0 })}
                     endTime={moment({ h: 20, m: 1 })}
