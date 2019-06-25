@@ -9,6 +9,7 @@ const Diary = require('../../models/Diary');
 // @access  Public
 router.get('/', (req, res) => {
     Diary.find()
+        .sort({ date: 1 })
         .then(diarys => res.json(diarys))
 });
 

@@ -4,8 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Container, Row, Nav } from 'reactstrap';
 
-import { Provider } from 'react-redux';
-import store from './store';
 import AppNavbar from './component/AppNavbar';
 import Calendar from './container/Calendar';
 import DiaryRender from './component/Diary/DiaryRender';
@@ -13,7 +11,15 @@ import CommentModal from './component/CommentModal';
 import ImageModal from './component/ImageModal';
 import DiaryModal from './component/DiaryModal';
 
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/authActions';
+
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
   app = () => {
     return (
       <section className="jumbotron-header mb-3 mt-2">
