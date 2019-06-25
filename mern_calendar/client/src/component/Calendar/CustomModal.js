@@ -27,7 +27,7 @@ class CustomModal extends Component {
 
     static defaultProps = {
         value: '',
-        color:'#BBAAFF',
+        color:'#f44336',
     }
 
     onChange = (e) => {
@@ -65,6 +65,7 @@ class CustomModal extends Component {
     render() {
         const {
             value,
+            color
         } = this.props;
 
         return (

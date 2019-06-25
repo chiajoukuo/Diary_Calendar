@@ -27,7 +27,7 @@ class Calendar extends Component {
                 start: interval.start.valueOf(),
                 end: interval.end.valueOf(),
                 value: interval.value,
-                color: interval.color+'bb'
+                color: interval.color
 
             }
             this.props.addEvent(newEvent);
@@ -36,21 +36,35 @@ class Calendar extends Component {
     }
 
     handleEventUpdate = (event) => {
-        const value = event._id
-        console.log(value)
-        const update = {
-            ...event,
-            start: event.start.valueOf(),
-            end: event.end.valueOf(),
-            color: event.color+'bb'
+        const {events} = this.props.event;
+        const value = event._id;
+        var colorr_from_id = '';
+        var text_from_id = '';
+        for (var i = events.length - 1; i >= 0; i--) {
+            if(events[i]._id === value){
+                colorr_from_id = events[i].color
+                text_from_id = events[i].value
+            }
         }
-        this.props.updateEvent(update);
+        console.log(colorr_from_id,text_from_id)
+        for (var i = events.length - 1; i >= 0; i--) {
+            if(events[i].value === text_from_id && events[i].color === colorr_from_id){
+                const update = {
+                    _id : events[i]._id,
+                    color: event.color,
+                    value: event.value,
+                    start: events[i].start.valueOf(),
+                    end: events[i].end.valueOf(),
+                }
+                this.props.updateEvent(update);
+            }
+        }   
     }
 
     handleEventRemove = (event) => {
         const { events } = this.props.event;
         for (var i = events.length - 1; i >= 0; i--) {
-            if(events[i].value === event.value){
+            if(events[i].value === event.value && events[i].color === event.color){
                 this.props.deleteEvent(events[i]._id)
             }
         }
@@ -71,15 +85,16 @@ class Calendar extends Component {
     }
 
     componentDidUpdate(prevProps) {
-    const { events } = this.props.event;
-    let arr = document.getElementsByClassName('event');
-    for (var j = events.length - 1; j >= 0; j--) {
-        for (var i = arr.length - 1; i >= 0; i--) {
-            if(arr[i].textContent.substring(13) === events[j].value){
-                arr[i].style['backgroundColor'] = events[j].color
+        const { events } = this.props.event;
+        let arr = document.getElementsByClassName('event');
+        //console.log(arr[0].style['backgroundColor'])
+        for (var j = events.length - 1; j >= 0; j--) {
+            for (var i = arr.length - 1; i >= 0; i--) {
+                if(arr[i].textContent.substring(13) === events[j].value){
+                    arr[i].style['backgroundColor'] = (events[j].color+"bb")
+                }
             }
         }
-    }
     }
 
     render() {
