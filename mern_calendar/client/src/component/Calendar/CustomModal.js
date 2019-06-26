@@ -50,6 +50,37 @@ class CustomModal extends Component {
         this.setState({ color: color.hex });
     };
 
+    addzero(interger){
+        if (interger<0) 
+            return "45"
+        else if (interger>=10)
+          return String(interger)
+        else
+          return '0'+String(interger)
+    }
+
+    inverttostring = (m,index) =>{
+        if(index === 0){
+            return this.addzero(m.hour())+":"+this.addzero(m.minute())
+        }
+        else{
+            if(m.minute()===0)
+                return this.addzero(m.hour()-1)+":"+this.addzero(m.minute()-15)
+            else
+                return this.addzero(m.hour())+":"+this.addzero(m.minute()-15)
+        }
+
+    };
+
+    rendertime() {
+        const {
+            start,
+            end,
+        } = this.props;
+
+        return (this.inverttostring(start,0) +" - "+ this.inverttostring(end,1))
+    }
+
     renderText() {
         const {
             start,
@@ -57,9 +88,11 @@ class CustomModal extends Component {
         } = this.props;
 
         if (start.isSame(end, 'day')) {
-            return (<span>{`${start.format('MM/DD ddd. | HH:mm')} - ${end.format('HH:mm')}`}</span>);
+            return (<span>{`${start.format('MM/DD ddd. ')}`}</span>);
+            // return (<span>{`${start.format('MM/DD ddd. | HH:mm')} - ${end.format('HH:mm')}`}</span>);
         }
-        return (<span>{`${start.format('MM/DD ddd.')}~ ${end.format('MM/DD ddd.')} | ${start.format('HH:mm')} - ${end.format('HH:mm')}`}</span>);
+        // return (<span>{`${start.format('MM/DD ddd.')}~ ${end.format('MM/DD ddd.')} | ${start.format('HH:mm')} - ${end.format('HH:mm')}`}</span>);
+        return (<span>{`${start.format('MM/DD ddd.')}~ ${end.format('MM/DD ddd.')}` }</span>);
     }
 
     render() {
@@ -70,7 +103,7 @@ class CustomModal extends Component {
 
         return (
             <Container className="customModal" style={{ padding: '20px' }}>
-                <h3 style={{textAlign: 'center'}}>{this.renderText()}</h3>
+                <h3 style={{textAlign: 'center'}}>{this.renderText()}| {this.rendertime()}</h3>
                 <Form>
                     <FormGroup>
                         <Label for="value">Event</Label>
