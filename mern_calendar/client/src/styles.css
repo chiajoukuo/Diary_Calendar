@@ -1,3 +1,26 @@
 .event{
-	color: black;
+	color: #333;
+	border-radius: 10px;
+	text-align: center;
+	transition: all 0.2s ease-out;
+}
+
+.event:hover{
+	transform: scale(1.05);
+}
+
+.event:active{
+	transform: scale(0.9);
+}
+
+.headercell{
+	color: #525252;
+	font-size: 1.2rem;
+}
+
+.headercell:hover{
+	transition: 0.2s;
+	color: #ff5722;
+	font-size: 1.22rem;
+	text-decoration: none;
 }

@@ -19,7 +19,7 @@ class CustomEvent extends React.PureComponent {
       <div className="event">
         <span>{`${start.format('HH:mm')} - ${end.format('HH:mm')}`}</span>
         <br /><br />
-        {value}
+        <span>{value}</span>
       </div>
     );
   }
