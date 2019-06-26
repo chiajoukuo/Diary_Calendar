@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Switch, Redirect } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -15,6 +14,7 @@ import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
 import '../styles.css';
+import AppNavbar from '../component/AppNavbar';
 
 class RegisterPage extends Component {
     state = {
@@ -33,9 +33,9 @@ class RegisterPage extends Component {
 
     componentDidUpdate(prevProps) {
         const { error, isAuthenticated } = this.props;
-        if(error !== prevProps.error) {
+        if (error !== prevProps.error) {
             // Check for register error
-            if(error.id === 'REGISTER_FAIL') {
+            if (error.id === 'REGISTER_FAIL') {
                 this.setState({ msg: error.msg });
             } else {
                 this.setState({ msg: null });
@@ -43,7 +43,7 @@ class RegisterPage extends Component {
         }
 
         // If authenticated
-        if(isAuthenticated) {
+        if (isAuthenticated) {
             // Clear errors
             this.props.clearErrors();
         }
@@ -77,50 +77,53 @@ class RegisterPage extends Component {
 
     render() {
         return (
-            <div className="loginform">
-                <Form onSubmit={this.onSubmit}>
-                    <FormGroup>
-                        <TextField
-                            id="standard-name"
-                            label="Name"
-                            name="name"
-                            style={{
-                                width: '200px',
-                                height: '50px'
-                            }}
-                            onChange={this.onChange}
-                        />
-                        <FormControl>
-                            <InputLabel htmlFor="adornment-password">Password</InputLabel>
-                            <Input
-                                id="adornment-password"
-                                type={this.state.showPassword ? 'text' : 'password'}
-                                name="password"
+            <Fragment>
+                <AppNavbar history={this.props.history} />
+                <div className="loginform">
+                    <Form onSubmit={this.onSubmit}>
+                        <FormGroup>
+                            <TextField
+                                id="standard-name"
+                                label="Name"
+                                name="name"
+                                style={{
+                                    width: '200px',
+                                    height: '50px'
+                                }}
                                 onChange={this.onChange}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton aria-label="Toggle password visibility" onClick={this.handleClickShowPassword}>
-                                            {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
                             />
-                        </FormControl>
-                        <div style={{ width: '200px', marginTop: '1rem' }}>
-                            {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
-                        </div>
-                        <div style={{ width: '200px', marginTop: '-1rem' }}>
-                            <Button
-                                color="primary"
-                                style={{ float: 'right', marginTop: '1.5rem'  }}
-                            >
-                                Register
+                            <FormControl>
+                                <InputLabel htmlFor="adornment-password">Password</InputLabel>
+                                <Input
+                                    id="adornment-password"
+                                    type={this.state.showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    onChange={this.onChange}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton aria-label="Toggle password visibility" onClick={this.handleClickShowPassword}>
+                                                {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
+                            <div style={{ width: '200px', marginTop: '1rem' }}>
+                                {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+                            </div>
+                            <div style={{ width: '200px', marginTop: '-1rem' }}>
+                                <Button
+                                    color="primary"
+                                    style={{ float: 'right', marginTop: '1.5rem' }}
+                                >
+                                    Register
                             </Button>
-                            <NavLink style={{ float: 'left', marginTop: '2rem', marginLeft: '-1rem'  }} href="/user/login">Sign In</NavLink>
-                        </div>
-                    </FormGroup>
-                </Form>
-            </div>
+                                <NavLink style={{ float: 'left', marginTop: '2rem', marginLeft: '-1rem' }} href="/user/login">Sign In</NavLink>
+                            </div>
+                        </FormGroup>
+                    </Form>
+                </div>
+            </Fragment>
         );
     }
 }

@@ -51,14 +51,16 @@ class Calendar extends Component {
                 text_from_id = events[i].value
             }
         }
-        for (var i = events.length - 1; i >= 0; i--) {
+        for (i = events.length - 1; i >= 0; i--) {
             if (events[i].value === text_from_id && events[i].color === colorr_from_id && events[i].userID === event.userID) {
                 const update = {
                     _id: events[i]._id,
                     color: event.color,
                     value: event.value,
-                    start: events[i].start.valueOf(),
-                    end: events[i].end.valueOf(),
+                    // start: events[i].start.valueOf(),
+                    // end: events[i].end.valueOf(),
+                    start: event.start,
+                    end: event.end,
                     userID: events[i].userID
                 }
                 this.props.updateEvent(update);
@@ -105,7 +107,7 @@ class Calendar extends Component {
     render() {
         const { events } = this.props.event;
         const { user } = this.props.auth;
-        const intervals = events.map(event => {
+        const intervals = events.filter(event => event.userID === user._id).map(event => {
             const start = moment(event.start);
             const end = moment(event.end);
             const newInterval = {
@@ -117,7 +119,7 @@ class Calendar extends Component {
                 userID: event.userID
             };
             return newInterval;
-        }).filter(event => event.userID === user._id);
+        });
         
         return (
             <div>

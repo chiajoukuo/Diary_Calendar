@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -25,17 +25,20 @@ class App extends Component {
 
   Diary = () => {
     return (
-      <section className="jumbotron-header mb-3 mt-2">
-        <h1 className="jumbotron-heading display-4 text-center">Diary Page</h1>
-        <p className="lead text-center">Just a TEST Diary PAGE</p>
-        <Container>
-          <Row>
-            <DiaryModal />
-            <CommentModal />
-            <ImageModal />
-          </Row>
-        </Container>
-      </section>
+      <Fragment>
+        <AppNavbar />
+        <section className="jumbotron-header mb-3 mt-2">
+          <h1 className="jumbotron-heading display-4 text-center">Diary Page</h1>
+          <p className="lead text-center">Just a TEST Diary PAGE</p>
+          <Container>
+            <Row>
+              <DiaryModal />
+              <CommentModal />
+              <ImageModal />
+            </Row>
+          </Container>
+        </section>
+      </Fragment>
     )
   }
 
@@ -44,7 +47,6 @@ class App extends Component {
       <BrowserRouter>
         <Provider store={store}>
           <div className="App">
-            <AppNavbar />
             <Switch>
               <Route exact path="/app" component={CalendarPage} />
               <Redirect from="/diary/home" to="/diary" />

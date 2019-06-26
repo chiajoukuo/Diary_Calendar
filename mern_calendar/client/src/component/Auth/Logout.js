@@ -10,10 +10,17 @@ export class Logout extends Component {
         logout: PropTypes.func.isRequired
     }
 
+    handleLogout = () => {
+        this.props.logout();
+        
+        // Redirect to HomePage
+        this.props.history.push('/');
+    }
+
     render() {
         return (
             <Fragment>
-                <NavLink onClick={this.props.logout} hred='#'>
+                <NavLink onClick={this.handleLogout} hred='#'>
                     <IoIosLogOut size={25}  />
                     Logout
                 </NavLink>

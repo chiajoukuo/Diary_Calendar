@@ -8,10 +8,6 @@ import {
   Nav,
   NavLink,
   NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -44,7 +40,7 @@ class AppNavbar extends Component {
           </span>
         </NavItem>
         <NavItem>
-          <Logout />
+          <Logout history={this.props.history} />
         </NavItem>
       </Fragment>
     )
