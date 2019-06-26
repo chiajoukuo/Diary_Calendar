@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const moment = require('moment');
 
 // Create Schema
 const EventSchema = new Schema({
@@ -13,7 +12,11 @@ const EventSchema = new Schema({
         required: true
     },
     value: String,
-    color: String
+    color: String,
+    userID: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = Event = mongoose.model('event', EventSchema);

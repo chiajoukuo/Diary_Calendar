@@ -2,24 +2,26 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import WeekCalendar from 'react-week-calendar';
 import 'react-week-calendar/dist/style.css';
-import '../styles.css'
+import '../../styles.css'
 import { Button } from 'reactstrap';
-import CustomModal from '../component/Calendar/CustomModal';
-import CustomEvent from '../component/Calendar/CustomEvent';
-import CustomHeaderCell from '../component/Calendar/CustomHeaderCell';
-import CustomDayCell from '../component/Calendar/CustomDayCell';
+import CustomModal from './CustomModal';
+import CustomEvent from './CustomEvent';
+import CustomHeaderCell from './CustomHeaderCell';
+import CustomDayCell from './CustomDayCell';
 
 import { connect } from 'react-redux';
-import { getEvents, addEvent, updateEvent, deleteEvent } from '../actions/eventActions';
+import { getEvents, addEvent, updateEvent, deleteEvent } from '../../actions/eventActions';
+import { loadUser } from '../../actions/authActions';
 
 var day = moment().day()
 class Calendar extends Component {
     componentDidMount() {
         this.props.getEvents();
+        this.props.loadUser();
     }
 
     state = {
-        firstDay: moment().add(-day,'d')
+        firstDay: moment().add(-day, 'd')
     }
 
 
@@ -29,43 +31,45 @@ class Calendar extends Component {
                 start: interval.start.valueOf(),
                 end: interval.end.valueOf(),
                 value: interval.value,
-                color: interval.color
-
+                color: interval.color,
+                userID: this.props.auth.user._id
             }
+            console.log(newEvent)
             this.props.addEvent(newEvent);
             return newEvent;
         })
     }
 
     handleEventUpdate = (event) => {
-        const {events} = this.props.event;
+        const { events } = this.props.event;
         const value = event._id;
         var colorr_from_id = '';
         var text_from_id = '';
         for (var i = events.length - 1; i >= 0; i--) {
-            if(events[i]._id === value){
+            if (events[i]._id === value) {
                 colorr_from_id = events[i].color
                 text_from_id = events[i].value
             }
         }
         for (var i = events.length - 1; i >= 0; i--) {
-            if(events[i].value === text_from_id && events[i].color === colorr_from_id){
+            if (events[i].value === text_from_id && events[i].color === colorr_from_id && events[i].userID === event.userID) {
                 const update = {
-                    _id : events[i]._id,
+                    _id: events[i]._id,
                     color: event.color,
                     value: event.value,
                     start: events[i].start.valueOf(),
                     end: events[i].end.valueOf(),
+                    userID: events[i].userID
                 }
                 this.props.updateEvent(update);
             }
-        }   
+        }
     }
 
     handleEventRemove = (event) => {
         const { events } = this.props.event;
         for (var i = events.length - 1; i >= 0; i--) {
-            if(events[i].value === event.value && events[i].color === event.color){
+            if (events[i].value === event.value && events[i].color === event.color && events[i].userID === event.userID) {
                 this.props.deleteEvent(events[i]._id)
             }
         }
@@ -91,8 +95,8 @@ class Calendar extends Component {
         //console.log(arr[0].style['backgroundColor'])
         for (var j = events.length - 1; j >= 0; j--) {
             for (var i = arr.length - 1; i >= 0; i--) {
-                if(arr[i].textContent.substring(13) === events[j].value){
-                    arr[i].style['backgroundColor'] = (events[j].color+"cb")
+                if (arr[i].textContent.substring(13) === events[j].value) {
+                    arr[i].style['backgroundColor'] = (events[j].color + "cb")
                 }
             }
         }
@@ -100,6 +104,7 @@ class Calendar extends Component {
 
     render() {
         const { events } = this.props.event;
+        const { user } = this.props.auth;
         const intervals = events.map(event => {
             const start = moment(event.start);
             const end = moment(event.end);
@@ -108,12 +113,12 @@ class Calendar extends Component {
                 value: event.value,
                 start: start,
                 end: end,
-                color: event.color
+                color: event.color,
+                userID: event.userID
             };
             return newInterval;
-        })
-        //console.log(events)
-        //console.log(intervals)
+        }).filter(event => event.userID === user._id);
+        
         return (
             <div>
                 <Button
@@ -125,7 +130,7 @@ class Calendar extends Component {
                 <Button
                     color="info"
                     size="sm"
-                    style={{float:'right'}}
+                    style={{ float: 'right' }}
                     className="mb-2"
                     onClick={this.nextWeek}
                 >Next week</Button>
@@ -152,7 +157,8 @@ class Calendar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    event: state.event
+    event: state.event,
+    auth: state.auth
 });
 
-export default connect(mapStateToProps, { getEvents, addEvent, updateEvent, deleteEvent })(Calendar);
+export default connect(mapStateToProps, { loadUser, getEvents, addEvent, updateEvent, deleteEvent })(Calendar);

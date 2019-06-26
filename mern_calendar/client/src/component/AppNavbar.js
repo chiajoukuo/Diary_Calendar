@@ -15,11 +15,16 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { IoLogoGithub, IoMdPerson } from "react-icons/io";
+import { IoLogoGithub } from "react-icons/io";
+import Logout from './Auth/Logout';
 
 class AppNavbar extends Component {
   state = {
     isOpen: false
+  }
+
+  static propTypes = {
+    auth: PropTypes.object.isRequired
   }
 
   toggle = () => {
@@ -29,35 +34,20 @@ class AppNavbar extends Component {
   }
 
   render() {
-    // const authLinks = (
-    //   <Fragment>
-    //     <NavItem>
-    //       <span className="navbar-text mr-3">
-    //         <strong>{user ? `Welcome ${user.name}` : ''}</strong>
-    //       </span>
-    //     </NavItem>
-    //     <NavItem>
-    //       <Logout />
-    //     </NavItem>
-    //   </Fragment>
-    // )
+    const { isAuthenticated, user } = this.props.auth;
 
-    // const guestLinks = (
-    //   <UncontrolledDropdown nav inNavbar>
-    //     <DropdownToggle nav caret>
-    //       <IoMdPerson size={25} />
-    //     </DropdownToggle>
-    //     <DropdownMenu right>
-    //       <DropdownItem>
-    //         <RegisterModal />
-    //       </DropdownItem>
-    //       <DropdownItem divider />
-    //       <DropdownItem>
-    //         <LoginModal />
-    //       </DropdownItem>
-    //     </DropdownMenu>
-    //   </UncontrolledDropdown>
-    // )
+    const authLinks = (
+      <Fragment>
+        <NavItem>
+          <span className="navbar-text mr-3">
+            <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+          </span>
+        </NavItem>
+        <NavItem>
+          <Logout />
+        </NavItem>
+      </Fragment>
+    )
 
     return (
       <div>
@@ -67,15 +57,20 @@ class AppNavbar extends Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="mr-auto" navbar>
-                <NavItem>
-                  <NavLink href="/diary" style={{fontSize: "1.2rem"}}>Diary</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/app" style={{fontSize: "1.2rem"}}>Calendar</NavLink>
-                </NavItem>
+                {isAuthenticated ?
+                  <Fragment>
+                    <NavItem>
+                      <NavLink href="/diary" style={{ fontSize: "1.2rem" }}>Diary</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="/app" style={{ fontSize: "1.2rem" }}>Calendar</NavLink>
+                    </NavItem>
+                  </Fragment>
+                  : null
+                }
               </Nav>
               <Nav className='ml-auto' navbar>
-                {/* {isAuthenticated ? authLinks : guestLinks} */}
+                {isAuthenticated ? authLinks : null}
                 <NavItem>
                   <NavLink href="https://github.com/chiajoukuo/Diary_Calendar">
                     <IoLogoGithub size={25} />
@@ -90,9 +85,8 @@ class AppNavbar extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   auth: state.auth
-// })
+const mapStateToProps = state => ({
+  auth: state.auth
+})
 
-// export default connect(mapStateToProps, null)(AppNavbar);
-export default AppNavbar;
+export default connect(mapStateToProps, null)(AppNavbar);

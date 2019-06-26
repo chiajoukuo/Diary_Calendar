@@ -24,3 +24,14 @@
 	font-size: 1.22rem;
 	text-decoration: none;
 }
+
+.loginform {
+	width: 200px;
+	height: 100px;
+	margin: -90px 0 0 -100px;
+	display: flex;
+	flex-wrap: wrap;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
