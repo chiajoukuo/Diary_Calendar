@@ -29,7 +29,9 @@ class DiaryRender extends Component {
         if (diarys && user) {
             const diaryDates = diarys.filter(diary => diary.userID === user._id).map(diary => diary.date);
             if (id && diaryDates.includes(id)) {
-                return ( <Diary id={id} item={diarys.filter(diary => diary.date === id)[0]} /> );
+                const item = diarys.filter(diary => diary.uniqueID === (id+'+'+user.name))[0];
+                console.log(item)
+                return ( <Diary id={id} item={item} /> );
             }
             
             else if (!diaryDates.includes(id)) {
@@ -39,7 +41,7 @@ class DiaryRender extends Component {
                     userID: user._id,
                 }
                 this.handleAddDiary(newDiary);
-                console.log(newDiary)
+                
                 return ( <div>Error: Diary #{id} not found</div> );
             }
         }

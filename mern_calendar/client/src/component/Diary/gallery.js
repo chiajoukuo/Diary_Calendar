@@ -3,9 +3,7 @@ import Picture from "./components/picture"
 import Text from "./components/text"
 import But from "./components/but"
 import "./components/style.css"
-import { getDiarys, addComment, addImage } from '../../actions/diaryActions';
 
-import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
 class Gallery extends Component {
@@ -26,7 +24,7 @@ class Gallery extends Component {
     }
 
     componentDidMount() {
-        this.props.getDiarys();
+        // this.props.getDiarys();
     }
 
     handleZoomOnClick = (e) =>{
@@ -49,9 +47,9 @@ class Gallery extends Component {
         })
     }
     render(){
-        const { diarys } = this.props.diary;
+        // const { diarys } = this.props.diary;
         const { item } = this.props;
-        console.log(diarys)
+        console.log(item)
         //console.log("render gal",this.state.status)
         const stat=this.state.status
         let dbc=this.dbclick.bind(this)
@@ -59,7 +57,7 @@ class Gallery extends Component {
             function(list){return (
             <Text status={stat} onDoubleClick={dbc}>
                 <p>
-                    {list}
+                    {list.body}
                 </p>
             </Text>)
         })
@@ -84,8 +82,4 @@ class Gallery extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    diary: state.diary
-});
-
-export default connect(mapStateToProps, { getDiarys, addComment, addImage } )(Gallery);
+export default Gallery;
