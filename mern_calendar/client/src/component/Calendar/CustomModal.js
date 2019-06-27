@@ -64,7 +64,8 @@ class CustomModal extends Component {
     }
 
     handleRemove = () => {
-        this.props.onRemove();
+        const {allEvent} = this.state
+        this.props.onRemove({allEvent});
     }
 
     handleSave = () => {

@@ -51,7 +51,7 @@ class Calendar extends Component {
                 text_from_id = events[i].value
             }
         }
-        if(event.allEvent){
+        if(event.allEvent === true){
 	        for (i = events.length - 1; i >= 0; i--) {
 	            if (events[i].value === text_from_id 
 	                && events[i].color === colorr_from_id 
@@ -87,13 +87,19 @@ class Calendar extends Component {
     }
 
     handleEventRemove = (event) => {
+    		console.log(event)
         const { events } = this.props.event;
-        for (var i = events.length - 1; i >= 0; i--) {
-            if (events[i].value === event.value && events[i].color === event.color && events[i].userID === event.userID) {
-                this.props.deleteEvent(events[i]._id)
-            }
+        if(event.allEvent === true){
+   				console.log(1)
+	        for (var i = events.length - 1; i >= 0; i--) {
+	            if (events[i].value === event.value && events[i].color === event.color && events[i].userID === event.userID) {
+	                this.props.deleteEvent(events[i]._id)
+	            }
+	        }
+	      }
+	      else{
+        	this.props.deleteEvent(event._id);
         }
-        //this.props.deleteEvent(event._id);
     }
 
     nextWeek = () => {
