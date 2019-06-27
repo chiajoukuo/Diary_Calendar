@@ -59,7 +59,7 @@ class CustomModal extends Component {
     }
 
     onChangeEndTime = (time) => {
-        const endTime = moment(time).valueOf();
+        const endTime = moment(time).add(15,'m').valueOf();
         this.setState({ end: endTime });
     }
 
@@ -143,6 +143,7 @@ class CustomModal extends Component {
         const {
             value,
         } = this.props;
+        const temp = moment(this.state.end).add(-15,'m')
 
         return (
             <Container className="customModal" style={{ padding: '20px' }}>
@@ -165,6 +166,7 @@ class CustomModal extends Component {
                             <KeyboardTimePicker
                                 margin="normal"
                                 id="mui-pickers-time"
+                                minutesStep={15}
                                 label="Start Time"
                                 value={this.state.start}
                                 onChange={this.onChangeStartTime}
@@ -175,8 +177,9 @@ class CustomModal extends Component {
                             <KeyboardTimePicker
                                 margin="normal"
                                 id="mui-pickers-time"
+                                minutesStep={15}
                                 label="End Time"
-                                value={this.state.end}
+                                value={temp}
                                 onChange={this.onChangeEndTime}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change time',
