@@ -1,0 +1,16 @@
+.txt{
+    width:20px;
+    float:right;
+}
+.pic{
+    transform: scale(1.0, 1.0);
+    /*transform:translate(50,70);*/
+}
+.icon{
+    width:20px;
+    margin-right:10px;
+}
+
+.txtCard{
+    width:50px
+}
