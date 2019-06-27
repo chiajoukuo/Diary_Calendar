@@ -52,20 +52,25 @@ class Calendar extends Component {
             }
         }
         for (i = events.length - 1; i >= 0; i--) {
-            if (events[i].value === text_from_id && events[i].color === colorr_from_id && events[i].userID === event.userID) {
+            if (events[i].value === text_from_id 
+                && events[i].color === colorr_from_id 
+                && events[i].userID === event.userID) {
                 const update = {
                     _id: events[i]._id,
                     color: event.color,
                     value: event.value,
-                    // start: events[i].start.valueOf(),
-                    // end: events[i].end.valueOf(),
-                    start: event.start,
-                    end: event.end,
+                    start: moment(events[i].start).set({'hours': moment(event.start).get('hours'), 'minutes': moment(event.start).get('minutes')}).valueOf(),
+                    end: moment(events[i].end).set({'hours': moment(event.end).get('hours'), 'minutes': moment(event.end).get('minutes')}).valueOf(),
+                    // start: events[i].start,
+                    // end: events[i].end,
+                    // start: event.start,
+                    // end: event.end,
                     userID: events[i].userID
                 }
                 this.props.updateEvent(update);
             }
         }
+        
     }
 
     handleEventRemove = (event) => {

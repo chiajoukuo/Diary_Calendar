@@ -15,8 +15,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
 } from '@material-ui/pickers';
 import 'date-fns';
 import moment from 'moment';
@@ -25,7 +25,7 @@ class CustomModal extends Component {
     state = {
         value: this.props.value,
         color: this.props.color,
-        allDay: false,
+        allEvent: false,
         start: this.props.start.valueOf(),
         end: this.props.end.valueOf()
     }
@@ -42,7 +42,7 @@ class CustomModal extends Component {
     static defaultProps = {
         value: '',
         color: '#f44336',
-        allDay: false
+        allEvent: false
     }
 
     onChange = (e) => {
@@ -69,13 +69,23 @@ class CustomModal extends Component {
 
     handleSave = () => {
         const { value, color, start, end } = this.state;
-        
-        this.props.onSave({
-            value,
-            color,
-            start,
-            end
-        });
+        // console.log(this.props.start.isSame(this.props.end, 'date'))
+        if(!this.props.start.isSame(this.props.end, 'date')) {
+            this.props.onSave({
+                value,
+                color,
+                // start,
+                // end
+            });
+        }
+        else {
+            this.props.onSave({
+                value,
+                color,
+                start,
+                end
+            });
+        }
     }
 
     handleChangeComplete = (color) => {
@@ -139,17 +149,17 @@ class CustomModal extends Component {
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={this.state.allDay}
+                                checked={this.state.allEvent}
                                 onChange={this.onChangeCheck}
-                                value="allDay"
-                                name="allDay"
+                                value="allEvent"
+                                name="allEvent"
                                 color="primary"
                             />
                         }
-                        label="All-day"
+                        label="Edit same Events"
                     />
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container style={{ width: '60%' }} justify="space-around">
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} >
+                        <Grid container style={{ width: '100%' }} justify="space-around">
                             <KeyboardTimePicker
                                 margin="normal"
                                 id="mui-pickers-time"
