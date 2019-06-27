@@ -25,9 +25,10 @@ class CustomEvent extends React.PureComponent {
       start,
       end,
       value,
+      _id
     } = this.props;
     return (
-      <div className="event">
+      <div className="event" id={_id}>
         <span>{ this.inverttostring(start.hour()) + ':' + this.inverttostring(start.minute()) +" - "+ this.inverttostring(end.hour()) + ':' + this.inverttostring(end.minute()-15)}</span>
         <br /><br />
         <span>{value}</span>

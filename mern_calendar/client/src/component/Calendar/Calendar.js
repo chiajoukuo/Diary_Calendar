@@ -51,25 +51,38 @@ class Calendar extends Component {
                 text_from_id = events[i].value
             }
         }
-        for (i = events.length - 1; i >= 0; i--) {
-            if (events[i].value === text_from_id 
-                && events[i].color === colorr_from_id 
-                && events[i].userID === event.userID) {
-                const update = {
-                    _id: events[i]._id,
-                    color: event.color,
-                    value: event.value,
-                    start: moment(events[i].start).set({'hours': moment(event.start).get('hours'), 'minutes': moment(event.start).get('minutes')}).valueOf(),
-                    end: moment(events[i].end).set({'hours': moment(event.end).get('hours'), 'minutes': moment(event.end).get('minutes')}).valueOf(),
-                    // start: events[i].start,
-                    // end: events[i].end,
-                    // start: event.start,
-                    // end: event.end,
-                    userID: events[i].userID
-                }
-                this.props.updateEvent(update);
-            }
-        }
+        if(event.allEvent){
+	        for (i = events.length - 1; i >= 0; i--) {
+	            if (events[i].value === text_from_id 
+	                && events[i].color === colorr_from_id 
+	                && events[i].userID === event.userID) {
+	                const update = {
+	                    _id: events[i]._id,
+	                    color: event.color,
+	                    value: event.value,
+	                    start: moment(events[i].start).set({'hours': moment(event.start).get('hours'), 'minutes': moment(event.start).get('minutes')}).valueOf(),
+	                    end: moment(events[i].end).set({'hours': moment(event.end).get('hours'), 'minutes': moment(event.end).get('minutes')}).valueOf(),
+	                    // start: events[i].start,
+	                    // end: events[i].end,
+	                    // start: event.start,
+	                    // end: event.end,
+	                    userID: events[i].userID
+	                }
+	                this.props.updateEvent(update);
+	            }
+	        }
+      	}
+      	else{
+      		const update = {
+              _id: event._id,
+              color: event.color,
+              value: event.value,
+              start: event.start,
+              end: event.end,
+              userID: event.userID
+          }
+          this.props.updateEvent(update);
+      	}
         
     }
 
@@ -98,14 +111,11 @@ class Calendar extends Component {
 
     componentDidUpdate(prevProps) {
         const { events } = this.props.event;
-        let arr = document.getElementsByClassName('event');
         //console.log(arr[0].style['backgroundColor'])
-        for (var j = events.length - 1; j >= 0; j--) {
-            for (var i = arr.length - 1; i >= 0; i--) {
-                if (arr[i].textContent.substring(13) === events[j].value) {
-                    arr[i].style['backgroundColor'] = (events[j].color + "cb")
-                }
-            }
+        for (var i = events.length - 1; i >= 0; i--) {
+        		let arr = document.getElementById(events[i]._id);
+        		if(arr !== null)
+            	arr.style['backgroundColor'] = (events[i].color + "cb")       
         }
     }
 
