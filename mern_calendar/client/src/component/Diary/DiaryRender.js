@@ -34,9 +34,9 @@ class DiaryRender extends Component {
             
             else if (!diaryDates.includes(id)) {
                 const newDiary = {
+                    uniqueID: id + '+' + user.name,
                     date: id, 
                     userID: user._id,
-                    uniqueID: id + '+' + user.name
                 }
                 this.handleAddDiary(newDiary);
                 console.log(newDiary)

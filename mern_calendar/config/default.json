@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://Kao:Kao12345@cluster0-w4tak.mongodb.net/test?retryWrites=true",
+    "mongoURI": "mongodb+srv://Kao:Kao12345@final-w4tak.mongodb.net/test?retryWrites=true&w=majority",
     "jwtSecret": "sl_myJwtSecret"
 }

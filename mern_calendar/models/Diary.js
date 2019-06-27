@@ -18,7 +18,7 @@ const DiarySchema = new Schema({
     userID: {
         type: String,
         required: true
-    }
+    },
 });
 
 module.exports = Diary = mongoose.model('diary', DiarySchema);
