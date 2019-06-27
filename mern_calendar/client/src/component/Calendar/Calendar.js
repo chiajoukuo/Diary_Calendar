@@ -34,7 +34,6 @@ class Calendar extends Component {
                 color: interval.color,
                 userID: this.props.auth.user._id
             }
-            console.log(newEvent)
             this.props.addEvent(newEvent);
             return newEvent;
         })
@@ -62,10 +61,8 @@ class Calendar extends Component {
 	                    value: event.value,
 	                    start: moment(events[i].start).set({'hours': moment(event.start).get('hours'), 'minutes': moment(event.start).get('minutes')}).valueOf(),
 	                    end: moment(events[i].end).set({'hours': moment(event.end).get('hours'), 'minutes': moment(event.end).get('minutes')}).valueOf(),
-	                    // start: events[i].start,
-	                    // end: events[i].end,
-	                    // start: event.start,
-	                    // end: event.end,
+	                    //start: events[i].start,
+	                    // end: events[i].end,	                 
 	                    userID: events[i].userID
 	                }
 	                this.props.updateEvent(update);
@@ -90,7 +87,6 @@ class Calendar extends Component {
     		console.log(event)
         const { events } = this.props.event;
         if(event.allEvent === true){
-   				console.log(1)
 	        for (var i = events.length - 1; i >= 0; i--) {
 	            if (events[i].value === event.value && events[i].color === event.color && events[i].userID === event.userID) {
 	                this.props.deleteEvent(events[i]._id)

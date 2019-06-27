@@ -16,11 +16,12 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
-    KeyboardTimePicker,
+    TimePicker
 } from '@material-ui/pickers';
 import 'date-fns';
 import moment from 'moment';
 
+let temp = ''
 class CustomModal extends Component {
     state = {
         value: this.props.value,
@@ -60,6 +61,7 @@ class CustomModal extends Component {
 
     onChangeEndTime = (time) => {
         const endTime = moment(time).add(15,'m').valueOf();
+        temp = endTime
         this.setState({ end: endTime });
     }
 
@@ -144,7 +146,7 @@ class CustomModal extends Component {
         const {
             value,
         } = this.props;
-        const temp = moment(this.state.end).add(-15,'m')
+        temp = moment(this.state.end).add(-15,'m')
 
         return (
             <Container className="customModal" style={{ padding: '20px' }}>
@@ -164,7 +166,7 @@ class CustomModal extends Component {
                     />
                     <MuiPickersUtilsProvider utils={DateFnsUtils} >
                         <Grid container style={{ width: '100%' }} justify="space-around">
-                            <KeyboardTimePicker
+                            <TimePicker
                                 margin="normal"
                                 id="mui-pickers-time"
                                 minutesStep={15}
@@ -175,7 +177,7 @@ class CustomModal extends Component {
                                     'aria-label': 'change time',
                                 }}
                             />
-                            <KeyboardTimePicker
+                            <TimePicker
                                 margin="normal"
                                 id="mui-pickers-time"
                                 minutesStep={15}
