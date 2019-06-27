@@ -21,21 +21,27 @@ class DiaryRender extends Component {
 
     render() {
         const { diarys } = this.props.diary;
-        console.log("Diary: ", this.props.diary)
-        const diaryDates = diarys.map(diary => diary.date);
+        const { user } = this.props.auth;
+        
+        
         const { id } = this.props.match.params;
 
-        if (id && diaryDates.includes(id)) {
-            return ( <Diary id={id} item={diarys.filter(diary => diary.date === id)[0]} /> );
-        }
-
-        else if (diarys.length !== 0 && !diaryDates.includes(id)) {
-            const newDiary = {
-                date: id
+        if (diarys && user) {
+            const diaryDates = diarys.filter(diary => diary.userID === user._id).map(diary => diary.date);
+            if (id && diaryDates.includes(id)) {
+                return ( <Diary id={id} item={diarys.filter(diary => diary.date === id)[0]} /> );
             }
-            this.handleAddDiary(newDiary);
-            console.log(diarys)
-            return ( <div>Error: Diary #{id} not found</div> );
+            
+            else if (!diaryDates.includes(id)) {
+                const newDiary = {
+                    date: id, 
+                    userID: user._id,
+                    uniqueID: id + '+' + user.name
+                }
+                this.handleAddDiary(newDiary);
+                console.log(newDiary)
+                return ( <div>Error: Diary #{id} not found</div> );
+            }
         }
 
         else {
@@ -47,7 +53,8 @@ class DiaryRender extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    diary: state.diary
+    diary: state.diary,
+    auth: state.auth
 })
 
 export default connect(mapStateToProps, { getDiarys, addDiary })(DiaryRender);

@@ -18,7 +18,9 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
     const newDiary = new Diary({
-        date: req.body.date
+        date: req.body.date,
+        userID: req.body.userID,
+        uniqueID: req.body.uniqueID
     });
 
     newDiary.save().then(diary => res.json(diary));

@@ -3,18 +3,32 @@ import Picture from "./components/picture"
 import Text from "./components/text"
 import But from "./components/but"
 import "./components/style.css"
+import { getDiarys, addComment, addImage } from '../../actions/diaryActions';
 
-export default class gallery extends Component {
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+
+class Gallery extends Component {
     constructor(props){
         super(props);
         this.state = {
             images:[
-                {id:0,url:"https://i.pinimg.com/originals/0d/d4/15/0dd415c0b4b3a5a51aa2f68faf1030fa.png"}
+                {url:"https://i.pinimg.com/originals/0d/d4/15/0dd415c0b4b3a5a51aa2f68faf1030fa.png"}
             ],
             texts:["text0","text1"],
             status:"zoom"
         };
     }
+
+    static propTypes = {
+        addComment: PropTypes.func.isRequired,
+        diary: PropTypes.object.isRequired
+    }
+
+    componentDidMount() {
+        this.props.getDiarys();
+    }
+
     handleZoomOnClick = (e) =>{
         console.log("click z")
         this.setState({
@@ -35,10 +49,13 @@ export default class gallery extends Component {
         })
     }
     render(){
+        const { diarys } = this.props.diary;
+        const { item } = this.props;
+        console.log(diarys)
         //console.log("render gal",this.state.status)
         const stat=this.state.status
         let dbc=this.dbclick.bind(this)
-        let txtlist = this.state.texts.map(
+        let txtlist = item.comments.map(
             function(list){return (
             <Text status={stat} onDoubleClick={dbc}>
                 <p>
@@ -46,7 +63,7 @@ export default class gallery extends Component {
                 </p>
             </Text>)
         })
-        let piclist = this.state.images.map(function(list){
+        let piclist = item.images.map(function(list){
             return(
                 <Picture src={list.url} status={stat}>
                 </Picture>
@@ -66,3 +83,9 @@ export default class gallery extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    diary: state.diary
+});
+
+export default connect(mapStateToProps, { getDiarys, addComment, addImage } )(Gallery);

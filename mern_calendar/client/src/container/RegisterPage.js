@@ -46,6 +46,9 @@ class RegisterPage extends Component {
         if (isAuthenticated) {
             // Clear errors
             this.props.clearErrors();
+            
+            // Redirect to Calendar
+            this.props.history.push('/app');
         }
     }
 
@@ -67,12 +70,10 @@ class RegisterPage extends Component {
             name,
             password
         };
-        console.log("submit", newUser)
+        
         // Attempt to register
         this.props.register(newUser);
 
-        // Redirect to Calendar
-        this.props.history.push('/app');
     }
 
     render() {
@@ -129,7 +130,7 @@ class RegisterPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.isAuthenticated,
+    isAuthenticated: state.auth.isAuthenticated,
     error: state.error
 });
 

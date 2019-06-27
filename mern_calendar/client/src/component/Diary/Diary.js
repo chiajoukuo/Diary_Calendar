@@ -3,7 +3,7 @@ import {
     Card, CardBody, CardFooter, ListGroup, ListGroupItem,
     Container
 } from 'reactstrap';
-import Gallery from './gallery'
+import Gallery from './Gallery'
 
 
 class Diary extends Component {
@@ -15,7 +15,7 @@ class Diary extends Component {
                     <h1 className="jumbotron-heading display-4 text-center">Today's Date is {id}</h1>
                     <p className="lead text-center">Add some pictures and comments~~~</p>
                 </section>
-                <Gallery></Gallery>
+                <Gallery item={item}></Gallery>
                 <Card>
                     <CardBody>
                         <ListGroup>
