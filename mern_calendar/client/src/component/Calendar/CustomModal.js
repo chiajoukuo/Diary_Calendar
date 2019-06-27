@@ -68,7 +68,7 @@ class CustomModal extends Component {
     }
 
     handleSave = () => {
-        const { value, color, start, end } = this.state;
+        const { value, color, start, end, allEvent } = this.state;
         // console.log(this.props.start.isSame(this.props.end, 'date'))
         if(!this.props.start.isSame(this.props.end, 'date')) {
             this.props.onSave({
@@ -76,6 +76,7 @@ class CustomModal extends Component {
                 color,
                 // start,
                 // end
+                allEvent,
             });
         }
         else {
@@ -83,7 +84,8 @@ class CustomModal extends Component {
                 value,
                 color,
                 start,
-                end
+                end,
+                allEvent
             });
         }
     }
