@@ -32,7 +32,9 @@ class DiaryModal extends Component {
     onSubmit = e => {
         e.preventDefault();
         const newDiary = {
-            date: this.state.date
+            date: this.state.date,
+            userID: this.props.user._id,
+            uniqueID: this.state.date + '+' + this.props.user._id
         }
 
         // Add diary via addDiary action
@@ -81,7 +83,8 @@ class DiaryModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    diary: state.diary
+    diary: state.diary,
+    user: state.auth.user
 });
 
 export default connect(mapStateToProps, { addDiary })(DiaryModal);

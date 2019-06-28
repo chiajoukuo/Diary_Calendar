@@ -20,8 +20,10 @@ class CommentModal extends Component {
         body: ''
     }
 
-    componentDidMount() {
-        this.props.getDiarys();
+    componentDidUpdate(prevProps) {
+        if(prevProps.user !== this.props.user){
+            this.props.getDiarys(this.props.user._id);
+        }
     }
 
     static propTypes = {
@@ -60,7 +62,6 @@ class CommentModal extends Component {
 
     render() {
         const { diarys } = this.props.diary;
-        console.log("CommentModal: ", diarys)
         return (
             <div>
                 <Button
@@ -113,7 +114,8 @@ class CommentModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    diary: state.diary
+    diary: state.diary,
+    user: state.auth.user
 })
 
 export default connect(mapStateToProps, { getDiarys, addComment })(CommentModal);

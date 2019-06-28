@@ -3,7 +3,7 @@ import {
     Card, CardBody, CardFooter, ListGroup, ListGroupItem,
     Container
 } from 'reactstrap';
-import Gallery from './Gallery'
+import Gallery from './gallery'
 
 
 class Diary extends Component {

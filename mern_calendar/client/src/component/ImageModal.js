@@ -25,8 +25,10 @@ class ImageModal extends Component {
         diary: PropTypes.object.isRequired
     }
 
-    componentDidMount() {
-        this.props.getDiarys();
+    componentDidUpdate(prevProps) {
+        if(prevProps.user !== this.props.user){
+            this.props.getDiarys(this.props.user._id);
+        }
     }
 
     toggle = () => {
@@ -113,7 +115,8 @@ class ImageModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    diary: state.diary
+    diary: state.diary,
+    user: state.auth.user
 })
 
 export default connect(mapStateToProps, { getDiarys, addImage })(ImageModal);

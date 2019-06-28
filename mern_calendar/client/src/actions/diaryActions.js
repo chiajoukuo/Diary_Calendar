@@ -11,10 +11,10 @@ import {
     UPDATE_IMAGE,
     DELETE_IMAGE } from './types';
 
-export const getDiarys = () => dispatch => {
+export const getDiarys = userID => dispatch => {
     dispatch(setDiarysLoading());
     axios
-        .get('/api/diarys')
+        .get(`/api/diarys/${userID}`)
         .then(res => 
             dispatch({
                 type: GET_DIARYS,
