@@ -161,8 +161,8 @@ class Calendar extends Component {
                     numberOfDays={7}
                     scaleHeaderTitle={"click date ->"}
                     dayFormat={"MM/DD ddd."}
-                    startTime={moment({ h: 8, m: 0 })}
-                    endTime={moment({ h: 20, m: 1 })}
+                    startTime={moment({ h: 0, m: 0 })}
+                    endTime={moment({ h: 23, m: 59 })}
                     selectedIntervals={intervals}
                     onIntervalSelect={this.handleSelect}
                     onIntervalUpdate={this.handleEventUpdate}
