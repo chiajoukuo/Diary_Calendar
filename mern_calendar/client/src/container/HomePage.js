@@ -23,8 +23,8 @@ class HomePage extends Component {
                                 <h1 className="title2 jumbotron-heading display-4">Welcome to Diary Calender App</h1>
                                 {this.props.isAuthenticated ?
                                 <div>
-                                    <p>
-                                        Have a Fun Time Today!
+                                    <p className="lead">
+                                        Have Fun Today!
                                     </p>                                    
                                 </div>
                                 : 

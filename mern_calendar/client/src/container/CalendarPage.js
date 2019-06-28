@@ -3,13 +3,70 @@ import { Container, Col, Row, Nav } from 'reactstrap';
 
 import Calendar from '../component/Calendar/Calendar';
 import AppNavbar from '../component/AppNavbar';
+import '../styles.css'
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class CalendarPage extends Component {
+
     static propTypes = {
-        isAuthenticated: PropTypes.bool
+        isAuthenticated: PropTypes.bool,
+        isLoading: PropTypes.bool
+    }
+
+    calendar = () => {
+        return (
+            <Fragment>
+                <p className="lead text-center">Manage your events</p>
+                <Container>
+                    <Nav tabs className="justify-content-center mb-3"></Nav>
+                    <Calendar />
+                </Container >
+            </Fragment>
+        );
+    }
+
+    auth = () => {
+        return (
+            <Container>
+                <Row>
+                    <Col>
+                        <p className="lead text-center">please LOGIN to Manage your Calendar</p>
+                        <p className="text-center">
+                            <a
+                                href="/user/login"
+                                className="btn btn-info ml-2 mr-2"
+                                style={{ fontSize: "1.2rem" }}
+                            >Login</a>
+                            <a
+                                href="/user/register"
+                                className="btn btn-outline-info ml-2"
+                                style={{ fontSize: "1.2rem" }}
+                            >Register</a>
+                        </p>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+
+    loading = () => {
+        return (
+            <Fragment>
+                <p className="lead text-center">Manage your events</p>
+                <Container>
+                    <Nav tabs className="justify-content-center mb-3"></Nav>
+                    {/* Reference: https://mdbootstrap.com/docs/jquery/components/spinners/ */}
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </Container >
+            </Fragment>
+
+        )
     }
 
     render() {
@@ -18,34 +75,8 @@ class CalendarPage extends Component {
                 <AppNavbar history={this.props.history} />
                 <section className="jumbotron-header mb-3 mt-2">
                     <h1 className="jumbotron-heading display-4 text-center title">Calendar</h1>
-                    {this.props.isAuthenticated ?
-                        <Fragment>
-                            <p className="lead text-center">Manage your events</p>
-                            <Container>
-                                <Nav tabs className="justify-content-center mb-3"></Nav>
-                                <Calendar />
-                            </Container >
-                        </Fragment>
-                        : <Container>
-                            <Row>
-                                <Col>
-                                    <p className="lead text-center">please LOGIN to Manage your Calendar</p>
-                                    <p className="text-center">
-                                        <a
-                                            href="/user/login"
-                                            className="btn btn-info ml-2 mr-2"
-                                            style={{ fontSize: "1.2rem" }}
-                                        >Login</a>
-                                        <a
-                                            href="/user/register"
-                                            className="btn btn-outline-info ml-2"
-                                            style={{ fontSize: "1.2rem" }}
-                                        >Register</a>
-                                    </p>
-                                </Col>
-                            </Row>
-                        </Container>
-                    }
+                    {this.props.isAuthenticated ? this.calendar()
+                        : this.props.isLoading ? this.loading() : this.auth()}
                 </section>
             </Fragment>
         )
@@ -53,7 +84,8 @@ class CalendarPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    isLoading: state.auth.isLoading
 })
 
 export default connect(mapStateToProps, null)(CalendarPage);
