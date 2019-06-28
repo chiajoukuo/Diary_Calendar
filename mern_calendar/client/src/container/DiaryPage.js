@@ -13,7 +13,7 @@ class DiaryPage extends Component {
             <Fragment>
                 <AppNavbar history={this.props.history} />
                 <section className="jumbotron-header mb-3 mt-2">
-                    <h1 className="jumbotron-heading display-4 text-center">Diary Page</h1>
+                    <h1 className="title jumbotron-heading display-4 text-center">Diary Page</h1>
                     <p className="lead text-center">Just a TEST Diary PAGE</p>
                     <Container>
                         <Row>

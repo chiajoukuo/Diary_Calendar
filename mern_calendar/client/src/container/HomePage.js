@@ -1,8 +1,17 @@
 import React, { Component, Fragment } from "react";
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col} from 'reactstrap';
 import AppNavbar from '../component/AppNavbar';
+import  { logout } from  '../actions/authActions';
 
-export default class HomePage extends Component {
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+
+class HomePage extends Component {
+    static propTypes = {
+        isAuthenticated: PropTypes.bool,
+    }
+
     render() {
         return (
             <Fragment>
@@ -11,7 +20,15 @@ export default class HomePage extends Component {
                     <Container style={{ marginTop: "4rem" }}>
                         <Row>
                             <Col>
-                                <h1 className="jumbotron-heading display-4">Welcome to Diary Calender App</h1>
+                                <h1 className="title2 jumbotron-heading display-4">Welcome to Diary Calender App</h1>
+                                {this.props.isAuthenticated ?
+                                <div>
+                                    <p>
+                                        Have a Fun Time Today!
+                                    </p>                                    
+                                </div>
+                                : 
+                                <div>                                 
                                 <p className="lead">please LOGIN or REGISTER below</p>
                                 <p>
                                     <a
@@ -24,7 +41,9 @@ export default class HomePage extends Component {
                                         className="btn btn-outline-info ml-2"
                                         style={{ fontSize: "1.2rem" }}
                                     >Register</a>
-                                </p>
+                                </p> 
+                                </div>                               
+                                }                              
                             </Col>
                         </Row>
                     </Container>
@@ -33,3 +52,9 @@ export default class HomePage extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, null)(HomePage);

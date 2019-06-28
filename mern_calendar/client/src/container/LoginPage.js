@@ -119,7 +119,7 @@ class LoginPage extends Component {
                                 >
                                     Login
                             </Button>
-                                <NavLink style={{ float: 'left', marginTop: '2rem', marginLeft: '-1rem' }} href="/user/register">No Account?</NavLink>
+                                <NavLink style={{ float: 'left', marginTop: '1.5rem', marginLeft: '-1rem' }} href="/user/register">No Account?</NavLink>
                             </div>
                         </FormGroup>
                     </Form>

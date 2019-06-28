@@ -143,16 +143,16 @@ class Calendar extends Component {
         return (
             <div>
                 <Button
-                    color="primary"
+                    
                     size="sm"
-                    className="mb-2 mr-2 btn"
+                    className="botton"
                     onClick={this.lastWeek}
                 >Last week</Button>
                 <Button
                     color="info"
                     size="sm"
                     style={{ float: 'right' }}
-                    className="mb-2 btn"
+                    className="mb-2 botton"
                     onClick={this.nextWeek}
                 >Next week</Button>
 
