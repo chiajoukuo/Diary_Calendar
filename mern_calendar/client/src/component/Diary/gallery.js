@@ -5,6 +5,8 @@ import But from "./components/but"
 import "./components/style.css"
 
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getDiarys } from '../../actions/diaryActions';
 
 class Gallery extends Component {
     constructor(props){
@@ -19,7 +21,7 @@ class Gallery extends Component {
     }
 
     static propTypes = {
-        addComment: PropTypes.func.isRequired,
+        getDiarys: PropTypes.func.isRequired,
         diary: PropTypes.object.isRequired
     }
 
@@ -47,13 +49,13 @@ class Gallery extends Component {
         })
     }
     render(){
-        // const { diarys } = this.props.diary;
+        const { diarys } = this.props.diary;
         const { item } = this.props;
-        console.log(item)
+        console.log("Diarys: ",diarys)
         //console.log("render gal",this.state.status)
         const stat=this.state.status
         let dbc=this.dbclick.bind(this)
-        let txtlist = item.comments.map(
+        let txtlist = diarys.filter(diary => diary.uniqueID === item.uniqueID)[0].comments.map(
             function(list){return (
             <Text status={stat} onDoubleClick={dbc}>
                 <p>
@@ -82,4 +84,8 @@ class Gallery extends Component {
     }
 }
 
-export default Gallery;
+const mapStateToProps = (state) => ({
+    diary: state.diary,
+})
+
+export default connect(mapStateToProps, { getDiarys } )(Gallery);

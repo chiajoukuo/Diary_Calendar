@@ -5,8 +5,10 @@ import {
     DELETE_DIARY, 
     DIARYS_LOADING,
     ADD_COMMENT,
+    UPDATE_COMMENT,
     DELETE_COMMENT,
     ADD_IMAGE,
+    UPDATE_IMAGE,
     DELETE_IMAGE } from './types';
 
 export const getDiarys = () => dispatch => {
@@ -58,6 +60,17 @@ export const addComment = (id, comment) => dispatch => {
         });
 }
 
+export const updateComment = (id, comment) => dispatch =>  {
+    axios
+        .post(`/api/diarys/${id}/comments/${comment._id}`, comment)
+        .then(res => {
+            dispatch({
+                type: UPDATE_COMMENT,
+                payload: res.data
+            })
+        });
+}
+
 export const deleteComment = (id, com_id) => dispatch => {
     axios.delete(`/api/diarys/${id}/comments/${com_id}`)
         .then(res => 
@@ -74,6 +87,17 @@ export const addImage = (id, image) => dispatch => {
             dispatch({
                 type: ADD_IMAGE,
                 payload: {id, image: res.data}
+            })
+        });
+}
+
+export const updateImage = (id, image) => dispatch =>  {
+    axios
+        .post(`/api/diarys/${id}/images/${image._id}`, image)
+        .then(res => {
+            dispatch({
+                type: UPDATE_IMAGE,
+                payload: res.data
             })
         });
 }

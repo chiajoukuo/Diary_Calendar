@@ -4,8 +4,10 @@ import {
     DELETE_DIARY,
     DIARYS_LOADING,
     ADD_COMMENT,
+    UPDATE_COMMENT,
     DELETE_COMMENT,
     ADD_IMAGE,
+    UPDATE_IMAGE,
     DELETE_IMAGE
 } from '../actions/types';
 
@@ -47,6 +49,16 @@ export default function (state = initialState, action) {
                     return diary;
                 })
             };
+        case UPDATE_COMMENT:
+            return {
+                ...state,
+                diarys: state.diarys.map(diary => {
+                    if (diary._id === action.payload._id) {
+                        return { ...diary, ...action.payload }
+                    }
+                    return diary;
+                })
+            };
         case DELETE_COMMENT:
             return {
                 ...state,
@@ -63,6 +75,16 @@ export default function (state = initialState, action) {
                 diarys: state.diarys.map(diary => {
                     if (diary._id === action.payload.id) {
                         return { ...diary, images: [...diary.images, action.payload.image] };
+                    }
+                    return diary;
+                })
+            };
+        case UPDATE_IMAGE:
+            return {
+                ...state,
+                diarys: state.diarys.map(diary => {
+                    if (diary._id === action.payload._id) {
+                        return { ...diary, ...action.payload }
                     }
                     return diary;
                 })

@@ -13,8 +13,50 @@ const DiarySchema = new Schema({
         type: String,
         required: true
     },
-    comments: [{ body: String }],
-    images: [{ url: String }],
+    comments: [{ 
+        body: {
+            type: String,
+            required: true
+        },
+        lastTranslateX: {
+            type: Number,
+            default: 0
+        },
+        lastTranslateY: {
+            type: Number,
+            default: 0
+        },
+        scale: {
+            type: Number,
+            default: 1.0
+        },
+        rotateDeg: {
+            type: Number,
+            default: 0
+        },
+    }],
+    images: [{ 
+        url: {
+            type: String,
+            required: true
+        },
+        lastTranslateX: {
+            type: Number,
+            default: 0
+        },
+        lastTranslateY: {
+            type: Number,
+            default: 0
+        },
+        scale: {
+            type: Number,
+            default: 1.0
+        },
+        rotateDeg: {
+            type: Number,
+            default: 0
+        },
+    }],
     userID: {
         type: String,
         required: true

@@ -6,13 +6,11 @@ import { Container, Row } from 'reactstrap';
 
 import AppNavbar from './component/AppNavbar';
 import DiaryRender from './component/Diary/DiaryRender';
-import CommentModal from './component/CommentModal';
-import ImageModal from './component/ImageModal';
-import DiaryModal from './component/DiaryModal';
 import HomePage from './container/HomePage';
 import LoginPage from './container/LoginPage';
 import RegisterPage from './container/RegisterPage';
 import CalendarPage from './container/CalendarPage';
+import DiaryPage from './container/DiaryPage';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -23,25 +21,6 @@ class App extends Component {
     store.dispatch(loadUser());
   }
 
-  Diary = () => {
-    return (
-      <Fragment>
-        <AppNavbar />
-        <section className="jumbotron-header mb-3 mt-2">
-          <h1 className="jumbotron-heading display-4 text-center">Diary Page</h1>
-          <p className="lead text-center">Just a TEST Diary PAGE</p>
-          <Container>
-            <Row>
-              <DiaryModal />
-              <CommentModal />
-              <ImageModal />
-            </Row>
-          </Container>
-        </section>
-      </Fragment>
-    )
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -50,7 +29,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/app" component={CalendarPage} />
               <Redirect from="/diary/home" to="/diary" />
-              <Route exact path="/diary" component={this.Diary} />
+              <Route exact path="/diary" component={DiaryPage} />
               <Route path="/diary/:id?" component={DiaryRender} />
               <Route exact path="/user/login" component={LoginPage} />
               <Route exact path="/user/register" component={RegisterPage} />
