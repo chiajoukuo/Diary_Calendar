@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Picture from "./components/picture"
+import Picture2 from "./components/picture2"
 import Text from "./components/text"
 import But from "./components/but"
 import "./components/style.css"
@@ -49,6 +49,7 @@ class Gallery extends Component {
         })
     }
     render(){
+        console.log("new")
         const { diarys } = this.props.diary;
         const { item } = this.props;
         console.log("Diarys: ",diarys)
@@ -65,8 +66,8 @@ class Gallery extends Component {
         })
         let piclist = item.images.map(function(list){
             return(
-                <Picture src={list.url} status={stat}>
-                </Picture>
+                <Picture2 src={list.url} status={stat} scale="1.0" w="20" rot="0.0">
+                </Picture2>
             )
         })
         return(

@@ -10,17 +10,19 @@ import {
     ADD_IMAGE,
     UPDATE_IMAGE,
     DELETE_IMAGE } from './types';
+import { tokenConfig } from './authActions';
+import { returnErrors } from './errorActions';
 
-export const getDiarys = () => dispatch => {
+export const getDiarys = userID => (dispatch, getState) => {
     dispatch(setDiarysLoading());
     axios
-        .get('/api/diarys')
+        .get(`/api/diarys/${userID}`, tokenConfig(getState))
         .then(res => 
             dispatch({
                 type: GET_DIARYS,
                 payload: res.data
-            })
-        );
+            }))
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 export const addDiary = diary => dispatch => {

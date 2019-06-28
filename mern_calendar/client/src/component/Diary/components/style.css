@@ -1,16 +1,49 @@
 .txt{
     width:20px;
     float:right;
+    position:absolute;
+    z-index: -1;
+    position: relative;
 }
 .pic{
-    transform: scale(1.0, 1.0);
+    /*transform: scale(1.0, 1.0);
+    position:absolute;
+    z-index: -1;
+    position: relative;
     /*transform:translate(50,70);*/
+    
 }
-.icon{
-    width:20px;
+.icon{   
     margin-right:10px;
 }
-
+.icon:hover{
+    width:25px;
+}
 .txtCard{
-    width:50px
+    width:50px;
+}
+.x{
+    width:15px; 
+    visibility: hidden;
+    position:absolute;
+    z-index: 1;
+    position: relative;
+}
+.x:hover{
+    width:30px;
+    visibility: visible;
+    position:absolute;
+    z-index: 1;
+    position: relative;
+}
+.ele{
+    /*white-space:nowrap;*/
+}
+.url{
+    position: relative;
+    background-color:rgba(255, 192, 203, 0);
+    border-color:rgb(46, 13, 233);
+    border-width:1px;
+    transform:translateY(-10);
+    color:rgba(145, 134, 134, 0.74);
 }

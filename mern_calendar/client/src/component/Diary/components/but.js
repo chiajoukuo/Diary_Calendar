@@ -6,9 +6,11 @@ export default class but extends Component {
     constructor(props){
         super(props);
         this.state = {
-            width:20,
+            width:"20px",
             opacity:1.0
         };
+        this.width="20px";
+        this.opacity=1.0;
     }
     componentWillReceiveProps(nextProps){
         
@@ -33,10 +35,19 @@ export default class but extends Component {
     }
 
     render(){
-        
+        let w="20px";
+        let op=1.0;
+        if(this.props.stat===this.props.id){
+            w="23px";
+            op=1.0;
+        }
+        else{
+            w="20px";
+            op=0.8;
+        }
         const Image=styled.img`
-            transfrom:scale:${this.state.scale}
-            opacity:${this.state.opacity}
+            width:${w}
+            opacity:${op}
         `;
         
         //console.log("render but",this.props.id,this.state.scale, this.state.opacity)

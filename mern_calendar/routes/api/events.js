@@ -14,6 +14,15 @@ router.get('/', (req, res) => {
         .then(events => res.json(events))
 });
 
+// @route   GET api/events/:userID
+// @desc    GET All Events of User
+// @access  Private
+router.get('/:userID', auth, (req, res) => {
+    Event.find({ userID: req.params.userID })
+        .sort({ start: 1 })
+        .then(events => res.json(events))
+});
+
 // @route   POST api/events
 // @desc    Create An Event
 // @access  Public
