@@ -11,14 +11,26 @@ const propTypes = {
 
 class CustomEvent extends React.PureComponent {
     
-  inverttostring = (interger) =>{
+  addzero = (interger) =>{
     if(interger<0)
-      return "00"
+      return "45"
     else if (interger>=10)
       return String(interger)
     else
       return '0'+String(interger)
   } 
+  inverttostring = (m, index) => {
+      if (index === 0) {
+          return this.addzero(m.hour()) + ":" + this.addzero(m.minute())
+      }
+      else {
+          if (m.minute() === 0)
+              return this.addzero(m.hour() - 1) + ":" + this.addzero(m.minute() - 15)
+          else
+              return this.addzero(m.hour()) + ":" + this.addzero(m.minute() - 15)
+      }
+
+  };
 
 
   render() {
@@ -30,7 +42,7 @@ class CustomEvent extends React.PureComponent {
     } = this.props;
     return (
       <div className="event" id={_id}>
-        <span>{ this.inverttostring(start.hour()) + ':' + this.inverttostring(start.minute()) +" - "+ this.inverttostring(end.hour()) + ':' + this.inverttostring(end.minute()-15)}</span>
+        <span>{ this.inverttostring(start,0) +" - "+ this.inverttostring(end,1)}</span>
         <br /><br />
         <span>{value}</span>
       </div>

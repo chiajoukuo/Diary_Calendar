@@ -119,7 +119,7 @@ class RegisterPage extends Component {
                                 >
                                     Register
                             </Button>
-                                <NavLink style={{ float: 'left', marginTop: '2rem', marginLeft: '-1rem' }} href="/user/login">Sign In</NavLink>
+                                <NavLink style={{ float: 'left', marginTop: '1.5rem', marginLeft: '-1rem' }} href="/user/login">Sign In</NavLink>
                             </div>
                         </FormGroup>
                     </Form>
