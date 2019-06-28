@@ -11,6 +11,12 @@ class DiaryRender extends Component {
         diary: PropTypes.object.isRequired
     }
 
+    componentDidMount() {
+        if(this.props.user){
+            this.props.getDiarys(this.props.user._id);
+        }
+    }
+
     componentDidUpdate(prevProps) {
         if(prevProps.user !== this.props.user){
             this.props.getDiarys(this.props.user._id);
@@ -31,6 +37,7 @@ class DiaryRender extends Component {
         if (diarys && user) {
             const diaryDates = diarys.map(diary => diary.date);
             if (id && diaryDates.includes(id)) {
+                console.log("render diary")
                 const item = diarys.filter(diary => diary.date === id)[0];
                 return ( <Diary id={id} item={item} /> );
             }
@@ -42,12 +49,13 @@ class DiaryRender extends Component {
                     userID: user._id,
                 }
                 this.handleAddDiary(newDiary);
-                
+                console.log("add diary")
                 return ( <div>Error: Diary #{id} not found</div> );
             }
         }
 
         else {
+            console.log("fuck")
             return (
                 <div>Error: Diary #{id} not found</div>
             );

@@ -11,19 +11,17 @@ import CustomDayCell from './CustomDayCell';
 
 import { connect } from 'react-redux';
 import { getEvents, addEvent, updateEvent, deleteEvent } from '../../actions/eventActions';
-import { loadUser } from '../../actions/authActions';
 
 var day = moment().day()
 class Calendar extends Component {
-    componentDidMount() {
-        this.props.getEvents();
-        this.props.loadUser();
-    }
 
     state = {
         firstDay: moment().add(-day, 'd')
     }
 
+    componentDidMount() {
+        this.props.getEvents(this.props.user._id);
+    }
 
     handleSelect = (newIntervals) => {
         newIntervals.map(interval => {
@@ -32,7 +30,7 @@ class Calendar extends Component {
                 end: interval.end.valueOf(),
                 value: interval.value,
                 color: interval.color,
-                userID: this.props.auth.user._id
+                userID: this.props.user._id
             }
             this.props.addEvent(newEvent);
             return newEvent;
@@ -84,7 +82,7 @@ class Calendar extends Component {
     }
 
     handleEventRemove = (event) => {
-    		console.log(event)
+    	// console.log(event)
         const { events } = this.props.event;
         if(event.allEvent === true){
 	        for (var i = events.length - 1; i >= 0; i--) {
@@ -112,6 +110,9 @@ class Calendar extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        if(prevProps.user !== this.props.user && prevProps.event !== this.props.event){
+            this.props.getEvents(this.props.user._id);
+        }
         const { events } = this.props.event;
         //console.log(arr[0].style['backgroundColor'])
         for (var i = events.length - 1; i >= 0; i--) {
@@ -125,7 +126,7 @@ class Calendar extends Component {
 
     render() {
         const { events } = this.props.event;
-        const { user } = this.props.auth;
+        const { user } = this.props;
         const intervals = events.filter(event => event.userID === user._id).map(event => {
             const start = moment(event.start);
             const end = moment(event.end);
@@ -161,8 +162,8 @@ class Calendar extends Component {
                     numberOfDays={7}
                     scaleHeaderTitle={"click date ->"}
                     dayFormat={"MM/DD ddd."}
-                    startTime={moment({ h: 0, m: 0 })}
-                    endTime={moment({ h: 23, m: 59 })}
+                    startTime={moment({ h: 5, m: 0 })}
+                    endTime={moment({ h: 23, m: 1 })}
                     selectedIntervals={intervals}
                     onIntervalSelect={this.handleSelect}
                     onIntervalUpdate={this.handleEventUpdate}
@@ -179,7 +180,7 @@ class Calendar extends Component {
 
 const mapStateToProps = (state) => ({
     event: state.event,
-    auth: state.auth
+    user: state.auth.user
 });
 
-export default connect(mapStateToProps, { loadUser, getEvents, addEvent, updateEvent, deleteEvent })(Calendar);
+export default connect(mapStateToProps, { getEvents, addEvent, updateEvent, deleteEvent })(Calendar);

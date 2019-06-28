@@ -8,10 +8,10 @@ import {
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
-export const getEvents = () => dispatch => {
+export const getEvents = userID => (dispatch, getState) => {
     dispatch(setEventsLoading());
     axios
-        .get('/api/events')
+        .get(`/api/events/${userID}`, tokenConfig(getState))
         .then(res => 
             dispatch({
                 type: GET_EVENTS,
