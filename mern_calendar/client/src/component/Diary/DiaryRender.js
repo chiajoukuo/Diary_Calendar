@@ -11,8 +11,10 @@ class DiaryRender extends Component {
         diary: PropTypes.object.isRequired
     }
 
-    componentDidMount() {
-        this.props.getDiarys();
+    componentDidUpdate(prevProps) {
+        if(prevProps.user !== this.props.user){
+            this.props.getDiarys(this.props.user._id);
+        }
     }
 
     handleAddDiary = (newDiary) => {
@@ -21,16 +23,15 @@ class DiaryRender extends Component {
 
     render() {
         const { diarys } = this.props.diary;
-        const { user } = this.props.auth;
+        const { user } = this.props;
         
         
         const { id } = this.props.match.params;
 
         if (diarys && user) {
-            const diaryDates = diarys.filter(diary => diary.userID === user._id).map(diary => diary.date);
+            const diaryDates = diarys.map(diary => diary.date);
             if (id && diaryDates.includes(id)) {
-                const item = diarys.filter(diary => diary.uniqueID === (id+'+'+user.name))[0];
-                console.log(item)
+                const item = diarys.filter(diary => diary.date === id)[0];
                 return ( <Diary id={id} item={item} /> );
             }
             
@@ -56,7 +57,7 @@ class DiaryRender extends Component {
 
 const mapStateToProps = (state) => ({
     diary: state.diary,
-    auth: state.auth
+    user: state.auth.user
 })
 
 export default connect(mapStateToProps, { getDiarys, addDiary })(DiaryRender);
