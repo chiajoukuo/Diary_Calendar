@@ -3,6 +3,7 @@ import { Container, Col, Row, Nav } from 'reactstrap';
 
 import Calendar from '../component/Calendar/Calendar';
 import AppNavbar from '../component/AppNavbar';
+import Loader from '../component/Loader';
 import '../styles.css'
 
 import { connect } from 'react-redux';
@@ -51,24 +52,6 @@ class CalendarPage extends Component {
         );
     }
 
-    loading = () => {
-        return (
-            <Fragment>
-                <p className="lead text-center">Manage your events</p>
-                <Container>
-                    <Nav tabs className="justify-content-center mb-3"></Nav>
-                    {/* Reference: https://mdbootstrap.com/docs/jquery/components/spinners/ */}
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </Container >
-            </Fragment>
-
-        )
-    }
-
     render() {
         return (
             <Fragment>
@@ -76,7 +59,7 @@ class CalendarPage extends Component {
                 <section className="jumbotron-header mb-3 mt-2">
                     <h1 className="jumbotron-heading display-4 text-center title">Calendar</h1>
                     {this.props.isAuthenticated ? this.calendar()
-                        : this.props.isLoading ? this.loading() : this.auth()}
+                        : this.props.isLoading ? <Loader text="Manage your events" /> : this.auth()}
                 </section>
             </Fragment>
         )

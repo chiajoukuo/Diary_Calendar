@@ -127,7 +127,9 @@ class Calendar extends Component {
     render() {
         const { events } = this.props.event;
         const { user } = this.props;
-        const intervals = events.filter(event => event.userID === user._id).map(event => {
+        console.log("events:",events);
+        console.log("user:", user)
+        const intervals = events.map(event => {
             const start = moment(event.start);
             const end = moment(event.end);
             const newInterval = {
@@ -144,7 +146,6 @@ class Calendar extends Component {
         return (
             <div>
                 <Button
-                    
                     size="sm"
                     className="botton"
                     onClick={this.lastWeek}
