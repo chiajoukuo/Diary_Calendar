@@ -1,10 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { Container, Row } from 'reactstrap';
 
-import AppNavbar from './component/AppNavbar';
 import DiaryRender from './component/Diary/DiaryRender';
 import HomePage from './container/HomePage';
 import LoginPage from './container/LoginPage';
