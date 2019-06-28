@@ -17,7 +17,7 @@ class CalendarPage extends Component {
             <Fragment>
                 <AppNavbar history={this.props.history} />
                 <section className="jumbotron-header mb-3 mt-2">
-                    <h1 className="jumbotron-heading display-4 text-center">Calendar</h1>
+                    <h1 className="jumbotron-heading display-4 text-center title">Calendar</h1>
                     {this.props.isAuthenticated ?
                         <Fragment>
                             <p className="lead text-center">Manage your events</p>

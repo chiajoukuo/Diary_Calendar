@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+body{
+	background-color: #f3f3f3;
+	background: #FFEFBA;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #FFFFFF, #F0E7C5);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #FFFFFF, #F0E7C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 .event{
-	color: #222;
+	color: #000;
 	border-radius: 10px;
 	text-align: center;
+	font-family: 'Open Sans Condensed';
 	transition: all 0.2s ease-out;
 }
 
@@ -13,16 +22,79 @@
 	transform: scale(0.9);
 }
 
+.weekCalender{
+	font-family: 'Open Sans Condensed';
+}
+/*background*/
+.weekCalendar__headerColumn{
+	background-color: #f44e3b;
+	opacity: 0.7;
+}
+.weekCalendar__headerColumn:nth-child(2){
+	background-color: #FE9200;
+}
+.weekCalendar__headerColumn:nth-child(3){
+	background-color: #FCDC00;
+}
+.weekCalendar__headerColumn:nth-child(4){
+	background-color: #a4dd00;
+}
+.weekCalendar__headerColumn:nth-child(5){
+	background-color: #73d8ff;
+}
+.weekCalendar__headerColumn:nth-child(6){
+	background-color: #aea1ff;
+}
+.weekCalendar__headerColumn:nth-child(7){
+	background-color: #fda1ff;
+}
+.weekCalendar__headerColumn:hover{
+	color:white;
+	background-color: white;
+	transition: 0.3s;
+	border: 1px solid red;
+}
+
+.dayCell{
+	background-color: #FFFBEA;
+}
+.weekCalendar__scaleCell{
+	font-family: 'Open Sans Condensed';
+}
+.weekCalendar__scaleHeader{
+	font-family: 'Open Sans Condensed';
+}
+
+/*word*/
 .headercell{
-	color: #525252;
+	font-family: 'Open Sans Condensed';
+	color: #111;
 	font-size: 1.2rem;
 }
 
 .headercell:hover{
-	transition: 0.2s;
-	color: #ff5722;
-	font-size: 1.22rem;
+	transition: 0.3s;
+	color: #f44e3b;
+	font-size: 1.24rem;
 	text-decoration: none;
+}
+.headercell:nth-child(2):hover{
+	color: #FE9200;
+}
+.headercell:hover:nth-child(3){
+	color: #FCDC00;
+}
+.headercell:hover:nth-child(4){
+	color: #a4dd00;
+}
+.headercell:hover:nth-child(5){
+	color: #73d8ff;
+}
+.headercell:hover:nth-child(6){
+	color: #aea1ff;
+}
+.headercell:hover:nth-child(7){
+	color: #fda1ff;
 }
 
 .loginform {
@@ -35,3 +107,18 @@
 	top: 50%;
 	left: 50%;
 }
+.btn:hover{
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px #23dffd70;
+}
+
+/*test header*/
+
+.title{
+text-transform: uppercase;
+font-size: 60px;
+font-family: 'Oswald', cursive;;
+/*text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #004cff, 0 0 30px #004cff, 0 0 40px #004cff, 0 0 55px #004cff, 0 0 75px #004cff;
+*/text-align: center;
+}
+

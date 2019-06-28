@@ -115,9 +115,11 @@ class Calendar extends Component {
         const { events } = this.props.event;
         //console.log(arr[0].style['backgroundColor'])
         for (var i = events.length - 1; i >= 0; i--) {
-        		let arr = document.getElementById(events[i]._id);
-        		if(arr !== null)
-            	arr.style['backgroundColor'] = (events[i].color + "cb")       
+        	let arr = document.getElementById(events[i]._id);
+        	if(arr !== null){
+                arr.style['backgroundColor'] = (events[i].color + "cb")  
+                arr.style['color'] = '#fff'    
+            }     
         }
     }
 
@@ -143,14 +145,14 @@ class Calendar extends Component {
                 <Button
                     color="primary"
                     size="sm"
-                    className="mb-2 mr-2"
+                    className="mb-2 mr-2 btn"
                     onClick={this.lastWeek}
                 >Last week</Button>
                 <Button
                     color="info"
                     size="sm"
                     style={{ float: 'right' }}
-                    className="mb-2"
+                    className="mb-2 btn"
                     onClick={this.nextWeek}
                 >Next week</Button>
 
