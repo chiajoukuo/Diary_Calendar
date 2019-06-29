@@ -11,6 +11,7 @@ import {
   Input
 } from 'reactstrap';
 import Button from '@material-ui/core/Button';
+import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux';
@@ -224,6 +225,10 @@ class Picture2 extends React.Component {
 
     this.toggle();
   }
+  handleToTop = () => {
+    console.log("totop")
+
+  }
   render() {
     const { isDragging } = this.state;
     const { item } = this.props;
@@ -261,9 +266,14 @@ class Picture2 extends React.Component {
                   placeholder="Image URL"
                   onChange={this.onChange}
                 />
-                <Button variant="contained" size="small" color="secondary" style={{ marginTop: '15px' }} onClick={this.handleDelete}>
+                <Button variant="contained" size="small" color="secondary" style={{ marginTop: '15px',float: 'left' }} onClick={this.handleDelete}>
                   <DeleteIcon style={{ marginRight: '0.5rem' }} />Delete
                 </Button>
+                
+                <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', marginLeft:'28%'}} onClick={this.handleToTop}>
+                  <KeyboardArrowUp style={{ marginRight: '0.5rem' }} />Move to top
+                </Button>
+                
                 <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', float: 'right' }} onClick={this.handleUpdate}>
                   Save<SaveIcon style={{ marginLeft: '0.5rem' }} />
                 </Button>
