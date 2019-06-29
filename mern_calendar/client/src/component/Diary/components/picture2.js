@@ -226,7 +226,7 @@ class Picture2 extends React.Component {
   render() {
     const { isDragging } = this.state;
     const { item } = this.props;
-    console.log(this.state.url)
+    
     return (
     <div>
       <Image src={item.url}

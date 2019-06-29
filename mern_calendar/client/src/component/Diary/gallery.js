@@ -51,7 +51,6 @@ class Gallery extends Component {
     render(){
         const { diarys } = this.props.diary;
         const { item } = this.props;
-        console.log("Diarys: ",diarys)
         //console.log("render gal",this.state.status)
         const stat=this.state.status
         let dbc=this.dbclick.bind(this)
@@ -75,6 +74,7 @@ class Gallery extends Component {
                     <But src="https://image.flaticon.com/icons/svg/359/359414.svg" stat={this.state.status} id="zoom" onClick={this.handleZoomOnClick.bind(this)}></But> 
                     <But src="https://image.flaticon.com/icons/svg/1330/1330172.svg" stat={this.state.status} id="rotate" onClick={this.handleRotOnClick.bind(this)}></But>
                 </div>
+                <hr/>
                 {txtlist}
                 {piclist}
             </div>

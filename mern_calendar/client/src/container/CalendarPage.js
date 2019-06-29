@@ -21,10 +21,21 @@ class CalendarPage extends Component {
         return (
             <Fragment>
                 <p className="lead text-center">Manage your events</p>
+                <p className="lead text-center mt-n3">Click the date to create a new diary</p>
                 <Container>
                     <Nav tabs className="justify-content-center mb-3"></Nav>
                     <Calendar />
                 </Container >
+            </Fragment>
+        );
+    }
+
+    loader = () => {
+        return (
+            <Fragment>
+                <p className="lead text-center">Manage your events</p>
+                <p className="lead text-center mt-n3">Click the date to create a new diary</p>
+                <Loader />
             </Fragment>
         );
     }
@@ -36,7 +47,7 @@ class CalendarPage extends Component {
                 <section className="jumbotron-header mb-3 mt-2">
                     <h1 className="jumbotron-heading display-4 text-center title">Calendar</h1>
                     {this.props.isAuthenticated ? this.calendar()
-                        : this.props.isLoading ? <Loader text="Manage your events" /> : <Auth text="please LOGIN to Manage your Calendar" />}
+                        : this.props.isLoading ? this.loader() : <Auth text="please LOGIN to Manage your Calendar" />}
                 </section>
             </Fragment>
         )
