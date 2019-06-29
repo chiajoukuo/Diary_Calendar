@@ -26,13 +26,13 @@ const DiarySchema = new Schema({
             type: Number,
             default: 0
         },
-        scale: {
+        width: {
             type: Number,
-            default: 1.0
+            default: 20
         },
         rotateDeg: {
             type: Number,
-            default: 0
+            default: 0.0
         },
     }],
     images: [{ 
@@ -48,13 +48,13 @@ const DiarySchema = new Schema({
             type: Number,
             default: 0
         },
-        scale: {
+        width: {
             type: Number,
-            default: 1.0
+            default: 20
         },
         rotateDeg: {
             type: Number,
-            default: 0
+            default: 0.0
         },
     }],
     userID: {
