@@ -124,6 +124,27 @@ body{
   box-shadow: 0 5px 15px #23dffd70;
 }
 
+.botton2{
+  font-size: 1rem;
+  color: black;
+  background: none;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 0.25rem 1rem;
+  margin: 0.5rem 0;
+  font-family: var(--font);
+  transition: all 0.2s ease-out;
+}
+.botton2:hover {
+  color: white;
+  border: 2px dashed white;
+  box-shadow: 0 0 0 4px black;
+  background: black;
+}
+.botton2:active {
+  transform: scale(1.1);
+}
+
 /*test header*/
 
 .title{
@@ -154,3 +175,4 @@ text-align: center;
     opacity: 1;
   }
 }
+
