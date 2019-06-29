@@ -54,7 +54,9 @@ class Calendar extends Component {
 	        for (i = events.length - 1; i >= 0; i--) {
 	            if (events[i].value === text_from_id 
 	                && events[i].color === colorr_from_id 
-	                && events[i].userID === event.userID) {
+	                && events[i].userID === event.userID
+                    && events[i].end === event.end
+                    && events[i].start === event.start) {
 	                const update = {
 	                    _id: events[i]._id,
 	                    color: event.color,
