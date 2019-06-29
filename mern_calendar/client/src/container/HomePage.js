@@ -49,12 +49,12 @@ class HomePage extends Component {
                 <p>
                     <a
                         href="/app"
-                        className="btn btn-info ml-2 mr-2"
+                        className="btn btn-info ml-2 mr-2 botton2"
                         style={{ fontSize: "1.2rem" }}
                     >Calendar</a>
                     <a
                         href="/diary"
-                        className="btn btn-outline-info ml-2"
+                        className="btn btn-outline-info ml-2 botton2"
                         style={{ fontSize: "1.2rem" }}
                     >Diarys</a>
                 </p>
