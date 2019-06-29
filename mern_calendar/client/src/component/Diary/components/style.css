@@ -1,9 +1,12 @@
 .txt{
+    font-family: 'Open Sans Condensed';
     width:20px;
     float:right;
+    /*
     position:absolute;
     z-index: -1;
     position: relative;
+    */
 }
 .pic{
     /*transform: scale(1.0, 1.0);
@@ -21,23 +24,6 @@
 }
 .txtCard{
     width:50px;
-}
-.x{
-    width:15px; 
-    visibility: hidden;
-    position:absolute;
-    z-index: 1;
-    position: relative;
-}
-.x:hover{
-    width:30px;
-    visibility: visible;
-    position:absolute;
-    z-index: 1;
-    position: relative;
-}
-.ele{
-    /*white-space:nowrap;*/
 }
 .url{
     position: relative;

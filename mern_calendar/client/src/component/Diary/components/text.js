@@ -200,7 +200,7 @@ export default class Text extends React.Component {
 }
 
 const TXT = styled.div`
-transform: rotate(${props => props.rot}deg) translate(${props => props.tx}px, ${props => props.ty}px) scale(${props=>props.scale});
+transform:  translate(${props => props.tx}px, ${props => props.ty}px) scale(${props=>props.scale})rotate(${props => props.rot}deg);
 cursor: grab;
 ${({ isDragging }) =>
     isDragging && css`

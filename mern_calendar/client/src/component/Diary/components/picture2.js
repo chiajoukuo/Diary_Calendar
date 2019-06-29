@@ -279,7 +279,8 @@ class Picture2 extends React.Component {
 }
 
 const Image = styled.img`
-transform: rotate(${props => props.rot}deg) translate(${props => props.tx}px, ${props => props.ty}px);
+transform:  translate(${props => props.tx}px, ${props => props.ty}px) rotate(${props => props.rot}deg);
+transform-origin:(50%,50%);
 width:${props => props.wid}%;
 cursor: grab;
 ${({ isDragging }) =>
