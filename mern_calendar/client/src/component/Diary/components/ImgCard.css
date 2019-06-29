@@ -23,11 +23,13 @@
 .imgcard-front {
     backface-visibility: hidden;
     position: absolute;
+    height: 300px;
     top: 0;
     left: 0;
     padding: 20px;
     text-align: center;
-    
+    align-items: center;
+    align-self: center;
 }
 .imgcard-front {
 	z-index: 2;

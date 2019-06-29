@@ -13,7 +13,7 @@ import {
   Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { updateImage } from '../../../actions/diaryActions';
+import { updateImage, deleteImage } from '../../../actions/diaryActions';
 import PropTypes from 'prop-types';
 
 class Picture2 extends React.Component {
@@ -34,12 +34,15 @@ class Picture2 extends React.Component {
 
       lastTranslateX: this.props.item.lastTranslateX,
       lastTranslateY: this.props.item.lastTranslateY,
+
+      url: this.props.item.url,
     };
     //this.scale = this.props.scale;
     //this.rotateDeg = this.props.rot;
   }
   static propTypes = {
-    updateImage: PropTypes.func.isRequired
+    updateImage: PropTypes.func.isRequired,
+    deleteImage: PropTypes.func.isRequired
   }
   MousewheelScale = e => {
     //https://github.com/panyefan/ShowPicture/blob/master/ShowPicture/ShowPicture.js
@@ -193,10 +196,37 @@ class Picture2 extends React.Component {
     this.setState({
         modal: !this.state.modal
     });
-}
+  }
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  handleUpdate = e => {
+    e.preventDefault();
+
+    const { diaryID, item } = this.props;
+    const updatePositionImg = {
+      lastTranslateX: this.state.lastTranslateX,
+      lastTranslateY: this.state.lastTranslateY,
+      width: this.state.width,
+      rotateDeg: this.state.rotateDeg,
+      _id: item._id,
+      url: this.state.url
+    }
+
+    this.props.updateImage(diaryID, updatePositionImg);
+
+    this.toggle();
+  }
+  handleDelete = () => {
+    const { diaryID, item } = this.props;
+    this.props.deleteImage(diaryID, item._id)
+    
+    this.toggle();
+  }
   render() {
     const { isDragging } = this.state;
     const { item } = this.props;
+    console.log(this.state.url)
     return (
     <div>
       <Image src={item.url}
@@ -225,14 +255,15 @@ class Picture2 extends React.Component {
                           type="text"
                           name="url"
                           id="url"
+                          value={this.state.url}
                           className='mb-3'
                           placeholder="Image URL"
                           onChange={this.onChange}
                       />
-                      <Button color="dark" style={{ marginTop: '2rem' }} className="setImageBut">
+                      <Button color="dark" style={{ marginTop: '2rem' }} className="setImageBut" onClick={this.handleUpdate}>
                           Update Image
                       </Button>
-                      <Button  color="danger" style={{ marginTop: '2rem' }} className="setImageButDel">
+                      <Button  color="danger" style={{ marginTop: '2rem' }} className="setImageButDel" onClick={this.handleDelete}>
                             Delete Image
                       </Button>
                   </FormGroup>
@@ -262,4 +293,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user
 })
 
-export default connect(mapStateToProps, { updateImage })(Picture2);
+export default connect(mapStateToProps, { updateImage, deleteImage })(Picture2);

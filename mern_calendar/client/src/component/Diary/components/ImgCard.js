@@ -8,8 +8,7 @@ class ImgCard extends Component {
         return (
             <figure className="imgcard-figure" id="img-1">
                 <div className="imgcard-front">
-                    <img style={{ width: '240px' }} src={this.props.src} alt="2019-06-25" />
-
+                    <img style={{ width: '240px', verticalAlign: 'middle' }} src={this.props.src} alt="2019-06-25" />
                     <h3 className="imgcard-title">2019-06-25</h3>
                 </div>
             </figure>
