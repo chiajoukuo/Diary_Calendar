@@ -55,7 +55,7 @@ class Gallery extends Component {
         let dbc=this.dbclick.bind(this)
         let txtlist = diarys.filter(diary => diary.uniqueID === item.uniqueID)[0].comments.map(
             function(list){return (
-            <Text status={stat} onDoubleClick={dbc} key={list._id}>
+            <Text diaryID={item._id} item={list} status={stat} onDoubleClick={dbc} key={list._id}>
                 <p>
                     {list.body}
                 </p>

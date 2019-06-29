@@ -26,9 +26,9 @@ const DiarySchema = new Schema({
             type: Number,
             default: 0
         },
-        width: {
+        scale: {
             type: Number,
-            default: 20
+            default: 1
         },
         rotateDeg: {
             type: Number,

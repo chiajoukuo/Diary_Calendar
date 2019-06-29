@@ -205,7 +205,7 @@ class Picture2 extends React.Component {
     e.preventDefault();
 
     const { diaryID, item } = this.props;
-    const updatePositionImg = {
+    const updateImg = {
       lastTranslateX: this.state.lastTranslateX,
       lastTranslateY: this.state.lastTranslateY,
       width: this.state.width,
@@ -214,7 +214,7 @@ class Picture2 extends React.Component {
       url: this.state.url
     }
 
-    this.props.updateImage(diaryID, updatePositionImg);
+    this.props.updateImage(diaryID, updateImg);
 
     this.toggle();
   }
