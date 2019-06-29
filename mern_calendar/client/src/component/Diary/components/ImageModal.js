@@ -50,7 +50,6 @@ class ImageModal extends Component {
         return (
             <div style={{display:'inline'}}>
                 <Button
-                    color="warning"
                     className = "botton2"
                     style={{ marginLeft: '1rem' }}
                     onClick={this.toggle}

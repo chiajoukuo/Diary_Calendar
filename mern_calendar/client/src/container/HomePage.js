@@ -30,19 +30,19 @@ class HomePage extends Component {
                     <Link to={{
                         pathname: "/user/login",
                         state: { from: this.props.location.pathname }
-                    }} className="btn btn-info ml-2 mr-2 botton2" style={{ fontSize: "1.2rem", fontFamily: 'Open Sans Condensed' }}>Login</Link>
+                    }} className="btn ml-2 mr-2 botton2" >Login</Link>
                     <Link to={{
                         pathname: "/user/register",
                         state: { from: this.props.location.pathname }
-                    }} className="btn btn-outline-info ml-2 botton2" style={{ fontSize: "1.2rem", fontFamily: 'Open Sans Condensed' }}>Register</Link>
+                    }} className="btn ml-2 botton2">Register</Link>
                     {/* <a
                         href="/user/login"
-                        className="btn btn-info ml-2 mr-2"
+                        className="btn ml-2 mr-2"
                         style={{ fontSize: "1.2rem", fontFamily: 'Open Sans Condensed' }}
                     >Login</a>
                     <a
                         href="/user/register"
-                        className="btn btn-outline-info ml-2"
+                        className="btn ml-2"
                         style={{ fontSize: "1.2rem", fontFamily: "Open Sans Condensed" }}
                     >Register</a> */}
                 </p>
@@ -57,13 +57,11 @@ class HomePage extends Component {
                 <p>
                     <a
                         href="/diary"
-                        className="btn btn-info ml-2 mr-2 botton2"
-                        style={{ fontSize: "1.2rem" }}
+                        className="btn ml-2 mr-2 botton2"                        
                     >Diary</a>
                     <a
                         href="/app"
-                        className="btn btn-outline-info ml-2 botton2"
-                        style={{ fontSize: "1.2rem" }}
+                        className="btn ml-2 botton2"                        
                     >Calendar</a>
                 </p>
             </div>
