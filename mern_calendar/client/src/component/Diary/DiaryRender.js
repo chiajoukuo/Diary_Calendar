@@ -69,8 +69,8 @@ class DiaryRender extends Component {
             <Fragment>
                 <AppNavbar history={this.props.history} />
                 <Container>
-                    <section className="jumbotron-header mb-3 mt-2">
-                        <h1 className="title jumbotron-heading display-4 text-left">{this.props.match.params.id}</h1>
+                    <section className="jumbotron-header mb-3 mt-2" style={{textAlign:'center'}}>
+                        <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
                         <p className="lead ">Add some pictures and comments</p>
                         <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
                     </section>

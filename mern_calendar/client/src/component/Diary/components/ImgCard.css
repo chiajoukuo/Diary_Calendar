@@ -1,7 +1,8 @@
 /* ImgCard */
 .imgcard-figure{ 
-    position: relative;
+    /*position: relative;*/
     vertical-align: middle;
+    display: flex;
     width: 280px;
     height: 300px;
     margin: 0;
@@ -21,12 +22,8 @@
     vertical-align: bottom;
 }
 .imgcard-front {
+    vertical-align: middle;
     backface-visibility: hidden;
-    position: absolute;
-    height: 300px;
-    top: 0;
-    left: 0;
-    padding: 20px;
     text-align: center;
     align-items: center;
     align-self: center;

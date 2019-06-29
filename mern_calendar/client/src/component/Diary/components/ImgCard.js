@@ -15,7 +15,7 @@ class ImgCard extends Component {
         return (
             <figure className="imgcard-figure" id={item._id} onClick={this.handleOnClick}>
                 <div className="imgcard-front">
-                    <img style={{ width: '240px', verticalAlign: 'middle' }} src={src} alt={item.date} />
+                    <img style={{ width: '240px'}} src={src} alt={item.date} />
                     <h3 className="imgcard-title">{item.date}</h3>
                 </div>
             </figure>
