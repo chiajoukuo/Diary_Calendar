@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { css } from "styled-components";
-// import Element from "./element";
 import "./style.css";
 import {
   Modal,
@@ -248,7 +247,7 @@ class Picture2 extends React.Component {
           isOpen={this.state.modal}
           toggle={this.toggle}
         >
-          <ModalHeader onClick={this.toggle}>Update An Image in Diary</ModalHeader>
+          <ModalHeader onClick={this.toggle}>Update Image</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
