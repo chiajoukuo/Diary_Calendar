@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 // import Element from "./element";
 import "./style.css";
 import {
-  Button,
   Modal,
   ModalHeader,
   ModalBody,
@@ -12,6 +11,9 @@ import {
   Label,
   Input
 } from 'reactstrap';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux';
 import { updateImage, deleteImage } from '../../../actions/diaryActions';
 import PropTypes from 'prop-types';
@@ -66,7 +68,7 @@ class Picture2 extends React.Component {
       this.setState({
         width: ww
       });
-      
+
       const updateWidthImg = {
         lastTranslateX: this.state.lastTranslateX,
         lastTranslateY: this.state.lastTranslateY,
@@ -194,7 +196,7 @@ class Picture2 extends React.Component {
   }
   toggle = () => {
     this.setState({
-        modal: !this.state.modal
+      modal: !this.state.modal
     });
   }
   onChange = e => {
@@ -220,69 +222,69 @@ class Picture2 extends React.Component {
   handleDelete = () => {
     const { diaryID, item } = this.props;
     this.props.deleteImage(diaryID, item._id)
-    
+
     this.toggle();
   }
   render() {
     const { isDragging } = this.state;
     const { item } = this.props;
-    
+
     return (
-    <div>
-      <Image src={item.url}
-        rot={this.state.rotateDeg}
-        tx={this.state.translateX}
-        ty={this.state.translateY}
-        wid={this.state.width}
-        className="pic"
-        onDoubleClick={this.handleDoubleClick.bind(this)}
-        onWheel={this.MousewheelScale.bind(this)}
-        onMouseDown={this.handleMouseDown}
-        isDragging={isDragging}
-        alt=""
-      ></Image>
-      
-      <Modal
+      <div>
+        <Image src={item.url}
+          rot={this.state.rotateDeg}
+          tx={this.state.translateX}
+          ty={this.state.translateY}
+          wid={this.state.width}
+          className="pic"
+          onDoubleClick={this.handleDoubleClick.bind(this)}
+          onWheel={this.MousewheelScale.bind(this)}
+          onMouseDown={this.handleMouseDown}
+          isDragging={isDragging}
+          alt=""
+        ></Image>
+
+        <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
-      >
+        >
           <ModalHeader onClick={this.toggle}>Update An Image in Diary</ModalHeader>
           <ModalBody>
-              <Form onSubmit={this.onSubmit}>
-                  <FormGroup>
-                      <Label for="url">New Image Url</Label>
-                      <Input
-                          type="text"
-                          name="url"
-                          id="url"
-                          value={this.state.url}
-                          className='mb-3'
-                          placeholder="Image URL"
-                          onChange={this.onChange}
-                      />
-                      <Button color="dark" style={{ marginTop: '2rem' }} className="setImageBut" onClick={this.handleUpdate}>
-                          Update Image
-                      </Button>
-                      <Button  color="danger" style={{ marginTop: '2rem' }} className="setImageButDel" onClick={this.handleDelete}>
-                            Delete Image
-                      </Button>
-                  </FormGroup>
-              </Form>
+            <Form onSubmit={this.onSubmit}>
+              <FormGroup>
+                <Label for="url">Image URL</Label>
+                <Input
+                  type="text"
+                  name="url"
+                  id="url"
+                  value={this.state.url}
+                  className='mb-3'
+                  placeholder="Image URL"
+                  onChange={this.onChange}
+                />
+                <Button variant="contained" size="small" color="secondary" style={{ marginTop: '15px' }} onClick={this.handleDelete}>
+                  <DeleteIcon style={{ marginRight: '0.5rem' }} />Delete
+                </Button>
+                <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', float: 'right' }} onClick={this.handleUpdate}>
+                  Save<SaveIcon style={{ marginLeft: '0.5rem' }} />
+                </Button>
+              </FormGroup>
+            </Form>
           </ModalBody>
-      </Modal>
+        </Modal>
 
-  </div>
+      </div>
     );
 
   }
 }
 
 const Image = styled.img`
-transform: rotate(${props =>props.rot}deg) translate(${props => props.tx}px, ${props=>props.ty}px);
-width:${props=>props.wid}%;
+transform: rotate(${props => props.rot}deg) translate(${props => props.tx}px, ${props => props.ty}px);
+width:${props => props.wid}%;
 cursor: grab;
 ${({ isDragging }) =>
-isDragging && css`
+    isDragging && css`
   opacity: 0.8;
   cursor: grabbing;
 `};
