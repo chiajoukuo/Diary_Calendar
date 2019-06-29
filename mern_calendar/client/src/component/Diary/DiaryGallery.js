@@ -34,7 +34,7 @@ class DiaryGallery extends Component {
         const { diarys } = this.props.diary;
 
         const existDiarys = diarys.filter(diary => !(diary.images.length === 0 && diary.comments.length === 0));
-        console.log(existDiarys)
+        
         return (
             <div style={{ flexGrow: '1' }}>
                 <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">

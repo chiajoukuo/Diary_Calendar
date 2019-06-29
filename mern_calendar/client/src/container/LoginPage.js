@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -46,9 +47,14 @@ class LoginPage extends Component {
         if (isAuthenticated) {
             // Clear errors
             this.props.clearErrors();
-            
-            // Redirect to HomePage
-            this.props.history.push('/');
+
+            // Redirect to previous Page except RegisterPage
+            let from = null;
+            if (this.props.location.state.from !== null && this.props.location.state.from !== '/user/register') {
+                from = this.props.location.state.from;
+            }
+            const urlTo = from || '/';
+            this.props.history.push(urlTo);
         }
     }
 
@@ -119,7 +125,14 @@ class LoginPage extends Component {
                                 >
                                     Login
                             </Button>
-                                <NavLink style={{ float: 'left', marginTop: '1.5rem', marginLeft: '-1rem' }} href="/user/register">No Account?</NavLink>
+                                <Link to={{
+                                    pathname: '/user/register',
+                                    state: { from: this.props.location.pathname }
+                                }}>
+                                <NavLink
+                                    style={{ float: 'left', marginTop: '1.5rem', marginLeft: '-1rem' }}
+                                    href='/user/register'
+                                >No Account?</NavLink></Link>
                             </div>
                         </FormGroup>
                     </Form>

@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Element from "./element";
 import "./style.css";
 import {
   Modal,
@@ -38,6 +37,10 @@ class Text extends React.Component {
 
       body: this.props.item.body,
     };
+  }
+  static propTypes = {
+    updateComment: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired
   }
   MousewheelScale = e => {
     const { diaryID, item } = this.props;

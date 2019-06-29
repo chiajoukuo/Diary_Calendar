@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { conditionalExpression } from "@babel/types";
+// import { conditionalExpression } from "@babel/types";
 import styled from 'styled-components'
 
 export default class but extends Component {

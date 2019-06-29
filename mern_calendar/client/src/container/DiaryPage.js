@@ -67,7 +67,7 @@ class DiaryPage extends Component {
                 <section className="jumbotron-header mb-3 mt-2">
                     <h1 className="title jumbotron-heading display-4 text-center">Diary Gallery</h1>
                     {isAuthenticated ? this.diaries()
-                        : isLoading ? this.loader() : <Auth text="please LOGIN to Manage your Diaries" />}
+                        : isLoading ? this.loader() : <Auth text="please LOGIN to Manage your Diaries" location={this.props.location} />}
                 </section>
             </Fragment>
         );

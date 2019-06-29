@@ -4,6 +4,7 @@ import { Container } from 'reactstrap';
 import Diary from "./Diary";
 import Loader from '../Loader';
 import AppNavbar from '../AppNavbar';
+import Auth from '../Auth/Auth';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -13,7 +14,9 @@ class DiaryRender extends Component {
     static propTypes = {
         getDiarys: PropTypes.func.isRequired,
         addDiary: PropTypes.func.isRequired,
-        diary: PropTypes.object.isRequired
+        diary: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool,
+        user: PropTypes.object,
     }
 
     componentDidMount() {
@@ -34,7 +37,7 @@ class DiaryRender extends Component {
 
     loader = () => {
         const { diarys } = this.props.diary;
-        const { user } = this.props;
+        const { user, isAuthenticated } = this.props;
 
         const { id } = this.props.match.params;
 
@@ -43,7 +46,15 @@ class DiaryRender extends Component {
             if (id && diaryDates.includes(id)) {
                 const item = diarys.filter(diary => diary.date === id)[0];
                 return (
-                <Diary id={id} item={item} history={this.props.history} />
+                    <Fragment>
+                        <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
+                            <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
+                            <p className="lead ">Add some pictures and comments</p>
+                            <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
+                        </section>
+                        <Diary id={id} item={item} history={this.props.history} />
+                    </Fragment>
+
                 );
             }
 
@@ -54,13 +65,43 @@ class DiaryRender extends Component {
                     userID: user._id,
                 }
                 this.handleAddDiary(newDiary);
-                
-                return (<Loader />);
+
+                return (
+                    <Fragment>
+                        <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
+                            <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
+                            <p className="lead ">Add some pictures and comments</p>
+                            <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
+                        </section>
+                        <Loader />
+                    </Fragment>
+
+                );
             }
         }
 
+        else if (!isAuthenticated) {
+            return (
+                <Fragment>
+                    <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
+                        <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
+                        <Auth text="Please LOGIN to view your diary" location={this.props.location} />
+                    </section>
+                </Fragment>
+
+            );
+        }
         else {
-            return (<Loader />);
+            return (
+                <Fragment>
+                    <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
+                        <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
+                        <p className="lead ">Add some pictures and comments</p>
+                        <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
+                    </section>
+                    <Loader />
+                </Fragment>
+            );
         }
     }
 
@@ -69,11 +110,6 @@ class DiaryRender extends Component {
             <Fragment>
                 <AppNavbar history={this.props.history} />
                 <Container>
-                    <section className="jumbotron-header mb-3 mt-2" style={{textAlign:'center'}}>
-                        <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
-                        <p className="lead ">Add some pictures and comments</p>
-                        <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
-                    </section>
                     {this.loader()}
                 </Container>
             </Fragment>
@@ -83,7 +119,8 @@ class DiaryRender extends Component {
 
 const mapStateToProps = (state) => ({
     diary: state.diary,
-    user: state.auth.user
+    user: state.auth.user,
+    isAuthenticated: state.auth.isAuthenticated,
 })
 
 export default connect(mapStateToProps, { getDiarys, addDiary })(DiaryRender);

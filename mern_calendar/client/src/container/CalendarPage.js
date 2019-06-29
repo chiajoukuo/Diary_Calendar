@@ -47,7 +47,7 @@ class CalendarPage extends Component {
                 <section className="jumbotron-header mb-3 mt-2">
                     <h1 className="jumbotron-heading display-4 text-center title">Calendar</h1>
                     {this.props.isAuthenticated ? this.calendar()
-                        : this.props.isLoading ? this.loader() : <Auth text="please LOGIN to Manage your Calendar" />}
+                        : this.props.isLoading ? this.loader() : <Auth text="please LOGIN to Manage your Calendar" location={this.props.location} />}
                 </section>
             </Fragment>
         )
