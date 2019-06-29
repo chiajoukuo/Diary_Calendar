@@ -2,31 +2,30 @@ import React, {Component} from "react";
 import Picture2 from "./components/picture2"
 import Text from "./components/text"
 import But from "./components/but"
+import TextModal from "./components/TextModal";
+import ImageModal from "./components/ImageModal";
 import "./components/style.css"
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getDiarys } from '../../actions/diaryActions';
+import { addComment, addImage } from '../../actions/diaryActions';
 
 class Gallery extends Component {
     constructor(props){
         super(props);
         this.state = {
-            images:[
-                {url:"https://i.pinimg.com/originals/0d/d4/15/0dd415c0b4b3a5a51aa2f68faf1030fa.png"}
-            ],
-            texts:["text0","text1"],
+            // images:[
+            //     {url:"https://i.pinimg.com/originals/0d/d4/15/0dd415c0b4b3a5a51aa2f68faf1030fa.png"}
+            // ],
+            // texts:["text0","text1"],
             status:"zoom"
         };
     }
 
     static propTypes = {
-        getDiarys: PropTypes.func.isRequired,
-        diary: PropTypes.object.isRequired
-    }
-
-    componentDidMount() {
-        // this.props.getDiarys();
+        diary: PropTypes.object.isRequired,
+        addComment: PropTypes.func.isRequired, 
+        addImage: PropTypes.func.isRequired
     }
 
     handleZoomOnClick = (e) =>{
@@ -71,6 +70,8 @@ class Gallery extends Component {
             //<img src={this.state.images[0]}/>
             <div>
                 <div>
+                    <TextModal diaryID={item._id} />
+                    <ImageModal diaryID={item._id} />
                     <But src="https://image.flaticon.com/icons/svg/359/359414.svg" stat={this.state.status} id="zoom" onClick={this.handleZoomOnClick.bind(this)}></But> 
                     <But src="https://image.flaticon.com/icons/svg/1330/1330172.svg" stat={this.state.status} id="rotate" onClick={this.handleRotOnClick.bind(this)}></But>
                 </div>
@@ -87,4 +88,4 @@ const mapStateToProps = (state) => ({
     diary: state.diary,
 })
 
-export default connect(mapStateToProps, { getDiarys } )(Gallery);
+export default connect(mapStateToProps, { addComment, addImage } )(Gallery);

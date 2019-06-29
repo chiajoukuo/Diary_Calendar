@@ -21,7 +21,7 @@ class CalendarPage extends Component {
         return (
             <Fragment>
                 <p className="lead text-center">Manage your events</p>
-                <p className="lead text-center mt-n3">Click the date to create a new diary</p>
+                <p className="lead text-center mt-n3">Click the date to create or edit your diary</p>
                 <Container>
                     <Nav tabs className="justify-content-center mb-3"></Nav>
                     <Calendar />
@@ -34,7 +34,7 @@ class CalendarPage extends Component {
         return (
             <Fragment>
                 <p className="lead text-center">Manage your events</p>
-                <p className="lead text-center mt-n3">Click the date to create a new diary</p>
+                <p className="lead text-center mt-n3">Click the date to create or edit your diary</p>
                 <Loader />
             </Fragment>
         );
