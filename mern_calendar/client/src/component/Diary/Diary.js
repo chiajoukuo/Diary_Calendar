@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Gallery from './gallery';
+import { CardFooter } from 'reactstrap';
 
 
 class Diary extends Component {
@@ -7,7 +8,10 @@ class Diary extends Component {
         const { item } = this.props;
         
         return (
-            <Gallery item={item}></Gallery>
+            <Fragment>
+                <Gallery item={item}></Gallery>
+                <CardFooter className="text-right">ID: {item.uniqueID}</CardFooter>
+            </Fragment>
         );
     }
 }
