@@ -15,7 +15,7 @@ import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux';
-import { updateImage, deleteImage } from '../../../actions/diaryActions';
+import { addImage, updateImage, deleteImage } from '../../../actions/diaryActions';
 import PropTypes from 'prop-types';
 
 class Picture2 extends React.Component {
@@ -227,7 +227,20 @@ class Picture2 extends React.Component {
   }
   handleToTop = () => {
     console.log("totop")
-
+    const { diaryID, item } = this.props;
+    const tempImage = {
+      lastTranslateX: this.state.lastTranslateX,
+      lastTranslateY: this.state.lastTranslateY,
+      width: this.state.width,
+      rotateDeg: this.state.rotateDeg,
+      _id: item._id,
+      url: this.state.url
+    }
+    
+    this.props.deleteImage(diaryID, item._id);
+    this.props.addImage(diaryID, { image: tempImage });
+    
+    this.toggle();
   }
   render() {
     const { isDragging } = this.state;
@@ -305,4 +318,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user
 })
 
-export default connect(mapStateToProps, { updateImage, deleteImage })(Picture2);
+export default connect(mapStateToProps, { addImage, updateImage, deleteImage })(Picture2);

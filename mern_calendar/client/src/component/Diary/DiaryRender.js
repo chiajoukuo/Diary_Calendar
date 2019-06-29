@@ -37,7 +37,7 @@ class DiaryRender extends Component {
 
     loader = () => {
         const { diarys } = this.props.diary;
-        const { user, isAuthenticated } = this.props;
+        const { user, isAuthenticated, isLoading } = this.props;
 
         const { id } = this.props.match.params;
 
@@ -80,7 +80,7 @@ class DiaryRender extends Component {
             }
         }
 
-        else if (!isAuthenticated) {
+        else if (!isAuthenticated && !isLoading) {
             return (
                 <Fragment>
                     <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
@@ -121,6 +121,7 @@ const mapStateToProps = (state) => ({
     diary: state.diary,
     user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated,
+    isLoading: state.auth.isLoading,
 })
 
 export default connect(mapStateToProps, { getDiarys, addDiary })(DiaryRender);

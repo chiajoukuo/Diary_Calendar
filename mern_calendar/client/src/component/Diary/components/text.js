@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux';
-import { updateComment, deleteComment } from '../../../actions/diaryActions';
+import { addComment, updateComment, deleteComment } from '../../../actions/diaryActions';
 import PropTypes from 'prop-types';
 
 class Text extends React.Component {
@@ -205,12 +205,26 @@ class Text extends React.Component {
   }
   handleDelete = () => {
     const { diaryID, item } = this.props;
-    this.props.deleteComment(diaryID, item._id)
+    this.props.deleteComment(diaryID, item._id);
 
     this.toggle();
   }
   handleToTop = () => {
     console.log("totop")
+    const { diaryID, item } = this.props;
+    const tempText = {
+      lastTranslateX: this.state.lastTranslateX,
+      lastTranslateY: this.state.lastTranslateY,
+      width: this.state.scale,
+      rotateDeg: this.state.rotateDeg,
+      body: this.state.body
+    }
+    
+    this.props.deleteComment(diaryID, item._id);
+    this.props.addComment(diaryID, { comment: tempText });
+
+    this.toggle();
+
 
   }
   render() {
@@ -284,4 +298,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user
 })
 
-export default connect(mapStateToProps, { updateComment, deleteComment })(Text);
+export default connect(mapStateToProps, { addComment, updateComment, deleteComment })(Text);

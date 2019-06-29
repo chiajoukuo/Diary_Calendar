@@ -68,7 +68,7 @@ class Gallery extends Component {
         })
         return(
             //<img src={this.state.images[0]}/>
-            <div>
+            <div style={{ minHeight: '600px'}}>
                 <div>
                     <div style={{textAlign:'center'}}>
                         <TextModal diaryID={item._id} />
