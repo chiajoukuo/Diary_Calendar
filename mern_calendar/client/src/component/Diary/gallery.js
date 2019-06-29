@@ -66,8 +66,7 @@ class Gallery extends Component {
         })
         let piclist = item.images.map(function(list){
             return(
-                <Picture2 src={list.url} status={stat} scale="1.0" w="20" rot="0.0">
-                </Picture2>
+                <Picture2 diaryID={item._id} item={list} status={stat}  />
             )
         })
         return(

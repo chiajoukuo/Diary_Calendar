@@ -1,88 +1,115 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Element from "./element";
+// import Element from "./element";
 import "./style.css";
 
-export default class Picture2 extends React.Component {
+import { connect } from 'react-redux';
+import { updateImage } from '../../../actions/diaryActions';
+import PropTypes from 'prop-types';
+
+class Picture2 extends React.Component {
   constructor(props) {
-    
     super(props);
     this.state = {
       //style: {transform: `rotate(${this.props.rot}deg) scale(${this.props.scale})` },
-        width:this.props.w,
-        rotateDeg:this.props.rot,
-        isDragging: false,
+      width: this.props.item.width,
+      rotateDeg: this.props.item.rotateDeg,
+      isDragging: false,
 
-        originalX: 0,
-        originalY: 0,
-  
-        translateX: 0,
-        translateY: 0,
-  
-        lastTranslateX: 0,
-        lastTranslateY: 0
+      originalX: 0,
+      originalY: 0,
+
+      translateX: this.props.item.lastTranslateX,
+      translateY: this.props.item.lastTranslateY,
+
+      lastTranslateX: this.props.item.lastTranslateX,
+      lastTranslateY: this.props.item.lastTranslateY,
     };
     //this.scale = this.props.scale;
     //this.rotateDeg = this.props.rot;
   }
 
+  static propTypes = {
+    updateImage: PropTypes.func.isRequired
+  }
 
   MousewheelScale = e => {
     //https://github.com/panyefan/ShowPicture/blob/master/ShowPicture/ShowPicture.js
-    
+    const { diaryID, item } = this.props;
     //console.log("mouse", e.deltaY);
     //滾輪往下deltaY>0
-    if(this.props.status==="zoom"){
-        //console.log("status",this.props.status)
-        let ww=this.state.width;
-        if (e.deltaY > 0) {
-            ww = ww - 2;
-        } else {
-            ww = ww + 2;
-        }
-        if (ww<5){
-            ww = 5;
-        }
-        else if (ww>70){
-            ww = 70;
-        }
-        this.setState({
-            width:ww
-        });
-        //console.log("width: ", this.state.width);
-        e.stopPropagation();
-        e.preventDefault();
+    if (this.props.status === "zoom") {
+      //console.log("status",this.props.status)
+      let ww = this.state.width;
+      if (e.deltaY > 0) {
+        ww = ww - 2;
+      } else {
+        ww = ww + 2;
+      }
+      if (ww < 5) {
+        ww = 5;
+      }
+      else if (ww > 70) {
+        ww = 70;
+      }
+      this.setState({
+        width: ww
+      });
+      
+      const updateWidthImg = {
+        lastTranslateX: this.state.lastTranslateX,
+        lastTranslateY: this.state.lastTranslateY,
+        width: this.state.width,
+        rotateDeg: this.state.rotateDeg,
+        _id: item._id,
+        url: item.url
+      }
+
+      this.props.updateImage(diaryID, updateWidthImg);
+      //console.log("width: ", this.state.width);
+      e.stopPropagation();
+      e.preventDefault();
     }
-    else if(this.props.status==="rotate"){
-        //console.log("status",this.props.status)
-        let rr = this.state.rotateDeg;
-        if(e.deltaY > 0){
-            rr = rr - 2;
-        }
-        else{
-            rr = rr + 2;
-        }
-        this.setState({
-            rotateDeg:rr
-        });
-        //console.log("deg: ", this.state.rotateDeg);
-        e.stopPropagation();
-        e.preventDefault();
+    else if (this.props.status === "rotate") {
+      //console.log("status",this.props.status)
+      let rr = this.state.rotateDeg;
+      if (e.deltaY > 0) {
+        rr = rr - 2;
+      }
+      else {
+        rr = rr + 2;
+      }
+      this.setState({
+        rotateDeg: rr
+      });
+      const updateRotateImg = {
+        lastTranslateX: this.state.lastTranslateX,
+        lastTranslateY: this.state.lastTranslateY,
+        width: this.state.width,
+        rotateDeg: this.state.rotateDeg,
+        _id: item._id,
+        url: item.url
+      }
+
+      this.props.updateImage(diaryID, updateRotateImg);
+      //console.log("deg: ", this.state.rotateDeg);
+      e.stopPropagation();
+      e.preventDefault();
 
     }
-    
-};
-componentWillUnmount() {
+
+  };
+  componentWillUnmount() {
     window.removeEventListener('mousemove', this.handleMouseMove);
     window.removeEventListener('mouseup', this.handleMouseUp);
   }
 
   handleMouseDown = (e) => {
-    
+
     //console.log("md")
     //console.log(this.state.lastTranslateX,this.state.lastTranslateY)
-    var clientX=e.clientX;
-    var clientY=e.clientY;
+    var clientX = e.clientX;
+    var clientY = e.clientY;
     window.addEventListener('mousemove', this.handleMouseMove);
     window.addEventListener('mouseup', this.handleMouseUp);
     if (this.props.onDragStart) {
@@ -101,7 +128,7 @@ componentWillUnmount() {
     //console.log("mm")
     const { isDragging } = this.state;
     const { onDrag } = this.props;
-   
+
     if (!isDragging) {
       return;
     }
@@ -139,9 +166,22 @@ componentWillUnmount() {
         }
       }
     );
+
+    const { diaryID, item } = this.props;
+    const updatePositionImg = {
+      lastTranslateX: this.state.lastTranslateX,
+      lastTranslateY: this.state.lastTranslateY,
+      width: this.state.width,
+      rotateDeg: this.state.rotateDeg,
+      _id: item._id,
+      url: item.url
+    }
+
+    this.props.updateImage(diaryID, updatePositionImg);
   };
   render() {
     console.log("pic2")
+
     //console.log("width: ", this.state.width);
     //console.log("render pic",this.props.status)
     /*
@@ -168,29 +208,37 @@ componentWillUnmount() {
         `};
     `
     const { isDragging } = this.state;
+    const { item } = this.props;
     return (
-        //<img src="https://image.flaticon.com/icons/svg/32/32178.svg" className="x"/>
-        /*
-        <div className="ele">
-          <img
-            src={this.props.src}
-            className="pic"
-            onWheel={this.MousewheelScale.bind(this)}
-            style={this.state.style}
-            alt=""
-          />
-        </div>
-        */
-        <Image src={this.props.src}
+      //<img src="https://image.flaticon.com/icons/svg/32/32178.svg" className="x"/>
+      /*
+      <div className="ele">
+        <img
+          src={this.props.src}
+          className="pic"
+          onWheel={this.MousewheelScale.bind(this)}
+          style={this.state.style}
+          alt=""
+        />
+      </div>
+      */
+      <Image src={item.url}
         className="pic"
         onWheel={this.MousewheelScale.bind(this)}
         onMouseDown={this.handleMouseDown}
         isDragging={isDragging}
         alt=""
-        ></Image>
+      ></Image>
 
 
     );
-    
+
   }
 }
+
+const mapStateToProps = (state) => ({
+  diary: state.diary,
+  user: state.auth.user
+})
+
+export default connect(mapStateToProps, { updateImage })(Picture2);
