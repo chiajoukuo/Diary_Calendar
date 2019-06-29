@@ -30,12 +30,12 @@ class HomePage extends Component {
                     <a
                         href="/user/login"
                         className="btn btn-info ml-2 mr-2"
-                        style={{ fontSize: "1.2rem" }}
+                        style={{ fontSize: "1.2rem" , fontFamily:'Open Sans Condensed'}}
                     >Login</a>
                     <a
                         href="/user/register"
                         className="btn btn-outline-info ml-2"
-                        style={{ fontSize: "1.2rem" }}
+                        style={{ fontSize: "1.2rem" ,fontFamily:"Open Sans Condensed"}}
                     >Register</a>
                 </p>
             </div>

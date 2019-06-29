@@ -12,7 +12,7 @@ class Diary extends Component {
         return (
             <Container>
                 <section className="jumbotron-header mb-3 mt-2">
-                    <h1 className="jumbotron-heading display-4 text-center">Today's Date is {id}</h1>
+                    <h1 className="title jumbotron-heading display-4 text-center">Today's Date is {id}</h1>
                     <p className="lead text-center">Add some pictures and comments~~~</p>
                 </section>
                 <Gallery item={item}></Gallery>

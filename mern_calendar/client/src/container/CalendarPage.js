@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { Container, Col, Row, Nav } from 'reactstrap';
+import { Container, Col, Row, Nav,Spinner } from 'reactstrap';
 
 import Calendar from '../component/Calendar/Calendar';
 import AppNavbar from '../component/AppNavbar';
-import Loader from '../component/Loader';
 import '../styles.css'
 
 import { connect } from 'react-redux';
@@ -52,6 +51,15 @@ class CalendarPage extends Component {
         );
     }
 
+    loading = ()=> {
+        return(
+        <div style={{textAlign :'center'}}>
+            <p>loading</p>
+            <Spinner color="primary" />
+        </div>
+        );
+    }
+
     render() {
         return (
             <Fragment>
@@ -59,7 +67,7 @@ class CalendarPage extends Component {
                 <section className="jumbotron-header mb-3 mt-2">
                     <h1 className="jumbotron-heading display-4 text-center title">Calendar</h1>
                     {this.props.isAuthenticated ? this.calendar()
-                        : this.props.isLoading ? <Loader text="Manage your events" /> : this.auth()}
+                        : this.props.isLoading ? this.loading() : this.auth()}
                 </section>
             </Fragment>
         )
