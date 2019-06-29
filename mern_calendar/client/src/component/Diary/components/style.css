@@ -1,8 +1,10 @@
 .txt{
     font-family: 'Open Sans Condensed';
-    width:20px;
+    width:40%;
     float:right;
+    word-wrap:break-word;
     /*
+    
     position:absolute;
     z-index: -1;
     position: relative;
@@ -23,7 +25,8 @@
     width:25px;
 }
 .txtCard{
-    width:50px;
+    width:45%;
+    font-family: 'Open Sans Condensed';
 }
 .url{
     position: relative;
