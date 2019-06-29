@@ -2,7 +2,16 @@ import React from "react";
 import styled, { css } from "styled-components";
 // import Element from "./element";
 import "./style.css";
-
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import { updateImage } from '../../../actions/diaryActions';
 import PropTypes from 'prop-types';
@@ -12,6 +21,7 @@ class Picture2 extends React.Component {
     super(props);
     this.state = {
       //style: {transform: `rotate(${this.props.rot}deg) scale(${this.props.scale})` },
+      modal: false,
       width: this.props.item.width,
       rotateDeg: this.props.item.rotateDeg,
       isDragging: false,
@@ -28,11 +38,9 @@ class Picture2 extends React.Component {
     //this.scale = this.props.scale;
     //this.rotateDeg = this.props.rot;
   }
-
   static propTypes = {
     updateImage: PropTypes.func.isRequired
   }
-
   MousewheelScale = e => {
     //https://github.com/panyefan/ShowPicture/blob/master/ShowPicture/ShowPicture.js
     const { diaryID, item } = this.props;
@@ -103,7 +111,6 @@ class Picture2 extends React.Component {
     window.removeEventListener('mousemove', this.handleMouseMove);
     window.removeEventListener('mouseup', this.handleMouseUp);
   }
-
   handleMouseDown = (e) => {
 
     //console.log("md")
@@ -123,7 +130,6 @@ class Picture2 extends React.Component {
     });
     e.preventDefault()
   };
-
   handleMouseMove = ({ clientX, clientY }) => {
     //console.log("mm")
     const { isDragging } = this.state;
@@ -145,7 +151,6 @@ class Picture2 extends React.Component {
       }
     });
   };
-
   handleMouseUp = () => {
     //console.log("mu")
     window.removeEventListener('mousemove', this.handleMouseMove);
@@ -179,62 +184,78 @@ class Picture2 extends React.Component {
 
     this.props.updateImage(diaryID, updatePositionImg);
   };
+  handleDoubleClick = () => {
+    //this.props.onDoubleClick(e);
+    console.log("handle double click")
+    this.toggle();
+  }
+  toggle = () => {
+    this.setState({
+        modal: !this.state.modal
+    });
+}
   render() {
-    console.log("pic2")
-
-    //console.log("width: ", this.state.width);
-    //console.log("render pic",this.props.status)
-    /*
-    return (
-      <img
-        src={this.props.src}
-        className="pic"
-        onWheel={this.MousewheelScale.bind(this)}
-        onMouseDown={this.handleMouseDown.bind(this)}
-        onMouseMove={this.handleMouseMove.bind(this)}
-        onMouseUp={this.handleMouseUp.bind(this)}
-        style={this.state.style}
-      />
-    );
-    */
-    const Image = styled.img`
-        transform: rotate(${this.state.rotateDeg}deg) translate(${this.state.translateX}px, ${this.state.translateY}px);
-        width:${this.state.width}%;
-        cursor: grab;
-        ${({ isDragging }) =>
-        isDragging && css`
-          opacity: 0.8;
-          cursor: grabbing;
-        `};
-    `
     const { isDragging } = this.state;
     const { item } = this.props;
     return (
-      //<img src="https://image.flaticon.com/icons/svg/32/32178.svg" className="x"/>
-      /*
-      <div className="ele">
-        <img
-          src={this.props.src}
-          className="pic"
-          onWheel={this.MousewheelScale.bind(this)}
-          style={this.state.style}
-          alt=""
-        />
-      </div>
-      */
+    <div>
       <Image src={item.url}
+        rot={this.state.rotateDeg}
+        tx={this.state.translateX}
+        ty={this.state.translateY}
+        wid={this.state.width}
         className="pic"
+        onDoubleClick={this.handleDoubleClick.bind(this)}
         onWheel={this.MousewheelScale.bind(this)}
         onMouseDown={this.handleMouseDown}
         isDragging={isDragging}
         alt=""
       ></Image>
+      
+      <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+      >
+          <ModalHeader onClick={this.toggle}>Update An Image in Diary</ModalHeader>
+          <ModalBody>
+              <Form onSubmit={this.onSubmit}>
+                  <FormGroup>
+                      <Label for="url">New Image Url</Label>
+                      <Input
+                          type="text"
+                          name="url"
+                          id="url"
+                          className='mb-3'
+                          placeholder="Image URL"
+                          onChange={this.onChange}
+                      />
+                      <Button color="dark" style={{ marginTop: '2rem' }} className="setImageBut">
+                          Update Image
+                      </Button>
+                      <Button  color="danger" style={{ marginTop: '2rem' }} className="setImageButDel">
+                            Delete Image
+                      </Button>
+                  </FormGroup>
+              </Form>
+          </ModalBody>
+      </Modal>
 
-
+  </div>
     );
 
   }
 }
+
+const Image = styled.img`
+transform: rotate(${props =>props.rot}deg) translate(${props => props.tx}px, ${props=>props.ty}px);
+width:${props=>props.wid}%;
+cursor: grab;
+${({ isDragging }) =>
+isDragging && css`
+  opacity: 0.8;
+  cursor: grabbing;
+`};
+`
 
 const mapStateToProps = (state) => ({
   diary: state.diary,

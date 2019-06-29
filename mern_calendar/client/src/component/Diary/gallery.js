@@ -49,7 +49,6 @@ class Gallery extends Component {
         })
     }
     render(){
-        console.log("new")
         const { diarys } = this.props.diary;
         const { item } = this.props;
         console.log("Diarys: ",diarys)
@@ -58,7 +57,7 @@ class Gallery extends Component {
         let dbc=this.dbclick.bind(this)
         let txtlist = diarys.filter(diary => diary.uniqueID === item.uniqueID)[0].comments.map(
             function(list){return (
-            <Text status={stat} onDoubleClick={dbc}>
+            <Text status={stat} onDoubleClick={dbc} key={list._id}>
                 <p>
                     {list.body}
                 </p>
@@ -66,7 +65,7 @@ class Gallery extends Component {
         })
         let piclist = item.images.map(function(list){
             return(
-                <Picture2 diaryID={item._id} item={list} status={stat}  />
+                <Picture2 diaryID={item._id} item={list} status={stat} key={list._id} />
             )
         })
         return(

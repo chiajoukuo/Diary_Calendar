@@ -48,3 +48,11 @@
     color:rgba(145, 134, 134, 0.74);
 }
 
+.setImageBut{
+    margin:3px;
+}
+.setImageButDel{
+    float:right;
+    margin:3px;
+
+}
