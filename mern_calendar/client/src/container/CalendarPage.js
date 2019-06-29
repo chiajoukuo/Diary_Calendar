@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { Container, Col, Row, Nav } from 'reactstrap';
+import { Container, Nav } from 'reactstrap';
 
 import Calendar from '../component/Calendar/Calendar';
 import AppNavbar from '../component/AppNavbar';
 import Loader from '../component/Loader';
+import Auth from '../component/Auth/Auth';
 import '../styles.css'
 
 import { connect } from 'react-redux';
@@ -28,30 +29,6 @@ class CalendarPage extends Component {
         );
     }
 
-    auth = () => {
-        return (
-            <Container>
-                <Row>
-                    <Col>
-                        <p className="lead text-center">please LOGIN to Manage your Calendar</p>
-                        <p className="text-center">
-                            <a
-                                href="/user/login"
-                                className="btn btn-info ml-2 mr-2"
-                                style={{ fontSize: "1.2rem" }}
-                            >Login</a>
-                            <a
-                                href="/user/register"
-                                className="btn btn-outline-info ml-2"
-                                style={{ fontSize: "1.2rem" }}
-                            >Register</a>
-                        </p>
-                    </Col>
-                </Row>
-            </Container>
-        );
-    }
-
     render() {
         return (
             <Fragment>
@@ -59,7 +36,7 @@ class CalendarPage extends Component {
                 <section className="jumbotron-header mb-3 mt-2">
                     <h1 className="jumbotron-heading display-4 text-center title">Calendar</h1>
                     {this.props.isAuthenticated ? this.calendar()
-                        : this.props.isLoading ? <Loader text="Manage your events" /> : this.auth()}
+                        : this.props.isLoading ? <Loader text="Manage your events" /> : <Auth text="please LOGIN to Manage your Calendar" />}
                 </section>
             </Fragment>
         )

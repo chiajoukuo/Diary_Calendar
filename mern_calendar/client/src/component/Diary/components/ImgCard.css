@@ -1,0 +1,35 @@
+/* ImgCard */
+.imgcard-figure{ 
+    position: relative;
+    vertical-align: middle;
+    width: 280px;
+    height: 300px;
+    margin: 0;
+    padding: 20px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    perspective: 1800px;
+    box-shadow: 5px 5px 16px -1px rgba(0,0,0,0.19);
+    background: #fff;
+    cursor: pointer;
+    
+}
+.imgcard-title{
+    font-size: 16px; 
+    color: #a7a2a0;
+    margin: 5px 0 0 0;
+    vertical-align: bottom;
+}
+.imgcard-front {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    text-align: center;
+    
+}
+.imgcard-front {
+	z-index: 2;
+	transform: rotateY(0deg);
+}

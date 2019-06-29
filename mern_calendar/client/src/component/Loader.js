@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Container, Nav } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 class Loader extends Component {
     render() {
@@ -9,9 +9,9 @@ class Loader extends Component {
                 <Container>
                     {/* <Nav tabs className="justify-content-center mb-3"></Nav> */}
                     {/* Reference: https://mdbootstrap.com/docs/jquery/components/spinners/ */}
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
+                    <div className="d-flex justify-content-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
                         </div>
                     </div>
                 </Container >

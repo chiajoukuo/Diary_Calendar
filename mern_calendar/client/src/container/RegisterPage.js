@@ -47,8 +47,8 @@ class RegisterPage extends Component {
             // Clear errors
             this.props.clearErrors();
             
-            // Redirect to Calendar
-            this.props.history.push('/app');
+            // Redirect to HomePage
+            this.props.history.push('/');
         }
     }
 

@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col } from 'reactstrap';
 
 import AppNavbar from '../component/AppNavbar';
-import Loader from '../component/Loader';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -48,15 +47,15 @@ class HomePage extends Component {
                 <p className="lead">Get Started</p>
                 <p>
                     <a
-                        href="/app"
+                        href="/diary"
                         className="btn btn-info ml-2 mr-2 botton2"
                         style={{ fontSize: "1.2rem" }}
-                    >Calendar</a>
+                    >Diary</a>
                     <a
-                        href="/diary"
+                        href="/app"
                         className="btn btn-outline-info ml-2 botton2"
                         style={{ fontSize: "1.2rem" }}
-                    >Diarys</a>
+                    >Calendar</a>
                 </p>
             </div>
         );

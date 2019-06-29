@@ -20,7 +20,9 @@ class Calendar extends Component {
     }
 
     componentDidMount() {
-        this.props.getEvents(this.props.user._id);
+        if (this.props.user) {
+            this.props.getEvents(this.props.user._id);
+        }
     }
 
     handleSelect = (newIntervals) => {

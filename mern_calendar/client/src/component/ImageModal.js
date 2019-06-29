@@ -25,6 +25,12 @@ class ImageModal extends Component {
         diary: PropTypes.object.isRequired
     }
 
+    componentDidMount() {
+        if (this.props.user) {
+            this.props.getDiarys(this.props.user._id);
+        }
+    }
+
     componentDidUpdate(prevProps) {
         if(prevProps.user !== this.props.user){
             this.props.getDiarys(this.props.user._id);
