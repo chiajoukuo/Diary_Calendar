@@ -30,11 +30,11 @@ class HomePage extends Component {
                     <Link to={{
                         pathname: "/user/login",
                         state: { from: this.props.location.pathname }
-                    }} className="btn btn-info ml-2 mr-2" style={{ fontSize: "1.2rem", fontFamily: 'Open Sans Condensed' }}>Login</Link>
+                    }} className="btn btn-info ml-2 mr-2 botton2" style={{ fontSize: "1.2rem", fontFamily: 'Open Sans Condensed' }}>Login</Link>
                     <Link to={{
                         pathname: "/user/register",
                         state: { from: this.props.location.pathname }
-                    }} className="btn btn-outline-info ml-2" style={{ fontSize: "1.2rem", fontFamily: 'Open Sans Condensed' }}>Register</Link>
+                    }} className="btn btn-outline-info ml-2 botton2" style={{ fontSize: "1.2rem", fontFamily: 'Open Sans Condensed' }}>Register</Link>
                     {/* <a
                         href="/user/login"
                         className="btn btn-info ml-2 mr-2"
