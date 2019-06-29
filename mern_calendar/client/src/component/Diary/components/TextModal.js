@@ -49,10 +49,10 @@ class TextModal extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{display:'inline'}}>
                 <Button
                     color="primary"
-                    style={{ marginBottom: '1rem' }}
+                    className="botton2"                    
                     onClick={this.toggle}
                 >Add Text</Button>
 

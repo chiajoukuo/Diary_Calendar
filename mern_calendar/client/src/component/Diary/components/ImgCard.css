@@ -1,11 +1,10 @@
 /* ImgCard */
 .imgcard-figure{ 
     /*position: relative;*/
-    vertical-align: middle;
+    vertical-align: bottom;
     display: flex;
     width: 280px;
     height: 300px;
-    margin: 0;
     padding: 20px;
     border-radius: 3px;
     box-sizing: border-box;
@@ -16,10 +15,12 @@
     
 }
 .imgcard-title{
+    display: flex;
     font-size: 16px; 
     color: #a7a2a0;
     margin: 5px 0 0 0;
     vertical-align: bottom;
+    font-family: 'Open Sans Condensed'
 }
 .imgcard-front {
     vertical-align: middle;
@@ -27,8 +28,6 @@
     text-align: center;
     align-items: center;
     align-self: center;
-}
-.imgcard-front {
 	z-index: 2;
 	transform: rotateY(0deg);
 }

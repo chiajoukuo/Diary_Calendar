@@ -70,8 +70,10 @@ class Gallery extends Component {
             //<img src={this.state.images[0]}/>
             <div>
                 <div>
-                    <TextModal diaryID={item._id} />
-                    <ImageModal diaryID={item._id} />
+                    <div style={{textAlign:'center'}}>
+                        <TextModal diaryID={item._id} />
+                        <ImageModal diaryID={item._id} />
+                    </div>
                     <But src="https://image.flaticon.com/icons/svg/359/359414.svg" stat={this.state.status} id="zoom" onClick={this.handleZoomOnClick.bind(this)}></But> 
                     <But src="https://image.flaticon.com/icons/svg/1330/1330172.svg" stat={this.state.status} id="rotate" onClick={this.handleRotOnClick.bind(this)}></But>
                 </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import "./style.css";
 import {
   Modal,
@@ -208,6 +209,10 @@ class Text extends React.Component {
 
     this.toggle();
   }
+  handleToTop = () => {
+    console.log("totop")
+
+  }
   render() {
     const { isDragging } = this.state;
     return (
@@ -246,7 +251,10 @@ class Text extends React.Component {
                 />
                 <Button variant="contained" size="small" color="secondary" style={{ marginTop: '15px' }} onClick={this.handleDelete}>
                   <DeleteIcon style={{ marginRight: '0.5rem' }} />Delete
-                                </Button>
+                </Button>
+                <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', marginLeft:'28%'}} onClick={this.handleToTop}>
+                  <KeyboardArrowUp style={{ marginRight: '0.5rem' }} />Move to top
+                </Button>
                 <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', float: 'right' }} onClick={this.handleUpdate}>
                   Save<SaveIcon style={{ marginLeft: '0.5rem' }} />
                 </Button>
