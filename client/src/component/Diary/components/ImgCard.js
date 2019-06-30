@@ -11,7 +11,6 @@ class ImgCard extends Component {
 
     render() {
         const { src, item } = this.props;
-        
         return (
             <figure className="imgcard-figure" id={item._id} onClick={this.handleOnClick}>
                 <div className="imgcard-front">
