@@ -70,7 +70,7 @@ class Calendar extends Component {
         for (var i = events.length - 1; i >= 0; i--) {
             if (events[i]._id === value) {
                 colorr_from_id = events[i].color
-                text_from_id = events[i].value
+                text_from_id = events[i].value            
             }
         }
         if(event.allEvent === true){
@@ -78,8 +78,8 @@ class Calendar extends Component {
 	            if (events[i].value === text_from_id 
 	                && events[i].color === colorr_from_id 
 	                && events[i].userID === event.userID
-                    && events[i].end === event.end
-                    && events[i].start === event.start) {
+                    && moment(events[i].end).hour() === moment(event.end).hour()
+                    && moment(events[i].start).hour() === moment(event.start).hour()){
 	                const update = {
 	                    _id: events[i]._id,
 	                    color: event.color,
