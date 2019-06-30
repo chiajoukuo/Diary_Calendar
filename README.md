@@ -63,15 +63,6 @@ $ npm run dev
 - bcrypt: 用來計算使用者密碼的雜湊值
 - mongoose: 連接MongoDB資料庫
 - nodemon: 方便後端開發
-<<<<<<< HEAD
-
-
-## 分工
-- b05901159邱昱禎：UI, bug fixed, 部分行事曆製做
-
-=======
->>>>>>> 5900bb1b735a8bf3913a98099d13929b0ad57f97
-
 
 
 ## 分工
