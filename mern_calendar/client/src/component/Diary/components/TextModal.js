@@ -53,17 +53,17 @@ class TextModal extends Component {
                 <Button
                     className="botton2"                    
                     onClick={this.toggle}
-                >Add Text</Button>
+                >Add Comment</Button>
 
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
                 >
-                    <ModalHeader onClick={this.toggle}>Add new Text to Diary</ModalHeader>
+                    <ModalHeader onClick={this.toggle}>Add new Comment to Diary</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="body">Text</Label>
+                                <Label for="body">Comment</Label>
                                 <Input
                                     type="textarea"
                                     name="body"
@@ -75,7 +75,7 @@ class TextModal extends Component {
                                     required
                                 />
                                 <Button color="dark" style={{ marginTop: '2rem' }} block>
-                                    Add Text
+                                    Add Comment
                                 </Button>
                             </FormGroup>
                         </Form>

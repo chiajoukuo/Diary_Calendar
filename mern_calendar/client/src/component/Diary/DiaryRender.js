@@ -50,7 +50,6 @@ class DiaryRender extends Component {
                         <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
                             <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
                             <p className="lead ">Add some pictures and comments</p>
-                            <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
                         </section>
                         <Diary id={id} item={item} history={this.props.history} />
                     </Fragment>
@@ -71,7 +70,6 @@ class DiaryRender extends Component {
                         <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
                             <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
                             <p className="lead ">Add some pictures and comments</p>
-                            <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
                         </section>
                         <Loader />
                     </Fragment>
@@ -97,7 +95,6 @@ class DiaryRender extends Component {
                     <section className="jumbotron-header mb-3 mt-2" style={{ textAlign: 'center' }}>
                         <h1 className="title jumbotron-heading display-4">{this.props.match.params.id}</h1>
                         <p className="lead ">Add some pictures and comments</p>
-                        <p className="lead mt-n3">Click the bottons below to Zoom or Rotate</p>
                     </section>
                     <Loader />
                 </Fragment>
