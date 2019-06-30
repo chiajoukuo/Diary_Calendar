@@ -33,7 +33,10 @@ router.post('/', (req, res) => {
         userID: req.body.userID,
     });
 
-    newDiary.save().then(diary => res.json(diary));
+    newDiary
+        .save()
+        .then(diary => res.json(diary))
+        .catch(err => res.status(404).json({ message: "Diary already exists!" }));
 });
 
 // @route   POST api/diarys/:id
@@ -42,7 +45,7 @@ router.post('/', (req, res) => {
 router.post('/:id', (req, res) => {
     Diary.findOneAndUpdate( { _id: req.params.id }, { $set: req.body }, { new: true } )
         .then(diary => res.json(diary))
-        .catch(err => res.status(404).json({success: false}));
+        .catch(err => res.status(404).json({ success: false }));
 });
 
 // @route   DELETE api/diarys/:id
