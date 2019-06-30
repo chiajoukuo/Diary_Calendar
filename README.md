@@ -1,8 +1,13 @@
 ﻿# Diary Calender
 
 ## 一句話描述這個專題
-一個行事曆以及日記兼具的可愛網頁  
-This is the [Deploy Page](https://guarded-beyond-74616.herokuapp.com/app) and [Demo Video](https://youtu.be/NUjAfht8ofQ).
+一個行事曆以及手帳日記兼具的可愛網頁  
+<<<<<<< HEAD
+This is the [Deploy Page]('https://guarded-beyond-74616.herokuapp.com/app') and [Demo Video]('https://youtu.be/NUjAfht8ofQ').
+=======
+This is the [Deploy Page]('https://guarded-beyond-74616.herokuapp.com/app') and [Demo Video](https://youtu.be/NUjAfht8ofQ).
+>>>>>>> ae7f62adb5df91d8a906ad232861e7c9b99f5a80
+
 ## Usage
 
 ### Setup
@@ -56,13 +61,22 @@ $ npm run dev
 - React-week-calender: 行事曆的套件，省去手刻行事曆的麻煩
 - Material ui, Reactstrap: 加速前端開發速度
 - Moment: 行事曆的時間format 
-- jsonwebtoken: 用來解決身份認證的問題
+- redux: 統一管理state
 
 ### 後端
-- redux: 後端最主要使用的架構
 - bcrypt: 用來計算使用者密碼的雜湊值
+- jsonwebtoken: 用來解決身份認證的問題
 - mongoose: 連接MongoDB資料庫
 - nodemon: 方便後端開發
+<<<<<<< HEAD
+
+
+## 分工
+- b05901159邱昱禎：UI, bug fixed, 部分行事曆製做
+
+=======
+>>>>>>> 5900bb1b735a8bf3913a98099d13929b0ad57f97
+
 
 
 ## 分工
