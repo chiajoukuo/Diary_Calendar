@@ -4,6 +4,7 @@ import Text from "./components/text"
 import But from "./components/but"
 import TextModal from "./components/TextModal";
 import ImageModal from "./components/ImageModal";
+import IconModal from "./components/IconModal";
 import "./components/style.css"
 import {
     Modal,
@@ -97,6 +98,7 @@ class Gallery extends Component {
                     <div style={{textAlign:'center'}}>
                         <TextModal diaryID={item._id} />
                         <ImageModal diaryID={item._id} />
+                        <IconModal diaryID={item._id}/>
                     </div>
                     <But src="https://image.flaticon.com/icons/svg/13/13543.svg" stat={this.state.status} id="question" onClick={this.handleQuestionOnClick.bind(this)}></But>
                     <But src="https://image.flaticon.com/icons/svg/463/463067.svg" stat={this.state.status} id="zoom" onClick={this.handleZoomOnClick.bind(this)}></But> 
