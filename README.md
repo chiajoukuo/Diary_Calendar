@@ -2,7 +2,8 @@
 
 ## 一句話描述這個專題
 一個行事曆以及手帳日記兼具的可愛網頁  
-This is the [Deploy Page](https://guarded-beyond-74616.herokuapp.com/app) and [Demo Video](https://youtu.be/NUjAfht8ofQ).
+Deploy Page : https://guarded-beyond-74616.herokuapp.com/ <br>
+Demo Video : https://youtu.be/NUjAfht8ofQ
 
 
 ## Usage
@@ -50,6 +51,11 @@ $ npm run dev
     
 ### 登入系統
 我們的日記需要先行登入才能使用。因此具有登入帳號以及創建帳戶的功能。進到每一個頁面也會先驗證身分才會生成日記和行事曆頁面。
+```
+// 提供給助教使用
+Name: webfinal
+Password: 12345
+```
 
 ## 使用與參考之框架/模組/原始碼
 
@@ -59,17 +65,19 @@ $ npm run dev
 - Material ui, Reactstrap: 加速前端開發速度
 - Moment: 行事曆的時間format 
 - redux: 統一管理state
+- axios: 建立http request
 
 ### 後端
+- express: 建立server
 - bcrypt: 用來計算使用者密碼的雜湊值
-- jsonwebtoken: 用來解決身份認證的問題
+- jsonwebtoken: 得到使用者的token來認證身份
 - mongoose: 連接MongoDB資料庫
 - nodemon: 方便後端開發
 
 
 ## 分工
 - b05901166郭加柔：UI, Diary功能, 圖片縮放旋轉
-- b05901006高珮瑋：前後端的連接, 登入功能, Diary Gallery頁面
+- b05901006高珮瑋：前後端的連接, 登入功能, Diary Gallery, 頁面Router指向
 - b05901159邱昱禎：UI, bug fixed, Calendar功能, 事件更新儲存
 
 ## 心得
@@ -79,4 +87,13 @@ $ npm run dev
 
 ### 參考資料
 * [物件移動](https://medium.com/@crazypixel/mastering-drag-drop-with-reactjs-part-01-39bed3d40a03)
+* [MERN架構](https://www.youtube.com/watch?v=PBTYxXADG_k&t=2s)
+* [react-weekly-calendar](https://github.com/birik/react-week-calendar)
+* UI : [reactstrap](https://reactstrap.github.io/)、[Material-UI](https://material-ui.com/)、[bootstrap](https://getbootstrap.com/)
+
+### 未來展望
+* 可伸縮事件時間的行事曆：[react-available-times](https://github.com/trotzig/react-available-times)
+* 可上傳圖片(已在進行)
+* 可與其他人共用行事曆的事件與分享日記
+* 改善視窗縮小Modal沒有flex的問題
 
