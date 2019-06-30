@@ -2,7 +2,7 @@
 
 ## 一句話描述這個專題
 一個行事曆以及日記兼具的可愛網頁  
-This is the [Deploy Page]('https://guarded-beyond-74616.herokuapp.com/app') and [Demo Video]('link').
+This is the [Deploy Page]('https://guarded-beyond-74616.herokuapp.com/app') and [Demo Video]('https://youtu.be/NUjAfht8ofQ').
 
 ## Usage
 
@@ -54,7 +54,7 @@ $ npm run dev
 
 ### 前端
 - React: 我們的前端是以React開發
-- React-week-calender: 行事曆的元件，省去手刻行事曆的麻煩
+- React-week-calender: 行事曆的套件，省去手刻行事曆的麻煩
 - Material ui, Reactstrap: 加速前端開發速度
 - Moment: 行事曆的時間format 
 - jsonwebtoken: 用來解決身份認證的問題
@@ -64,13 +64,10 @@ $ npm run dev
 - bcrypt: 用來計算使用者密碼的雜湊值
 - mongoose: 連接MongoDB資料庫
 - nodemon: 方便後端開發
-- 
 
 
 ## 分工
-- b05901郭加柔：
-- b05901高佩偉：
-- b05901159邱昱禎：UI, bug fixed
+- b05901159邱昱禎：UI, bug fixed, 部分行事曆製做
 
 
 
