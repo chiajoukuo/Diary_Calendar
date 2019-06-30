@@ -26,6 +26,28 @@ class Calendar extends Component {
     }
 
     handleSelect = (newIntervals) => {
+        let startdat = moment(newIntervals[0].start).day()
+        let enddat = moment(newIntervals[0].end).day()
+        let range = enddat - startdat
+        if(startdat>enddat){
+            var temp = enddat
+            enddat = startdat
+            startdat = temp
+        }
+        if(range!==0){
+            for (var i = range; i >= 0; i--) {
+                 const newEvent = {
+                    start: moment(newIntervals[i].start).add(i,'d').valueOf(),
+                    end: moment(newIntervals[i].end).add(-(range-i),'d').valueOf(),
+                    value: newIntervals[i].value,
+                    color: newIntervals[i].color,
+                    userID: this.props.user._id
+                }
+                console.log(newEvent)
+                this.props.addEvent(newEvent);                
+            }
+        }
+        else{
         newIntervals.map(interval => {
             const newEvent = {
                 start: interval.start.valueOf(),
@@ -37,6 +59,7 @@ class Calendar extends Component {
             this.props.addEvent(newEvent);
             return newEvent;
         })
+        }
     }
 
     handleEventUpdate = (event) => {
@@ -131,8 +154,6 @@ class Calendar extends Component {
     render() {
         const { events } = this.props.event;
         const { user } = this.props;
-        console.log("events:",events);
-        console.log("user:", user)
         const intervals = events.map(event => {
             const start = moment(event.start);
             const end = moment(event.end);

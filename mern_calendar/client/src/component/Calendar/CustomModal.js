@@ -73,24 +73,14 @@ class CustomModal extends Component {
     handleSave = () => {
         const { value, color, start, end, allEvent } = this.state;
         // console.log(this.props.start.isSame(this.props.end, 'date'))
-        if(!this.props.start.isSame(this.props.end, 'date')) {
-            this.props.onSave({
-                value,
-                color,
-                // start,
-                // end
-                allEvent,
-            });
-        }
-        else {
-            this.props.onSave({
-                value,
-                color,
-                start,
-                end,
-                allEvent
-            });
-        }
+        this.props.onSave({
+            value,
+            color,
+            start,
+            end,
+            allEvent
+        });
+        
     }
 
     handleChangeComplete = (color) => {
@@ -162,7 +152,7 @@ class CustomModal extends Component {
                                 color="primary"
                             />
                         }
-                        label="Edit same Events"
+                        label="Edit Same Events"
                     />
                     <MuiPickersUtilsProvider utils={DateFnsUtils} >
                         <Grid container style={{ width: '100%' }} justify="space-around">
