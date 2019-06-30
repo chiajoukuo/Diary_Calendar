@@ -12,9 +12,7 @@ export default class but extends Component {
         this.width="20px";
         this.opacity=1.0;
     }
-    componentWillReceiveProps(nextProps){
-        
-    }
+
     butOnClick = (e) => {
         this.props.onClick(e);
         /*
