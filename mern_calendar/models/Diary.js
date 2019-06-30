@@ -34,6 +34,10 @@ const DiarySchema = new Schema({
             type: Number,
             default: 0.0
         },
+        z: {
+            type: Number,
+            default: 1
+        },
     }],
     images: [{ 
         url: {
@@ -56,7 +60,15 @@ const DiarySchema = new Schema({
             type: Number,
             default: 0.0
         },
+        z: {
+            type: Number,
+            default: 1
+        },
     }],
+    z: {
+        type: Number,
+        default: 1
+    },
     userID: {
         type: String,
         required: true

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { 
     GET_DIARYS, 
     ADD_DIARY, 
+    UPDATE_DIARY,
     DELETE_DIARY, 
     DIARYS_LOADING,
     ADD_COMMENT,
@@ -35,6 +36,16 @@ export const addDiary = diary => dispatch => {
             })
         );
 };
+
+export const updateDiary = diary => dispatch => {
+    axios
+        .post(`/api/diarys/${diary._id}`, diary)
+        .then(res => 
+            dispatch({
+                type: UPDATE_DIARY,
+                payload: res.data
+            }));
+}
 
 export const deleteDiary = id => dispatch => {
     axios.delete(`/api/diarys/${id}`)

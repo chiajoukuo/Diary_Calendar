@@ -15,7 +15,11 @@ import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux';
-import { addImage, updateImage, deleteImage } from '../../../actions/diaryActions';
+import { 
+  updateDiary,
+  addImage, 
+  updateImage, 
+  deleteImage } from '../../../actions/diaryActions';
 import PropTypes from 'prop-types';
 
 class Picture2 extends React.Component {
@@ -38,7 +42,7 @@ class Picture2 extends React.Component {
       lastTranslateY: this.props.item.lastTranslateY,
 
       url: this.props.item.url,
-      zidx:1
+      zidx: this.props.item.z,
     };
     //this.scale = this.props.scale;
     //this.rotateDeg = this.props.rot;
@@ -76,7 +80,8 @@ class Picture2 extends React.Component {
         width: this.state.width,
         rotateDeg: this.state.rotateDeg,
         _id: item._id,
-        url: item.url
+        url: item.url,
+        z: this.state.zidx,
       }
 
       this.props.updateImage(diaryID, updateWidthImg);
@@ -102,7 +107,8 @@ class Picture2 extends React.Component {
         width: this.state.width,
         rotateDeg: this.state.rotateDeg,
         _id: item._id,
-        url: item.url
+        url: item.url,
+        z: this.state.zidx,
       }
 
       this.props.updateImage(diaryID, updateRotateImg);
@@ -185,7 +191,8 @@ class Picture2 extends React.Component {
       width: this.state.width,
       rotateDeg: this.state.rotateDeg,
       _id: item._id,
-      url: item.url
+      url: item.url,
+      z: this.state.zidx,
     }
 
     this.props.updateImage(diaryID, updatePositionImg);
@@ -213,7 +220,8 @@ class Picture2 extends React.Component {
       width: this.state.width,
       rotateDeg: this.state.rotateDeg,
       _id: item._id,
-      url: this.state.url
+      url: this.state.url,
+      z: this.state.zidx,
     }
 
     this.props.updateImage(diaryID, updateImg);
@@ -228,19 +236,47 @@ class Picture2 extends React.Component {
   }
   handleToTop = () => {
     console.log("totop")
-    const { diaryID, item } = this.props;
-    const tempImage = {
+    // const { diaryID, item } = this.props;
+    // const tempImage = {
+    //   lastTranslateX: this.state.lastTranslateX,
+    //   lastTranslateY: this.state.lastTranslateY,
+    //   width: this.state.width,
+    //   rotateDeg: this.state.rotateDeg,
+    //   _id: item._id,
+    //   url: this.state.url
+    // }
+    
+    // this.props.deleteImage(diaryID, item._id);
+    // this.props.addImage(diaryID, { image: tempImage });
+    
+    // this.toggle();
+    const { diaryID, item, diary } = this.props;
+
+    this.setState({
+      zidx: diary.z + 1
+    })
+
+    const update = {
       lastTranslateX: this.state.lastTranslateX,
       lastTranslateY: this.state.lastTranslateY,
       width: this.state.width,
       rotateDeg: this.state.rotateDeg,
       _id: item._id,
-      url: this.state.url
+      url: this.state.url,
+      z: diary.z + 1,
     }
-    
-    this.props.deleteImage(diaryID, item._id);
-    this.props.addImage(diaryID, { image: tempImage });
-    
+
+    this.props.updateImage(diaryID, update);
+
+    // Update diary max-z(z)
+    const updateDiary = {
+      ...diary, 
+      z: diary.z + 1
+    }
+    console.log(diary)
+    console.log(updateDiary)
+    this.props.updateDiary(updateDiary);
+
     this.toggle();
   }
   render() {
@@ -332,8 +368,7 @@ ${({ isDragging }) =>
 `
 
 const mapStateToProps = (state) => ({
-  diary: state.diary,
   user: state.auth.user
 })
 
-export default connect(mapStateToProps, { addImage, updateImage, deleteImage })(Picture2);
+export default connect(mapStateToProps, { updateDiary, addImage, updateImage, deleteImage })(Picture2);

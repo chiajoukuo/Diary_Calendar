@@ -15,7 +15,12 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import { connect } from 'react-redux';
-import { addComment, updateComment, deleteComment } from '../../../actions/diaryActions';
+import {
+  updateDiary,
+  addComment,
+  updateComment,
+  deleteComment
+} from '../../../actions/diaryActions';
 import PropTypes from 'prop-types';
 
 class Text extends React.Component {
@@ -37,7 +42,7 @@ class Text extends React.Component {
       lastTranslateY: this.props.item.lastTranslateY,
 
       body: this.props.item.body,
-      zidx: 1
+      zidx: this.props.item.z
     };
     this.inputTxt();
     this.txt = "";
@@ -46,8 +51,8 @@ class Text extends React.Component {
     updateComment: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired
   }
-  inputTxt = () =>{
-    
+  inputTxt = () => {
+
     this.txt = this.props.children.props.children;
     //console.log("inputtxt",this.txt)
 
@@ -68,16 +73,17 @@ class Text extends React.Component {
       this.setState({
         scale: ww
       });
-      const updateWidthText = {
+      const updateScaleText = {
         lastTranslateX: this.state.lastTranslateX,
         lastTranslateY: this.state.lastTranslateY,
-        width: this.state.scale,
+        scale: this.state.scale,
         rotateDeg: this.state.rotateDeg,
         _id: item._id,
-        body: item.body
+        body: item.body,
+        z: this.state.zidx,
       }
 
-      this.props.updateComment(diaryID, updateWidthText);
+      this.props.updateComment(diaryID, updateScaleText);
 
       e.stopPropagation();
       e.preventDefault();
@@ -97,10 +103,11 @@ class Text extends React.Component {
       const updateRotateText = {
         lastTranslateX: this.state.lastTranslateX,
         lastTranslateY: this.state.lastTranslateY,
-        width: this.state.scale,
+        scale: this.state.scale,
         rotateDeg: this.state.rotateDeg,
         _id: item._id,
-        body: item.body
+        body: item.body,
+        z: this.state.zidx,
       }
 
       this.props.updateComment(diaryID, updateRotateText);
@@ -177,10 +184,11 @@ class Text extends React.Component {
     const updatePositionText = {
       lastTranslateX: this.state.lastTranslateX,
       lastTranslateY: this.state.lastTranslateY,
-      width: this.state.scale,
+      scale: this.state.scale,
       rotateDeg: this.state.rotateDeg,
       _id: item._id,
-      body: item.body
+      body: item.body,
+      z: this.state.zidx,
     }
 
     this.props.updateComment(diaryID, updatePositionText);
@@ -202,10 +210,11 @@ class Text extends React.Component {
     const updateText = {
       lastTranslateX: this.state.lastTranslateX,
       lastTranslateY: this.state.lastTranslateY,
-      width: this.state.scale,
+      scale: this.state.scale,
       rotateDeg: this.state.rotateDeg,
       _id: item._id,
-      body: this.state.body
+      body: this.state.body,
+      z: this.state.zidx,
     }
 
     this.props.updateComment(diaryID, updateText);
@@ -220,6 +229,7 @@ class Text extends React.Component {
   }
   handleToTop = () => {
     console.log("totop")
+    /*
     const { diaryID, item } = this.props;
     const tempText = {
       lastTranslateX: this.state.lastTranslateX,
@@ -233,15 +243,42 @@ class Text extends React.Component {
     this.props.addComment(diaryID, { comment: tempText });
 
     this.toggle();
+    */
+    const { diaryID, item, diary } = this.props;
+    
+    this.setState({
+      zidx: diary.z + 1
+    })
 
+    // Update text itself
+    const updateText = {
+      lastTranslateX: this.state.lastTranslateX,
+      lastTranslateY: this.state.lastTranslateY,
+      scale: this.state.scale,
+      rotateDeg: this.state.rotateDeg,
+      _id: item._id,
+      body: item.body,
+      z: diary.z + 1,
+    }
+    console.log(updateText)
+    this.props.updateComment(diaryID, updateText);
 
+    // Update diary max-z(z)
+    const updateDiary = {
+      ...diary, 
+      z: diary.z + 1
+    }
+    console.log(updateDiary)
+    this.props.updateDiary(updateDiary);
+
+    this.toggle();
   }
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
   render() {
     const { isDragging } = this.state;
-    console.log("txtchild",this.props.children.props.children)
+    console.log("txtchild", this.props.children.props.children)
     return (
       <div className="txtCard">
         <TXT
@@ -280,7 +317,7 @@ class Text extends React.Component {
                 <Button variant="contained" size="small" color="secondary" style={{ marginTop: '15px' }} onClick={this.handleDelete}>
                   <DeleteIcon style={{ marginRight: '0.5rem' }} />Delete
                 </Button>
-                <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', marginLeft:'28%'}} onClick={this.handleToTop}>
+                <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', marginLeft: '28%' }} onClick={this.handleToTop}>
                   <KeyboardArrowUp style={{ marginRight: '0.5rem' }} />Move to top
                 </Button>
                 <Button variant="contained" size="small" color="primary" style={{ marginTop: '15px', float: 'right' }} onClick={this.handleUpdate}>
@@ -312,8 +349,7 @@ ${({ isDragging }) =>
 
 
 const mapStateToProps = (state) => ({
-  diary: state.diary,
   user: state.auth.user
 })
 
-export default connect(mapStateToProps, { addComment, updateComment, deleteComment })(Text);
+export default connect(mapStateToProps, { updateDiary, addComment, updateComment, deleteComment })(Text);

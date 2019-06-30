@@ -36,6 +36,15 @@ router.post('/', (req, res) => {
     newDiary.save().then(diary => res.json(diary));
 });
 
+// @route   POST api/diarys/:id
+// @desc    Update A Diary
+// @access  Public
+router.post('/:id', (req, res) => {
+    Diary.findOneAndUpdate( { _id: req.params.id }, { $set: req.body }, { new: true } )
+        .then(diary => res.json(diary))
+        .catch(err => res.status(404).json({success: false}));
+});
+
 // @route   DELETE api/diarys/:id
 // @desc    Delete A Diary
 // @access  Public

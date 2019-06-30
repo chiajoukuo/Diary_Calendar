@@ -12,6 +12,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const ADD_IMAGE = 'ADD_IMAGE';
 export const DELETE_IMAGE = 'DELETE_IMAGE';
+export const UPDATE_DIARY = 'UPDATE_DIARY';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
 

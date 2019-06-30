@@ -1,6 +1,7 @@
 import {
     GET_DIARYS,
     ADD_DIARY,
+    UPDATE_DIARY,
     DELETE_DIARY,
     DIARYS_LOADING,
     ADD_COMMENT,
@@ -29,6 +30,16 @@ export default function (state = initialState, action) {
                 ...state,
                 diarys: [action.payload, ...state.diarys]
             };
+        case UPDATE_DIARY:
+                return {
+                    ...state,
+                    diarys: state.diarys.map(diary => {
+                        if (diary._id === action.payload._id) {
+                            return { ...diary, ...action.payload };
+                        }
+                        return diary;
+                    })
+                };
         case DELETE_DIARY:
             return {
                 ...state,
