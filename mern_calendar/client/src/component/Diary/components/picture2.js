@@ -296,12 +296,27 @@ class Picture2 extends React.Component {
         </Modal>
 
       </div>
+      //   <Image src={item.url}
+      //   rot={this.state.rotateDeg}
+      //   tx={this.state.translateX}
+      //   ty={this.state.translateY}
+      //   wid={this.state.width}
+      //   className="pic"
+      //   onDoubleClick={this.handleDoubleClick.bind(this)}
+      //   onWheel={this.MousewheelScale.bind(this)}
+      //   onMouseDown={this.handleMouseDown}
+      //   isDragging={isDragging}
+      //   alt=""
+      // ></Image>
     );
 
   }
 }
 
 const Image = styled.img`
+position: absolute;
+top:380px;
+left: 100px;
 transform:  translate(${props => props.tx}px, ${props => props.ty}px) rotate(${props => props.rot}deg);
 transform-origin:(50%,50%);
 width:${props => props.wid}%;

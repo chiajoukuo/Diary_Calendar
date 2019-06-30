@@ -1,13 +1,10 @@
 .txt{
     font-family: 'Open Sans Condensed';
-    width:40%;
-    float:right;
-    word-wrap:break-word;
+    max-width:40%;
     /*
-    
-    position:absolute;
-    z-index: -1;
-    position: relative;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     */
 }
 .pic{
@@ -16,7 +13,7 @@
     z-index: -1;
     position: relative;
     /*transform:translate(50,70);*/
-    
+    position: static;
 }
 .icon{   
     margin-right:10px;
@@ -25,8 +22,8 @@
     width:25px;
 }
 .txtCard{
-    width:45%;
-    font-family: 'Open Sans Condensed';
+    width:300px;
+
 }
 .url{
     position: relative;

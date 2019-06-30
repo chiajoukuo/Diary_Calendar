@@ -38,10 +38,18 @@ class Text extends React.Component {
 
       body: this.props.item.body,
     };
+    this.inputTxt();
+    this.txt = "";
   }
   static propTypes = {
     updateComment: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired
+  }
+  inputTxt = () =>{
+    
+    this.txt = this.props.children.props.children;
+    //console.log("inputtxt",this.txt)
+
   }
   MousewheelScale = e => {
     const { diaryID, item } = this.props;
@@ -229,22 +237,25 @@ class Text extends React.Component {
   }
   render() {
     const { isDragging } = this.state;
+    console.log("txtchild",this.props.children.props.children)
     return (
-      <div>
-        <TXT
-          rot={this.state.rotateDeg}
-          tx={this.state.translateX}
-          ty={this.state.translateY}
-          scale={this.state.scale}
-          className="txtCard"
-          onDoubleClick={this.handleDoubleClick.bind(this)}
-          onWheel={this.MousewheelScale.bind(this)}
-          onMouseDown={this.handleMouseDown}
-          isDragging={isDragging}
-          alt=""
-        >
-          {this.props.children}
-        </TXT>
+      <div >
+        <div className="txtCard">
+          <TXT
+            rot={this.state.rotateDeg}
+            tx={this.state.translateX}
+            ty={this.state.translateY}
+            scale={this.state.scale}
+            className="txt"
+            onDoubleClick={this.handleDoubleClick.bind(this)}
+            onWheel={this.MousewheelScale.bind(this)}
+            onMouseDown={this.handleMouseDown}
+            isDragging={isDragging}
+            alt=""
+          >
+            {this.props.children.props.children}
+          </TXT>
+        </div>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
@@ -282,7 +293,10 @@ class Text extends React.Component {
   }
 }
 
-const TXT = styled.div`
+const TXT = styled.p`
+position: absolute;
+top:380px;
+left: 100px;
 transform:  translate(${props => props.tx}px, ${props => props.ty}px) scale(${props => props.scale})rotate(${props => props.rot}deg);
 cursor: grab;
 ${({ isDragging }) =>
