@@ -2,11 +2,8 @@
 
 ## 一句話描述這個專題
 一個行事曆以及手帳日記兼具的可愛網頁  
-<<<<<<< HEAD
-This is the [Deploy Page]('https://guarded-beyond-74616.herokuapp.com/app') and [Demo Video]('https://youtu.be/NUjAfht8ofQ').
-=======
-This is the [Deploy Page]('https://guarded-beyond-74616.herokuapp.com/app') and [Demo Video](https://youtu.be/NUjAfht8ofQ).
->>>>>>> ae7f62adb5df91d8a906ad232861e7c9b99f5a80
+This is the [Deploy Page](https://guarded-beyond-74616.herokuapp.com/app) and [Demo Video](https://youtu.be/NUjAfht8ofQ).
+
 
 ## Usage
 
@@ -68,15 +65,6 @@ $ npm run dev
 - jsonwebtoken: 用來解決身份認證的問題
 - mongoose: 連接MongoDB資料庫
 - nodemon: 方便後端開發
-<<<<<<< HEAD
-
-
-## 分工
-- b05901159邱昱禎：UI, bug fixed, 部分行事曆製做
-
-=======
->>>>>>> 5900bb1b735a8bf3913a98099d13929b0ad57f97
-
 
 
 ## 分工
