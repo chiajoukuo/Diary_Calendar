@@ -60,9 +60,9 @@ class Picture2 extends React.Component {
       //console.log("status",this.props.status)
       let ww = this.state.width;
       if (e.deltaY > 0) {
-        ww = ww - 2;
+        ww = ww - 1;
       } else {
-        ww = ww + 2;
+        ww = ww + 1;
       }
       if (ww < 5) {
         ww = 5;

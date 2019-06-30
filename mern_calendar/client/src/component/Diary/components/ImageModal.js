@@ -76,7 +76,7 @@ class ImageModal extends Component {
                                 />
                                 <Label for="url">
                                     <p style={{marginBottom:"2px"}}>Want to upload your own photo?</p>
-                                    <p>Click <a href="https://imggmi.com/">Here</a> to upload and get the URL(Viewer links).</p>
+                                    <p>Click <a href="https://imggmi.com/" target="_blank">Here</a> to upload and get the URL(Viewer links).</p>
                                 </Label>
                                 <Button color="dark" style={{ marginTop: '0px' }} block>
                                     Add Image
