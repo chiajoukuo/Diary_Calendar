@@ -2,7 +2,7 @@
 
 ## 一句話描述這個專題
 一個行事曆以及日記兼具的可愛網頁  
-This is the [Deploy Page]('https://guarded-beyond-74616.herokuapp.com/app') and [Demo Video]('https://youtu.be/NUjAfht8ofQ').
+This is the [Deploy Page](https://guarded-beyond-74616.herokuapp.com/app) and [Demo Video](https://youtu.be/NUjAfht8ofQ).
 ## Usage
 
 ### Setup
