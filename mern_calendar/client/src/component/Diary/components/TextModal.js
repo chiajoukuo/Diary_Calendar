@@ -51,7 +51,6 @@ class TextModal extends Component {
         return (
             <div style={{display:'inline'}}>
                 <Button
-                    color="primary"
                     className="botton2"                    
                     onClick={this.toggle}
                 >Add Text</Button>
@@ -72,7 +71,7 @@ class TextModal extends Component {
                                     className='mb-3'
                                     placeholder="Anything you want to say"
                                     style={{ height: "200px" }}
-                                    onChange={this.onChange}
+                                    onChange={this.onChange}                                    
                                     required
                                 />
                                 <Button color="dark" style={{ marginTop: '2rem' }} block>

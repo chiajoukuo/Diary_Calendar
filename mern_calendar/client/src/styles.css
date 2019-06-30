@@ -125,7 +125,7 @@ body{
 }
 
 .botton2{
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: black;
   background: none;
   border: 2px solid black;
@@ -142,7 +142,10 @@ body{
   background: black;
 }
 .botton2:active {
+	border: 2px dashed white;
+  box-shadow: 0 0 0 4px black;
   transform: scale(1.1);
+  background-color: black
 }
 
 /*test header*/

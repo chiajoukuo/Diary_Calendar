@@ -235,6 +235,9 @@ class Text extends React.Component {
 
 
   }
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
   render() {
     const { isDragging } = this.state;
     console.log("txtchild",this.props.children.props.children)
