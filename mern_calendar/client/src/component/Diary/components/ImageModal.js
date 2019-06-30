@@ -7,6 +7,7 @@ import {
     Form,
     FormGroup,
     Label,
+    NavLink,
     Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -73,7 +74,11 @@ class ImageModal extends Component {
                                     onChange={this.onChange}
                                     required
                                 />
-                                <Button color="dark" style={{ marginTop: '2rem' }} block>
+                                <Label for="url">
+                                    <p style={{marginBottom:"2px"}}>Want to upload your own photo?</p>
+                                    <p>Click <a href="https://imggmi.com/">Here</a> to upload and get the URL(Viewer links).</p>
+                                </Label>
+                                <Button color="dark" style={{ marginTop: '0px' }} block>
                                     Add Image
                                 </Button>
                             </FormGroup>
