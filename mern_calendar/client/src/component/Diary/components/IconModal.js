@@ -18,11 +18,11 @@ class IconModal extends Component {
         sticker:-1,
         
     }
-    stickers=["https://cdn1.imggmi.com/uploads/2019/6/30/a7d096e20f223d3eaf6568724d67ff6e-full.png",
-                    "https://cdn1.imggmi.com/uploads/2019/6/30/70df7c1dad5df894da41d87cb979056e-full.png",
-                    "https://cdn1.imggmi.com/uploads/2019/6/30/c2ae734d7720a63c7bbbc4f7a178e5be-full.png",
-                    "https://cdn1.imggmi.com/uploads/2019/6/30/0a68188e2f4d7b8a4e0f406b06a31649-full.png",
-                    "https://cdn1.imggmi.com/uploads/2019/6/30/1f9894f8805fac29789e4fce1d2e4cd6-full.png"
+    stickers=["https://stickershop.line-scdn.net/stickershop/v1/sticker/101517001/IOS/sticker.png",
+                    "https://stickershop.line-scdn.net/stickershop/v1/sticker/38146793/android/sticker.png",
+                    "https://stickershop.line-scdn.net/stickershop/v1/sticker/38146785/android/sticker.png",
+                    "https://stickershop.line-scdn.net/stickershop/v1/sticker/38146790/ANDROID/sticker.png",
+                    "https://stickershop.line-scdn.net/stickershop/v1/product/3320191/LINEStorePC/main.png;compress=true"
 
                 ]
     static propTypes = {
