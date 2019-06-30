@@ -12,15 +12,15 @@ Run the following command to setup the project:
 
 ```
 $ clone git https://github.com/chiajoukuo/Diary_Calendar.git
-$ cd mern_calender
+$ cd Diary_Calendar
 $ npm install   
 $ cd client 
 $ npm install
 ```  
 
 ### Run the project
-回到mern_calender資料夾底下執行
 ```
+$ cd ..
 $ npm run dev
 ```
 
