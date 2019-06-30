@@ -126,7 +126,11 @@ class Gallery extends Component {
                         </div>
                         <div style={{margin:"5px"}}>
                             <img src="https://cdn1.iconfinder.com/data/icons/social-object-1/74/36-512.png" style={{width:"24px", margin:"3px",marginRight:"6px"}}/>
-                            Doubleclick the photo or comment to edit the element.
+                            Doubleclick the photo or comment to edit the item.
+                        </div>
+                        <div style={{margin:"5px"}}>
+                            <img src="https://cdn0.iconfinder.com/data/icons/computers-and-development/432/drag-and-drop-512.png" style={{width:"24px", margin:"3px",marginRight:"6px"}}/>
+                            Drag to move the items.
                         </div>
 
                     </ModalBody>
