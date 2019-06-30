@@ -38,6 +38,7 @@ class Picture2 extends React.Component {
       lastTranslateY: this.props.item.lastTranslateY,
 
       url: this.props.item.url,
+      zidx:1
     };
     //this.scale = this.props.scale;
     //this.rotateDeg = this.props.rot;
@@ -253,6 +254,7 @@ class Picture2 extends React.Component {
           tx={this.state.translateX}
           ty={this.state.translateY}
           wid={this.state.width}
+          z={this.state.zidx}
           className="pic"
           onDoubleClick={this.handleDoubleClick.bind(this)}
           onWheel={this.MousewheelScale.bind(this)}
@@ -317,6 +319,7 @@ const Image = styled.img`
 position: absolute;
 top:380px;
 left: 100px;
+z-index: ${props => props.z};
 transform:  translate(${props => props.tx}px, ${props => props.ty}px) rotate(${props => props.rot}deg);
 transform-origin:(50%,50%);
 width:${props => props.wid}%;

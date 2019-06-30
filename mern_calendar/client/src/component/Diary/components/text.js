@@ -37,6 +37,7 @@ class Text extends React.Component {
       lastTranslateY: this.props.item.lastTranslateY,
 
       body: this.props.item.body,
+      zidx: 1
     };
     this.inputTxt();
     this.txt = "";
@@ -242,23 +243,22 @@ class Text extends React.Component {
     const { isDragging } = this.state;
     console.log("txtchild",this.props.children.props.children)
     return (
-      <div >
-        <div className="txtCard">
-          <TXT
-            rot={this.state.rotateDeg}
-            tx={this.state.translateX}
-            ty={this.state.translateY}
-            scale={this.state.scale}
-            className="txt"
-            onDoubleClick={this.handleDoubleClick.bind(this)}
-            onWheel={this.MousewheelScale.bind(this)}
-            onMouseDown={this.handleMouseDown}
-            isDragging={isDragging}
-            alt=""
-          >
-            {this.props.children.props.children}
-          </TXT>
-        </div>
+      <div className="txtCard">
+        <TXT
+          rot={this.state.rotateDeg}
+          tx={this.state.translateX}
+          ty={this.state.translateY}
+          scale={this.state.scale}
+          z={this.state.zidx}
+          className="txt"
+          onDoubleClick={this.handleDoubleClick.bind(this)}
+          onWheel={this.MousewheelScale.bind(this)}
+          onMouseDown={this.handleMouseDown}
+          isDragging={isDragging}
+          alt=""
+        >
+          {this.props.children.props.children}
+        </TXT>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
@@ -300,6 +300,7 @@ const TXT = styled.p`
 position: absolute;
 top:380px;
 left: 100px;
+z-index: ${props => props.z};
 transform:  translate(${props => props.tx}px, ${props => props.ty}px) scale(${props => props.scale})rotate(${props => props.rot}deg);
 cursor: grab;
 ${({ isDragging }) =>
