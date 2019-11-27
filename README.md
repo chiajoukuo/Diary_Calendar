@@ -93,7 +93,7 @@ Password: 12345
 
 ### 未來展望
 * 可伸縮事件時間的行事曆：[react-available-times](https://github.com/trotzig/react-available-times)
-* 可上傳圖片(已在進行)
+* 可上傳圖片(已完成)
 * 可與其他人共用行事曆的事件與分享日記
 * 改善視窗縮小Modal沒有flex的問題
 
