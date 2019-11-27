@@ -2,7 +2,7 @@
 
 ## 一句話描述這個專題
 一個行事曆以及手帳日記兼具的可愛網頁  
-Deploy Page : https://glacial-garden-86522.herokuapp.com/ <br>
+Deploy Page : https://guarded-beyond-74616.herokuapp.com/ <br>
 Demo Video : https://youtu.be/NUjAfht8ofQ
 
 
@@ -93,7 +93,7 @@ Password: 12345
 
 ### 未來展望
 * 可伸縮事件時間的行事曆：[react-available-times](https://github.com/trotzig/react-available-times)
-* 可上傳圖片(已完成)
+* 可上傳圖片(已在進行)
 * 可與其他人共用行事曆的事件與分享日記
 * 改善視窗縮小Modal沒有flex的問題
 
